@@ -1,6 +1,6 @@
 {
   "id": "information-security",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "title": {
     "ar": "سياسة الأمن السيبراني",
     "en": "Information Security Policy"
@@ -43,14 +43,15 @@
           }
         },
         {
-          "when": {
-            "usesContractors": [
-              "yes"
-            ]
-          },
           "text": {
-            "ar": "وتنطبق كذلك على المستقلين والمتعاقدين الخارجيين الذين يصلون إلى بيانات الشركة أو أنظمتها.",
-            "en": "It also applies to freelancers and external contractors who access the company's data or systems."
+            "ar": "وتنطبق كذلك على المستقلين والمتعاقدين، داخل المملكة وخارجها، الذين يصلون إلى بيانات الشركة أو أنظمتها.",
+            "en": "It also applies to freelancers and contractors, inside or outside Saudi Arabia, who access the company's data or systems."
+          },
+          "when": {
+            "workforce": [
+              "contractors",
+              "offshore"
+            ]
           }
         }
       ]
@@ -70,8 +71,36 @@
         },
         {
           "text": {
+            "ar": "مسؤول الأمن السيبراني ({{ownerName}}، {{ownerTitle}}): يتابع تطبيق هذه السياسة والسياسات المرتبطة بها، ويحدّثها، ويرفع تقريرًا إلى {{approverTitle}} مرة كل ستة أشهر على الأقل، وينسق الاستجابة لأي حادثة.",
+            "en": "Security owner ({{ownerName}}, {{ownerTitle}}): oversees this policy and the related policies, keeps them up to date, reports to the {{approverTitle}} at least every six months, and coordinates the response to any incident."
+          },
+          "when": {
+            "tier": [
+              "basic"
+            ]
+          }
+        },
+        {
+          "text": {
             "ar": "مسؤول الأمن السيبراني ({{ownerName}}، {{ownerTitle}}): يتابع تطبيق هذه السياسة والسياسات المرتبطة بها، ويحدّثها، ويرفع تقريرًا إلى {{approverTitle}} مرة كل ربع سنة على الأقل، وينسق الاستجابة لأي حادثة.",
             "en": "Security owner ({{ownerName}}, {{ownerTitle}}): oversees this policy and the related policies, keeps them up to date, reports to the {{approverTitle}} at least once a quarter, and coordinates the response to any incident."
+          },
+          "when": {
+            "tier": [
+              "enhanced",
+              "high"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "مزود تقنية المعلومات الخارجي: ينفذ مهام الأمن التقنية المسندة إليه في عقده، تحت إشراف مسؤول الأمن السيبراني. وتبقى مسؤولية الأمن على الشركة.",
+            "en": "The outside IT provider: carries out the technical security tasks assigned to it in its contract, under the security owner's oversight. Responsibility for security stays with the company."
+          },
+          "when": {
+            "itManagedBy": [
+              "provider"
+            ]
           }
         },
         {
@@ -81,14 +110,15 @@
           }
         },
         {
-          "when": {
-            "usesContractors": [
-              "yes"
-            ]
-          },
           "text": {
             "ar": "المستقلون والمتعاقدون: الالتزام بهذه السياسة وبالتزامات السرية والأمن الواردة في عقودهم.",
             "en": "Freelancers and contractors: follow this policy and the confidentiality and security obligations in their contracts."
+          },
+          "when": {
+            "workforce": [
+              "contractors",
+              "offshore"
+            ]
           }
         }
       ]
@@ -114,85 +144,201 @@
         },
         {
           "text": {
+            "ar": "إلى أن يُكلَّف شخص بإدارة تقنية المعلومات، يُسند مسؤول الأمن السيبراني كل مهمة تقنية في خطة التطبيق إلى شخص محدد بالاسم.",
+            "en": "Until someone is assigned to run IT, the security owner assigns each technical task in the implementation plan to a named person."
+          },
+          "when": {
+            "itManagedBy": [
+              "nobody"
+            ]
+          }
+        },
+        {
+          "text": {
             "ar": "تحتفظ الشركة بالسياسات التالية وتطبقها: سياسة الاستخدام المقبول، وسياسة التحكم في الوصول، وسياسة حماية البيانات، وسياسة الاستجابة للحوادث، وسياسة النسخ الاحتياطي والاستعادة.",
             "en": "The company maintains and applies the following policies: Acceptable Use, Access Control, Data Protection, Incident Response, and Backup and Recovery."
           }
         },
         {
+          "text": {
+            "ar": "تلتزم الشركة بضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بحسب فئتها، وبنظام حماية البيانات الشخصية، وبالمتطلبات الأمنية الواردة في عقود عملائها.",
+            "en": "The company complies with the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) for its category, with the Personal Data Protection Law, and with the security requirements in its client contracts."
+          },
           "when": {
             "size": [
               "sme",
               "large"
             ]
-          },
-          "text": {
-            "ar": "تلتزم الشركة بضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بحسب فئتها، وبنظام حماية البيانات الشخصية، وبالمتطلبات الأمنية الواردة في عقود عملائها.",
-            "en": "The company complies with the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) for its category, with the Personal Data Protection Law, and with the security requirements in its client contracts."
           }
         },
         {
+          "text": {
+            "ar": "تلتزم الشركة بنظام حماية البيانات الشخصية وبالمتطلبات الأمنية الواردة في عقود عملائها، وتتبنى طوعًا ضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بوصفها مرجعًا للممارسات الجيدة.",
+            "en": "The company complies with the Personal Data Protection Law and the security requirements in its client contracts, and voluntarily adopts the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) as its reference for good practice."
+          },
           "when": {
             "size": [
               "micro"
             ]
-          },
-          "text": {
-            "ar": "تلتزم الشركة بنظام حماية البيانات الشخصية وبالمتطلبات الأمنية الواردة في عقود عملائها، وتتبنى طوعًا ضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بوصفها مرجعًا للممارسات الجيدة.",
-            "en": "The company complies with the Personal Data Protection Law and the security requirements in its client contracts, and voluntarily adopts the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) as its reference for good practice."
           }
         },
         {
+          "text": {
+            "ar": "بصفتها مقدّمًا لخدمات سحابية لجهات حكومية، تحدد الشركة ما ينطبق عليها من ضوابط الأمن السيبراني للحوسبة السحابية (CCC) الصادرة عن الهيئة الوطنية للأمن السيبراني بصفتها مقدّم خدمة، وتطبقه.",
+            "en": "As a provider of cloud services to government entities, the company determines which of the National Cybersecurity Authority's Cloud Cybersecurity Controls (CCC) apply to it as a service provider, and applies them."
+          },
           "when": {
-            "clients": [
-              "government",
-              "finance"
+            "saasToGov": [
+              "yes"
             ]
-          },
-          "text": {
-            "ar": "عند تقديم خدمات لجهات حكومية أو مالية، تحدد الشركة في كل عقد المتطلبات الأمنية التي تفرضها هذه الجهات على مورديها، وتطبقها وتحتفظ بما يثبت ذلك.",
-            "en": "When serving government or financial entities, the company identifies in each contract the security requirements these entities impose on their suppliers, applies them, and keeps evidence that it does."
           }
         },
         {
+          "text": {
+            "ar": "عندما يتضمن عقد أحد العملاء متطلبات أمنية، كما هو معتاد لدى الجهات الحكومية والمالية، تسجّل الشركة هذه المتطلبات لكل عقد، وتطبقها على بيانات ذلك العميل والخدمات المقدمة له متى كانت أشد من هذه السياسة، وتحتفظ بما يثبت ذلك.",
+            "en": "When a client contract sets security requirements, as government and financial entities usually do, the company records them for each contract, applies them to that client's data and services wherever they are stricter than this policy, and keeps evidence that it does."
+          },
+          "when": [
+            {
+              "profile": [
+                "supplier"
+              ]
+            },
+            {
+              "clients": [
+                "government",
+                "finance"
+              ]
+            }
+          ]
+        },
+        {
+          "text": {
+            "ar": "تحتفظ الشركة ببيانات شخصية حساسة تشمل: {{personalData}}. ويقتصر الوصول إليها على من يحتاجها لأداء عمله، وتُشفَّر عند تخزينها ونقلها.",
+            "en": "The company holds sensitive personal data, including {{personalData}}. Access to it is limited to those who need it for their work, and it is encrypted when stored and when transmitted."
+          },
           "when": {
             "personalData": [
               "ids",
               "financial",
               "health"
             ]
-          },
-          "text": {
-            "ar": "تحتفظ الشركة ببيانات شخصية حساسة تشمل: {{personalData}}. ويقتصر الوصول إليها على من يحتاجها لأداء عمله، وتُشفَّر عند تخزينها ونقلها.",
-            "en": "The company holds sensitive personal data, including {{personalData}}. Access to it is limited to those who need it for their work, and it is encrypted when stored and when transmitted."
           }
         },
         {
+          "text": {
+            "ar": "تعالج الشركة البيانات الشخصية لعملائها الأفراد وفق نظام حماية البيانات الشخصية، وتنشر إشعار خصوصية واضحًا يبين ما تجمعه ولماذا.",
+            "en": "The company processes its individual customers' personal data in line with the Personal Data Protection Law, and publishes a clear privacy notice explaining what it collects and why."
+          },
           "when": {
             "clients": [
               "consumers"
             ]
-          },
-          "text": {
-            "ar": "تعالج الشركة البيانات الشخصية لعملائها الأفراد وفق نظام حماية البيانات الشخصية، وتنشر إشعار خصوصية واضحًا يبين ما تجمعه ولماذا.",
-            "en": "The company processes its individual customers' personal data in line with the Personal Data Protection Law, and publishes a clear privacy notice explaining what it collects and why."
           }
         },
         {
           "text": {
-            "ar": "يتولى مسؤول الأمن السيبراني التأكد من ضبط إعدادات الأمان في المنصات الرئيسية للشركة، بما في ذلك التحقق بخطوتين وحسابات المسؤولين والنسخ الاحتياطي.",
-            "en": "The security owner makes sure security settings are configured on the company's main platforms, including two-step login, administrator accounts and backups."
+            "ar": "قبل تخزين أي بيانات شخصية أو معالجتها خارج المملكة العربية السعودية، تتأكد الشركة أن ذلك مسموح وفق أحكام نقل البيانات في نظام حماية البيانات الشخصية وشروط عقود عملائها.",
+            "en": "Before any personal data is stored or processed outside Saudi Arabia, the company confirms this is permitted under the Personal Data Protection Law's transfer rules and its client contracts."
+          },
+          "when": {
+            "hosting": [
+              "outside",
+              "unsure"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تتحقق الشركة خلال 30 يومًا من الموقع الذي تخزن فيه كل منصة رئيسية بياناتها، وتوثقه.",
+            "en": "Within 30 days, the company confirms and records where each of its main platforms stores its data."
+          },
+          "when": {
+            "hosting": [
+              "unsure"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُستضاف بيانات العملاء الحكوميين خارج المملكة العربية السعودية إلا بموافقة كتابية من العميل.",
+            "en": "Government clients' data is not hosted outside Saudi Arabia without the client's written approval."
+          },
+          "when": {
+            "clients": [
+              "government"
+            ],
+            "hosting": [
+              "outside",
+              "unsure"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يتم وصول الفرق والمتعاقدين من خارج المملكة عبر حسابات تديرها الشركة مع التحقق بخطوتين، ويقتصر على ما يتطلبه عملهم، ويخضع لأحكام نقل البيانات الشخصية.",
+            "en": "Teams and contractors outside Saudi Arabia access company systems only through company-managed accounts with two-step login, limited to what their work requires, and subject to the personal data transfer rules."
+          },
+          "when": {
+            "workforce": [
+              "offshore"
+            ]
           }
         },
         {
           "text": {
             "ar": "تحدد الشركة أهم مخاطر الأمن السيبراني التي تواجهها مرة في السنة على الأقل، وقبل أي تغيير كبير مثل إدخال نظام جديد أو التعاقد مع مزود خدمة جديد.",
             "en": "The company identifies its main cybersecurity risks at least once a year, and before any major change such as introducing a new system or signing a new service provider."
+          },
+          "when": {
+            "tier": [
+              "basic",
+              "enhanced"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تحدد الشركة أهم مخاطر الأمن السيبراني التي تواجهها كل ستة أشهر على الأقل، وقبل أي تغيير كبير مثل إدخال نظام جديد أو التعاقد مع مزود خدمة جديد.",
+            "en": "The company identifies its main cybersecurity risks at least every six months, and before any major change such as introducing a new system or signing a new service provider."
+          },
+          "when": {
+            "tier": [
+              "high"
+            ]
           }
         },
         {
           "text": {
             "ar": "يحصل كل موظف على توعية بالأمن السيبراني عند التحاقه بالعمل، ومرة في السنة على الأقل بعد ذلك.",
             "en": "Every employee receives cybersecurity awareness when they join, and at least once a year after that."
+          },
+          "when": {
+            "tier": [
+              "basic"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يحصل كل موظف على توعية بالأمن السيبراني عند التحاقه بالعمل، ومرة في السنة على الأقل بعد ذلك، وتُجري الشركة اختبار تصيّد تجريبيًا مرة في السنة على الأقل.",
+            "en": "Every employee receives cybersecurity awareness when they join and at least once a year after that, and the company runs a simulated phishing test at least once a year."
+          },
+          "when": {
+            "tier": [
+              "enhanced"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يحصل كل موظف على توعية بالأمن السيبراني عند التحاقه بالعمل، ومرتين في السنة على الأقل بعد ذلك، وتُجري الشركة اختبارات تصيّد تجريبية مرتين في السنة على الأقل.",
+            "en": "Every employee receives cybersecurity awareness when they join and at least twice a year after that, and the company runs simulated phishing tests at least twice a year."
+          },
+          "when": {
+            "tier": [
+              "high"
+            ]
           }
         },
         {
@@ -227,23 +373,18 @@
         {
           "when": {
             "profile": [
-              "supplier"
-            ]
-          },
-          "text": {
-            "ar": "عندما يتضمن عقد أحد العملاء متطلبات أمنية أشد من هذه السياسة، تُطبق متطلبات العقد على بيانات ذلك العميل والخدمات المقدمة له.",
-            "en": "Where a client contract sets stricter security requirements than this policy, the contract's requirements apply to that client's data and the services provided to it."
-          }
-        },
-        {
-          "when": {
-            "profile": [
               "shop"
             ]
           },
           "text": {
             "ar": "تُعالج مدفوعات البطاقات عبر بوابات دفع مرخصة فقط، ولا تخزن الشركة بيانات البطاقات لديها.",
             "en": "Card payments are processed only through licensed payment gateways, and the company does not store card data."
+          }
+        },
+        {
+          "text": {
+            "ar": "يتولى مسؤول الأمن السيبراني التأكد من ضبط إعدادات الأمان في المنصات الرئيسية للشركة، بما في ذلك التحقق بخطوتين وحسابات المسؤولين والنسخ الاحتياطي.",
+            "en": "The security owner makes sure security settings are configured on the company's main platforms, including two-step login, administrator accounts and backups."
           }
         },
         {
@@ -256,6 +397,22 @@
           "text": {
             "ar": "تُراجع هذه السياسة كل {{reviewMonths}}، أو بعد أي حادثة أو تغيير كبير في الأعمال، أيهما أقرب.",
             "en": "This policy is reviewed every {{reviewMonths}}, or after any incident or major business change, whichever comes first."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "حالة التطبيق",
+        "en": "Implementation status"
+      },
+      "list": true,
+      "capabilities": true,
+      "blocks": [
+        {
+          "text": {
+            "ar": "يبين ما يلي الوضع في تاريخ سريان هذه السياسة. ما لم يُطبَّق بعد يُستكمل بحلول التاريخ المستهدف، ويتابع مسؤول الأمن السيبراني التقدم ويرفعه في تقاريره.",
+            "en": "The following shows the position on this policy's effective date. Anything not yet in place will be completed by its target date, and the security owner tracks progress in their reports."
           }
         }
       ]
@@ -288,8 +445,9 @@
         },
         {
           "when": {
-            "usesContractors": [
-              "yes"
+            "workforce": [
+              "contractors",
+              "offshore"
             ]
           },
           "text": {

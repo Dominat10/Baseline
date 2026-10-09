@@ -58,6 +58,20 @@ const ui = {
       print: "طباعة / حفظ PDF",
       fillFirst: "أكمل الحقول المظللة في المعاينة أولًا.",
       signature: "التوقيع والتاريخ",
+      tierLabel: "مستوى الصرامة",
+      because: "بسبب:",
+      basicWhy: "لا توجد بيانات حساسة أو عملاء ذوو متطلبات خاصة، فتكفي المتطلبات الأساسية.",
+      reasons: {
+        sensitiveRegulated: "بيانات حساسة مع عملاء حكوميين أو ماليين",
+        health: "بيانات صحية",
+        saasToGov: "خدمة سحابية لجهات حكومية",
+        large: "حجم الشركة",
+        sensitive: "بيانات شخصية حساسة",
+        regulatedClients: "عملاء حكوميون أو ماليون",
+        consumers: "عملاء أفراد",
+        offshore: "فرق خارج المملكة",
+        hostedOutside: "استضافة خارج المملكة"
+      },
       footer: "أُعدت هذه السياسة باستخدام Baseline (baseline.sa) بوصفها نموذجًا إرشاديًا. راجعها مع مستشارك القانوني قبل اعتمادها."
     },
     footer: "Baseline: خط الأساس السيبراني للشركات الصغيرة والمتوسطة في السعودية."
@@ -119,6 +133,20 @@ const ui = {
       print: "Print / save as PDF",
       fillFirst: "Fill in the highlighted blanks in the preview first.",
       signature: "Signature and date",
+      tierLabel: "Strictness level",
+      because: "Because of:",
+      basicWhy: "No sensitive data or demanding clients, so the basic requirements are enough.",
+      reasons: {
+        sensitiveRegulated: "sensitive data with government or financial clients",
+        health: "health data",
+        saasToGov: "cloud service to government",
+        large: "company size",
+        sensitive: "sensitive personal data",
+        regulatedClients: "government or financial clients",
+        consumers: "individual customers",
+        offshore: "teams outside Saudi Arabia",
+        hostedOutside: "hosting outside Saudi Arabia"
+      },
       footer: "Prepared with Baseline (baseline.sa) as a guidance template. Review it with your legal advisor before approving it."
     },
     footer: "Baseline: the cybersecurity baseline for Saudi SMEs."

@@ -214,3 +214,8 @@ mark.blank { background: #fff3c4; color: #7a5200; border-radius: 3px; padding: 0
   .paper { border: 0; box-shadow: none; padding: 0; }
   .filled { background: none; padding: 0; }
 }
+
+.tier { display: flex; flex-direction: column; gap: 2px; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+.tier-basic { background: var(--nca-soft); }
+.tier-enhanced { background: var(--pdpl-soft); }
+.tier-high { background: var(--prof-soft); }

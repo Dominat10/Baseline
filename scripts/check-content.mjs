@@ -32,7 +32,13 @@ const q = JSON.parse(readFileSync(new URL("../content/policies/questions.json", 
 for (const st of q.steps) for (const f of st.fields) if (!q.fields[f]) errors.push(`questions step ${st.id}: unknown field "${f}"`);
 for (const [id, f] of Object.entries(q.fields)) {
   if (!f.label?.ar || !f.label?.en) errors.push(`field ${id}: label needs ar and en`);
-  if ((f.type === "select" || f.type === "multi") && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
+  for (const [k, vals] of Object.entries(f.showIf ?? {})) {
+    const dep = q.fields[k];
+    if (!dep) errors.push(`field ${id}: showIf on unknown field "${k}"`);
+    else for (const v of vals) if (!dep.options?.some((o) => o.value === v)) errors.push(`field ${id}: showIf value "${v}" isn't an option of ${k}`);
+  }
+  if (f.exclusive && !f.options?.some((o) => o.value === f.exclusive)) errors.push(`field ${id}: exclusive "${f.exclusive}" isn't an option`);
+  if ((f.type === "select" || f.type === "multi" || f.type === "derived") && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
 }
 for (const file of ["information-security"]) {
   const pol = JSON.parse(readFileSync(new URL(`../content/policies/${file}.json`, import.meta.url)));
@@ -48,7 +54,8 @@ for (const file of ["information-security"]) {
       }
       const blanks = (l) => [...(b.text?.[l] ?? "").matchAll(/\{\{(\w+)\}\}/g)].map((m) => m[1]).sort().join();
       if (blanks("ar") !== blanks("en")) errors.push(`${where}: ar and en use different blanks`);
-      for (const [k, vals] of Object.entries(b.when ?? {})) {
+      const conds = Array.isArray(b.when) ? b.when : b.when ? [b.when] : [];
+      for (const c of conds) for (const [k, vals] of Object.entries(c)) {
         const field = q.fields[k];
         if (!field) errors.push(`${where}: condition on unknown field "${k}"`);
         else for (const v of vals) if (!field.options?.some((o) => o.value === v)) errors.push(`${where}: "${v}" isn't an option of ${k}`);

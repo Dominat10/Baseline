@@ -3,7 +3,18 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Lang } from "@/lib/kb";
 import { t } from "@/lib/i18n";
-import { missingFields, policies, questions, render, splitMulti, toWordHtml, type Answers, type Segment } from "@/lib/policy";
+import {
+  deriveTier,
+  isVisible,
+  missingFields,
+  policies,
+  questions,
+  render,
+  splitMulti,
+  toWordHtml,
+  type Answers,
+  type Segment
+} from "@/lib/policy";
 
 const KEY = "baseline-policy-v1";
 const PLAN_KEY = "baseline-plan-v1";
@@ -70,6 +81,7 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
       return { ...a, [id]: cur.join(",") };
     });
   const current = questions.steps[step];
+  const tier = deriveTier(answers);
 
   const downloadWord = () => {
     const html = toWordHtml(doc, lang, s.footer);
@@ -110,7 +122,7 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
           </ol>
 
           <div className="stack">
-            {current.fields.map((id) => {
+            {current.fields.filter((id) => isVisible(id, answers)).map((id) => {
               const f = questions.fields[id];
               return (
                 <div key={id} className="field">
@@ -177,6 +189,15 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
             ) : (
               <span className="muted small">{missing.length ? s.left(missing.length) : s.allSet}</span>
             )}
+          </div>
+
+          <div className={`tier tier-${tier.tier}`} aria-live="polite">
+            <b>
+              {s.tierLabel}: {questions.fields.tier.options!.find((o) => o.value === tier.tier)!.label[lang]}
+            </b>
+            <span className="small">
+              {tier.reasons.length ? `${s.because} ${tier.reasons.map((r) => s.reasons[r]).join(lang === "ar" ? "، " : ", ")}.` : s.basicWhy}
+            </span>
           </div>
 
           <div className="actions">

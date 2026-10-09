@@ -5,15 +5,17 @@ import type { Lang, T } from "./kb";
 export type Answers = Record<string, string>;
 
 export interface Field {
-  type: "text" | "select" | "multi" | "date";
+  type: "text" | "select" | "multi" | "date" | "derived";
   /** For multi: an option that can't be combined with the others (e.g. "none"). */
   exclusive?: string;
   label: T;
   help?: T;
   placeholder?: T;
-  options?: { value: string; label: T }[];
+  options?: { value: string; label: T; targetDays?: number }[];
   default?: string;
   required?: boolean;
+  /** Only ask this question when every listed field has at least one of the listed values. */
+  showIf?: Record<string, string[]>;
 }
 
 export interface Questions {
@@ -22,9 +24,11 @@ export interface Questions {
   fields: Record<string, Field>;
 }
 
+type Cond = Record<string, string[]>;
 interface Block {
   text: T;
-  when?: Record<string, string[]>;
+  /** One condition object (all must match), or a list of them (any may match). */
+  when?: Cond | Cond[];
 }
 
 export interface PolicyTemplate {
@@ -32,7 +36,7 @@ export interface PolicyTemplate {
   version: string;
   title: T;
   summary: T;
-  sections: { heading: T; list?: boolean; numbered?: boolean; blocks: Block[] }[];
+  sections: { heading: T; list?: boolean; numbered?: boolean; capabilities?: boolean; blocks: Block[] }[];
 }
 
 export const questions = questionsRaw as unknown as Questions;
@@ -45,6 +49,53 @@ function joinList(items: string[], lang: Lang): string {
   if (lang === "ar") return items.slice(0, -1).join("، ") + "، و" + items[items.length - 1];
   return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
 }
+
+const matches = (cond: Record<string, string[]>, answers: Answers) =>
+  Object.entries(cond).every(([k, vals]) => splitMulti(answers[k]).some((v) => vals.includes(v)));
+
+export const isVisible = (id: string, answers: Answers) => {
+  const f = questions.fields[id];
+  return !!f && f.type !== "derived" && (!f.showIf || matches(f.showIf, answers));
+};
+
+export type Tier = "basic" | "enhanced" | "high";
+export type TierReason = "sensitiveRegulated" | "health" | "saasToGov" | "large" | "sensitive" | "regulatedClients" | "consumers" | "offshore" | "hostedOutside";
+
+/** Strictness tier, worked out from answers (never asked). Reasons explain it to the user. */
+export function deriveTier(answers: Answers): { tier: Tier; reasons: TierReason[] } {
+  const has = (k: string, ...v: string[]) => splitMulti(answers[k]).some((x) => v.includes(x));
+  const sensitive = has("personalData", "ids", "financial", "health");
+  const regulated = has("clients", "government", "finance");
+  const saas = isVisible("saasToGov", answers) && answers.saasToGov === "yes";
+  const high: TierReason[] = [];
+  if (sensitive && regulated) high.push("sensitiveRegulated");
+  if (has("personalData", "health")) high.push("health");
+  if (saas) high.push("saasToGov");
+  if (answers.size === "large") high.push("large");
+  if (high.length) return { tier: "high", reasons: high };
+  const enh: TierReason[] = [];
+  if (sensitive) enh.push("sensitive");
+  if (regulated) enh.push("regulatedClients");
+  if (has("clients", "consumers")) enh.push("consumers");
+  if (has("workforce", "offshore")) enh.push("offshore");
+  if (answers.hosting === "outside") enh.push("hostedOutside");
+  return { tier: enh.length ? "enhanced" : "basic", reasons: enh };
+}
+
+/** Answers as the policy sees them: hidden questions dropped, derived values added. */
+export function effectiveAnswers(answers: Answers): Answers {
+  const out: Answers = {};
+  for (const [k, v] of Object.entries(answers)) if (isVisible(k, answers)) out[k] = v;
+  out.tier = deriveTier(answers).tier;
+  return out;
+}
+
+function addDays(iso: string, days: number): string {
+  const d = new Date(iso + "T00:00:00");
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
 export const policies: PolicyTemplate[] = [infosecRaw as unknown as PolicyTemplate];
 
 /** A piece of rendered text: plain, a filled-in answer, or a blank still to fill. */
@@ -66,8 +117,8 @@ export interface RenderedPolicy {
 }
 
 const META_LABELS = {
-  ar: { company: "الشركة", version: "الإصدار", owner: "مالك السياسة", approver: "المعتمِد", effective: "تاريخ السريان", review: "المراجعة القادمة" },
-  en: { company: "Company", version: "Version", owner: "Policy owner", approver: "Approved by", effective: "Effective date", review: "Next review" }
+  ar: { company: "الشركة", version: "الإصدار", owner: "مالك السياسة", approver: "المعتمِد", effective: "تاريخ السريان", review: "المراجعة القادمة", tier: "مستوى الصرامة", inPlace: "مطبَّق", by: "مستهدف بحلول" },
+  en: { company: "Company", version: "Version", owner: "Policy owner", approver: "Approved by", effective: "Effective date", review: "Next review", tier: "Strictness level", inPlace: "in place", by: "target" }
 };
 
 /** Human-readable value for a field, or null if it hasn't been answered. */
@@ -75,7 +126,7 @@ export function valueOf(id: string, answers: Answers, lang: Lang): string | null
   const field = questions.fields[id];
   const raw = (answers[id] ?? "").trim();
   if (!field || !raw) return null;
-  if (field.type === "select") {
+  if (field.type === "select" || field.type === "derived") {
     const opt = field.options?.find((o) => o.value === raw);
     return opt ? opt.label[lang] : null;
   }
@@ -127,10 +178,30 @@ function fill(template: string, answers: Answers, lang: Lang): Segment[] {
 
 function applies(block: Block, answers: Answers): boolean {
   if (!block.when) return true;
-  return Object.entries(block.when).every(([k, vals]) => splitMulti(answers[k]).some((v) => vals.includes(v)));
+  const any = Array.isArray(block.when) ? block.when : [block.when];
+  return any.some((c) => matches(c, answers));
 }
 
-export function render(policy: PolicyTemplate, answers: Answers, lang: Lang): RenderedPolicy {
+/** One line per capability: in place, or the date it must be in place by. */
+function capabilityRows(answers: Answers, lang: Lang): Segment[][] {
+  const L = META_LABELS[lang];
+  const f = questions.fields.capabilities;
+  if (!answers.capabilities) return [];
+  const have = splitMulti(answers.capabilities);
+  return (f.options ?? [])
+    .filter((o) => o.value !== f.exclusive)
+    .map((o) => {
+      if (have.includes(o.value)) return [{ text: `${o.label[lang]}: ${L.inPlace} ✓`, kind: "filled" } as Segment];
+      const due = answers.effectiveDate ? formatDate(addDays(answers.effectiveDate, o.targetDays ?? 90), lang) : null;
+      return [
+        { text: `${o.label[lang]}: ${L.by} `, kind: "plain" } as Segment,
+        due ? ({ text: due, kind: "filled" } as Segment) : ({ text: questions.fields.effectiveDate.label[lang], kind: "blank" } as Segment)
+      ];
+    });
+}
+
+export function render(policy: PolicyTemplate, raw: Answers, lang: Lang): RenderedPolicy {
+  const answers = effectiveAnswers(raw);
   const L = META_LABELS[lang];
   const seg = (id: string): Segment[] => fill(`{{${id}}}`, answers, lang);
   const review = nextReview(answers, lang);
@@ -150,13 +221,17 @@ export function render(policy: PolicyTemplate, answers: Answers, lang: Lang): Re
       {
         label: L.review,
         value: review ? [{ text: review, kind: "filled" }] : seg("effectiveDate")
-      }
+      },
+      { label: L.tier, value: seg("tier") }
     ],
     sections: policy.sections
       .map((s) => ({
         heading: s.heading[lang],
         style: (s.numbered ? "numbered" : s.list ? "list" : "para") as RenderedSection["style"],
-        items: s.blocks.filter((b) => applies(b, answers)).map((b) => fill(b.text[lang], answers, lang))
+        items: [
+          ...s.blocks.filter((b) => applies(b, answers)).map((b) => fill(b.text[lang], answers, lang)),
+          ...(s.capabilities ? capabilityRows(answers, lang) : [])
+        ]
       }))
       .filter((s) => s.items.length > 0)
   };
@@ -164,7 +239,7 @@ export function render(policy: PolicyTemplate, answers: Answers, lang: Lang): Re
 
 export function missingFields(answers: Answers): string[] {
   return Object.entries(questions.fields)
-    .filter(([id, f]) => f.required && !(answers[id] ?? "").trim())
+    .filter(([id, f]) => f.required && isVisible(id, answers) && !(answers[id] ?? "").trim())
     .map(([id]) => id);
 }
 

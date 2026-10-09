@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "steps": [
     {
       "id": "company",
@@ -22,20 +22,33 @@
       "fields": [
         "clients",
         "personalData",
-        "platform"
+        "platform",
+        "hosting",
+        "saasToGov"
       ]
     },
     {
       "id": "people",
       "title": {
-        "ar": "المسؤوليات",
-        "en": "Responsibilities"
+        "ar": "الأشخاص",
+        "en": "People"
       },
       "fields": [
         "ownerName",
         "ownerTitle",
         "approverTitle",
-        "usesContractors"
+        "itManagedBy",
+        "workforce"
+      ]
+    },
+    {
+      "id": "today",
+      "title": {
+        "ar": "الوضع الحالي",
+        "en": "Today"
+      },
+      "fields": [
+        "capabilities"
       ]
     },
     {
@@ -270,6 +283,78 @@
       ],
       "required": true
     },
+    "hosting": {
+      "type": "select",
+      "label": {
+        "ar": "أين تُستضاف بياناتكم؟",
+        "en": "Where is your data hosted?"
+      },
+      "help": {
+        "ar": "موقع الخوادم أو منطقة الخدمة السحابية.",
+        "en": "The location of your servers or cloud region."
+      },
+      "options": [
+        {
+          "value": "ksa",
+          "label": {
+            "ar": "داخل السعودية",
+            "en": "Inside Saudi Arabia"
+          }
+        },
+        {
+          "value": "outside",
+          "label": {
+            "ar": "خارج السعودية",
+            "en": "Outside Saudi Arabia"
+          }
+        },
+        {
+          "value": "unsure",
+          "label": {
+            "ar": "غير متأكد",
+            "en": "Not sure"
+          }
+        }
+      ],
+      "required": true
+    },
+    "saasToGov": {
+      "type": "select",
+      "label": {
+        "ar": "هل تقدمون برمجياتكم كخدمة سحابية (SaaS) لجهات حكومية؟",
+        "en": "Do you provide your software as a cloud service (SaaS) to government entities?"
+      },
+      "help": {
+        "ar": "قد يُدخلكم ذلك في نطاق ضوابط الأمن السيبراني للحوسبة السحابية بصفتكم مقدّم خدمة.",
+        "en": "This may bring you into scope of NCA's cloud controls as a service provider."
+      },
+      "showIf": {
+        "profile": [
+          "dev",
+          "product"
+        ],
+        "clients": [
+          "government"
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "ar": "نعم",
+            "en": "Yes"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "ar": "لا",
+            "en": "No"
+          }
+        }
+      ],
+      "required": true
+    },
     "ownerName": {
       "type": "text",
       "label": {
@@ -336,25 +421,64 @@
       ],
       "required": true
     },
-    "usesContractors": {
+    "itManagedBy": {
       "type": "select",
       "label": {
-        "ar": "هل تعمل مع مستقلين أو متعاقدين خارجيين؟",
-        "en": "Do you work with freelancers or contractors?"
+        "ar": "من يدير تقنية المعلومات يوميًا؟",
+        "en": "Who runs your IT day to day?"
       },
       "options": [
         {
-          "value": "yes",
+          "value": "inhouse",
           "label": {
-            "ar": "نعم",
-            "en": "Yes"
+            "ar": "موظف لدينا",
+            "en": "One of our employees"
           }
         },
         {
-          "value": "no",
+          "value": "provider",
           "label": {
-            "ar": "لا",
-            "en": "No"
+            "ar": "شركة أو مستقل خارجي",
+            "en": "An outside company or freelancer"
+          }
+        },
+        {
+          "value": "nobody",
+          "label": {
+            "ar": "لا أحد محدد",
+            "en": "No one in particular"
+          }
+        }
+      ],
+      "required": true
+    },
+    "workforce": {
+      "type": "multi",
+      "exclusive": "staff",
+      "label": {
+        "ar": "من غير الموظفين يصل إلى أنظمتكم أو بياناتكم؟",
+        "en": "Besides employees, who accesses your systems or data?"
+      },
+      "options": [
+        {
+          "value": "staff",
+          "label": {
+            "ar": "الموظفون فقط",
+            "en": "Employees only"
+          }
+        },
+        {
+          "value": "contractors",
+          "label": {
+            "ar": "مستقلون أو متعاقدون داخل السعودية",
+            "en": "Freelancers or contractors in Saudi Arabia"
+          }
+        },
+        {
+          "value": "offshore",
+          "label": {
+            "ar": "فرق أو متعاقدون خارج السعودية",
+            "en": "Teams or contractors outside Saudi Arabia"
           }
         }
       ],
@@ -392,6 +516,106 @@
       ],
       "default": "12",
       "required": true
+    },
+    "capabilities": {
+      "type": "multi",
+      "exclusive": "none",
+      "label": {
+        "ar": "ما المطبَّق لديكم اليوم فعليًا؟",
+        "en": "What is actually in place today?"
+      },
+      "help": {
+        "ar": "كن دقيقًا: السياسة ستذكر ما هو مطبق، وتضع موعدًا مستهدفًا للباقي. هذا ما يجعلها صامدة أمام أي تدقيق.",
+        "en": "Be honest: the policy states what's in place and sets a target date for the rest. That's what makes it hold up in an audit."
+      },
+      "options": [
+        {
+          "value": "none",
+          "label": {
+            "ar": "لا شيء مما يلي بعد",
+            "en": "None of these yet"
+          }
+        },
+        {
+          "value": "mfa",
+          "targetDays": 30,
+          "label": {
+            "ar": "التحقق بخطوتين على البريد وحسابات المسؤولين",
+            "en": "Two-step login on email and admin accounts"
+          }
+        },
+        {
+          "value": "offboarding",
+          "targetDays": 30,
+          "label": {
+            "ar": "إغلاق الصلاحيات في يوم مغادرة الموظف",
+            "en": "Access removed the day someone leaves"
+          }
+        },
+        {
+          "value": "backups",
+          "targetDays": 30,
+          "label": {
+            "ar": "نسخ احتياطي تلقائي",
+            "en": "Automatic backups"
+          }
+        },
+        {
+          "value": "restoreTest",
+          "targetDays": 90,
+          "label": {
+            "ar": "تجربة استعادة من النسخ الاحتياطي",
+            "en": "A tested restore from backup"
+          }
+        },
+        {
+          "value": "logging",
+          "targetDays": 90,
+          "label": {
+            "ar": "الاحتفاظ بسجلات الدخول والنشاط",
+            "en": "Login and activity logs kept"
+          }
+        },
+        {
+          "value": "awareness",
+          "targetDays": 90,
+          "label": {
+            "ar": "توعية الموظفين خلال آخر سنة",
+            "en": "Staff security awareness in the past year"
+          }
+        }
+      ],
+      "required": true
+    },
+    "tier": {
+      "type": "derived",
+      "label": {
+        "ar": "مستوى الصرامة",
+        "en": "Strictness level"
+      },
+      "options": [
+        {
+          "value": "basic",
+          "label": {
+            "ar": "أساسي",
+            "en": "Basic"
+          }
+        },
+        {
+          "value": "enhanced",
+          "label": {
+            "ar": "معزز",
+            "en": "Enhanced"
+          }
+        },
+        {
+          "value": "high",
+          "label": {
+            "ar": "مرتفع",
+            "en": "High"
+          }
+        }
+      ]
     }
   }
 }
