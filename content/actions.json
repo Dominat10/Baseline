@@ -578,7 +578,8 @@
       "cost": "low",
       "phaseFor": {
         "dev": 1
-      }
+      },
+      "capability": "endpoint"
     },
     {
       "id": "a-byod",
@@ -759,7 +760,8 @@
         "en": "Router settings and guest network setup."
       },
       "effort": "halfday",
-      "cost": "free"
+      "cost": "free",
+      "capability": "firewall"
     },
     {
       "id": "a-physical",
@@ -1302,11 +1304,22 @@
       },
       "effort": "1week",
       "cost": "paid",
-      "when": {
-        "profile": [
-          "product"
-        ]
-      }
+      "when": [
+        {
+          "profile": [
+            "product"
+          ]
+        },
+        {
+          "profile": [
+            "dev"
+          ],
+          "clients": [
+            "government",
+            "finance"
+          ]
+        }
+      ]
     },
     {
       "id": "a-clients",

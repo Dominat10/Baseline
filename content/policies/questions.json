@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "steps": [
     {
       "id": "company",
@@ -23,6 +23,8 @@
         "clients",
         "personalData",
         "platform",
+        "m365Licence",
+        "googleLicence",
         "hosting",
         "saasToGov"
       ]
@@ -303,6 +305,114 @@
           "label": {
             "ar": "خدمات سحابية أخرى",
             "en": "other cloud services"
+          }
+        }
+      ],
+      "required": true
+    },
+    "m365Licence": {
+      "type": "select",
+      "label": {
+        "ar": "ما إصدار Microsoft 365 لديكم؟",
+        "en": "Which Microsoft 365 plan do you have?"
+      },
+      "help": {
+        "ar": "يحدد ما هو مشمول في اشتراكك فعلًا ولا تحتاج لشرائه.",
+        "en": "Decides what's already included in what you pay for."
+      },
+      "showIf": {
+        "platform": [
+          "m365"
+        ]
+      },
+      "options": [
+        {
+          "value": "basic",
+          "label": {
+            "ar": "Business Basic",
+            "en": "Business Basic"
+          }
+        },
+        {
+          "value": "standard",
+          "label": {
+            "ar": "Business Standard",
+            "en": "Business Standard"
+          }
+        },
+        {
+          "value": "premium",
+          "label": {
+            "ar": "Business Premium",
+            "en": "Business Premium"
+          }
+        },
+        {
+          "value": "enterprise",
+          "label": {
+            "ar": "E3 أو E5",
+            "en": "E3 or E5"
+          }
+        },
+        {
+          "value": "unsure",
+          "label": {
+            "ar": "غير متأكد",
+            "en": "Not sure"
+          }
+        }
+      ],
+      "required": true
+    },
+    "googleLicence": {
+      "type": "select",
+      "label": {
+        "ar": "ما إصدار Google Workspace لديكم؟",
+        "en": "Which Google Workspace plan do you have?"
+      },
+      "help": {
+        "ar": "يحدد ما هو مشمول في اشتراكك فعلًا ولا تحتاج لشرائه.",
+        "en": "Decides what's already included in what you pay for."
+      },
+      "showIf": {
+        "platform": [
+          "google"
+        ]
+      },
+      "options": [
+        {
+          "value": "starter",
+          "label": {
+            "ar": "Business Starter",
+            "en": "Business Starter"
+          }
+        },
+        {
+          "value": "standard",
+          "label": {
+            "ar": "Business Standard",
+            "en": "Business Standard"
+          }
+        },
+        {
+          "value": "plus",
+          "label": {
+            "ar": "Business Plus",
+            "en": "Business Plus"
+          }
+        },
+        {
+          "value": "enterprise",
+          "label": {
+            "ar": "Enterprise",
+            "en": "Enterprise"
+          }
+        },
+        {
+          "value": "unsure",
+          "label": {
+            "ar": "غير متأكد",
+            "en": "Not sure"
           }
         }
       ],
@@ -786,6 +896,14 @@
           }
         },
         {
+          "value": "endpoint",
+          "targetDays": 30,
+          "label": {
+            "ar": "حماية من البرمجيات الضارة على كل الأجهزة",
+            "en": "Malware protection on every device"
+          }
+        },
+        {
           "value": "restoreTest",
           "targetDays": 90,
           "label": {
@@ -807,6 +925,14 @@
           "label": {
             "ar": "توعية الموظفين خلال آخر سنة",
             "en": "Staff security awareness in the past year"
+          }
+        },
+        {
+          "value": "firewall",
+          "targetDays": 180,
+          "label": {
+            "ar": "جدار حماية أو جهاز توجيه مؤمَّن للشبكة",
+            "en": "A firewall or secured router for the network"
           }
         }
       ],

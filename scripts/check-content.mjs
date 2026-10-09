@@ -116,6 +116,27 @@ for (const cap of q.fields.capabilities.options.filter((o) => o.value !== q.fiel
 }
 if (!errors.length) console.log(`Actions OK: ${lib.actions.length} actions, all 13 mandatory NCA domains covered.`);
 
+// ---------- solutions ----------
+const sol = JSON.parse(readFileSync(new URL("../content/solutions.json", import.meta.url)));
+const editions = { m365: q.fields.m365Licence.options.map((o) => o.value), google: q.fields.googleLicence.options.map((o) => o.value) };
+const catIds = new Set();
+for (const c of sol.categories) {
+  const w = `solution ${c.id}`;
+  if (catIds.has(c.id)) errors.push(`${w}: duplicate id`);
+  catIds.add(c.id);
+  for (const f of ["name", "what"]) if (!c[f]?.ar || !c[f]?.en) errors.push(`${w}: ${f} needs ar and en`);
+  if (c.criteria.ar.length !== c.criteria.en.length) errors.push(`${w}: criteria differ between ar and en`);
+  if (!sol.costBands[c.cost]) errors.push(`${w}: unknown cost band "${c.cost}"`);
+  for (const id of c.covers) if (!actionIds.has(id)) errors.push(`${w}: covers unknown action "${id}"`);
+  for (const [p, inc] of Object.entries(c.included ?? {})) for (const e of inc.editions) if (!editions[p]?.includes(e)) errors.push(`${w}: unknown ${p} edition "${e}"`);
+  for (const [p, e] of Object.entries(c.upgrade ?? {})) if (!sol.upgrades[p]?.[e]) errors.push(`${w}: upgrade target ${p}/${e} has no name`);
+  if (c.haveIf && !q.fields.capabilities.options.some((o) => o.value === c.haveIf)) errors.push(`${w}: unknown capability "${c.haveIf}"`);
+  if (c.kind === "tool" && !c.examples.length) errors.push(`${w}: tools need at least one labelled example`);
+  checkCond(c.when, w);
+}
+if (!sol.disclosure?.ar || !sol.disclosure?.en) errors.push("solutions: vendor disclosure text is required");
+if (!errors.length) console.log(`Solutions OK: ${sol.categories.length} categories.`);
+
 if (errors.length) {
   console.error(`Knowledge base has ${errors.length} problem(s):\n- ` + errors.join("\n- "));
   process.exit(1);

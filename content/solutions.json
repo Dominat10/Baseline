@@ -1,0 +1,736 @@
+{
+  "version": "0.1.0",
+  "costBands": {
+    "free": {
+      "ar": "مجاني أو مشمول",
+      "en": "Free or included"
+    },
+    "low": {
+      "ar": "منخفضة",
+      "en": "Low"
+    },
+    "medium": {
+      "ar": "متوسطة",
+      "en": "Medium"
+    },
+    "high": {
+      "ar": "مرتفعة",
+      "en": "High"
+    }
+  },
+  "upgrades": {
+    "m365": {
+      "premium": {
+        "ar": "Microsoft 365 Business Premium",
+        "en": "Microsoft 365 Business Premium"
+      }
+    },
+    "google": {
+      "plus": {
+        "ar": "Google Workspace Business Plus",
+        "en": "Google Workspace Business Plus"
+      }
+    }
+  },
+  "categories": [
+    {
+      "id": "mfa",
+      "kind": "tool",
+      "name": {
+        "ar": "التحقق بخطوتين",
+        "en": "Two-step login"
+      },
+      "what": {
+        "ar": "تطبيق مصادقة لكل موظف، ومفاتيح أمان مادية لحسابات المسؤولين في المستوى المرتفع.",
+        "en": "An authenticator app for everyone, and physical security keys for admin accounts at the High tier."
+      },
+      "criteria": {
+        "ar": [
+          "يعمل مع كل الأنظمة التي تستخدمونها",
+          "يدعم تطبيق المصادقة لا الرسائل النصية فقط",
+          "سهل الاسترجاع عند فقدان الجوال"
+        ],
+        "en": [
+          "Works with every system you use",
+          "Supports an authenticator app, not just SMS",
+          "Easy recovery if a phone is lost"
+        ]
+      },
+      "examples": [
+        "Microsoft Authenticator",
+        "Google Authenticator",
+        "YubiKey"
+      ],
+      "cost": "free",
+      "covers": [
+        "a-mfa",
+        "a-admins"
+      ],
+      "phase": 1,
+      "included": {
+        "m365": {
+          "editions": [
+            "basic",
+            "standard",
+            "premium",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "الإعدادات الأمنية الافتراضية، أو الوصول المشروط في Business Premium وE3/E5",
+            "en": "Security defaults, or Conditional Access in Business Premium and E3/E5"
+          }
+        },
+        "google": {
+          "editions": [
+            "starter",
+            "standard",
+            "plus",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "التحقق بخطوتين في Google Workspace",
+            "en": "Google Workspace 2-step verification"
+          }
+        }
+      },
+      "haveIf": "mfa"
+    },
+    {
+      "id": "password",
+      "kind": "tool",
+      "name": {
+        "ar": "مدير كلمات المرور",
+        "en": "Password manager"
+      },
+      "what": {
+        "ar": "خزنة مشتركة للفريق بدل تبادل كلمات المرور في الرسائل.",
+        "en": "A shared team vault instead of passing passwords around in chats."
+      },
+      "criteria": {
+        "ar": [
+          "خزائن مشتركة بصلاحيات",
+          "تحقق بخطوتين وتسجيل للأنشطة",
+          "سحب الوصول فورًا عند المغادرة"
+        ],
+        "en": [
+          "Shared vaults with permissions",
+          "Two-step login and activity logs",
+          "Instant removal when someone leaves"
+        ]
+      },
+      "examples": [
+        "Bitwarden",
+        "1Password",
+        "Keeper"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-pwmgr"
+      ],
+      "phase": 1
+    },
+    {
+      "id": "email",
+      "kind": "tool",
+      "name": {
+        "ar": "حماية البريد المتقدمة",
+        "en": "Advanced email protection"
+      },
+      "what": {
+        "ar": "فحص الروابط والمرفقات ومكافحة انتحال المسؤولين، فوق الحماية الأساسية المدمجة.",
+        "en": "Link and attachment checking and anti-impersonation, on top of the basic built-in protection."
+      },
+      "criteria": {
+        "ar": [
+          "فحص الروابط عند النقر لا عند الاستلام فقط",
+          "حماية من انتحال المدير والموردين",
+          "تقارير DMARC واضحة"
+        ],
+        "en": [
+          "Checks links when clicked, not just on arrival",
+          "Protects against CEO and supplier impersonation",
+          "Clear DMARC reporting"
+        ]
+      },
+      "examples": [
+        "Microsoft Defender for Office 365",
+        "Proofpoint Essentials",
+        "Mimecast"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-email"
+      ],
+      "phase": 1,
+      "included": {
+        "m365": {
+          "editions": [
+            "premium",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "Microsoft Defender for Office 365 (الخطة 1)",
+            "en": "Microsoft Defender for Office 365 Plan 1"
+          }
+        },
+        "google": {
+          "editions": [
+            "starter",
+            "standard",
+            "plus",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "الحماية المدمجة في Gmail مع إعدادات الأمان المتقدمة",
+            "en": "Gmail's built-in protection with advanced safety settings"
+          }
+        }
+      },
+      "upgrade": {
+        "m365": "premium"
+      }
+    },
+    {
+      "id": "endpoint",
+      "kind": "tool",
+      "name": {
+        "ar": "حماية الأجهزة من البرمجيات الضارة (EDR)",
+        "en": "Endpoint protection (EDR)"
+      },
+      "what": {
+        "ar": "حماية من الفدية والبرمجيات الضارة مع كشف السلوك المشبوه على الحواسيب.",
+        "en": "Ransomware and malware protection with detection of suspicious behaviour on laptops."
+      },
+      "criteria": {
+        "ar": [
+          "كشف واستجابة (EDR) لا مكافحة فيروسات تقليدية فقط",
+          "لوحة إدارة مركزية",
+          "يعمل على أنظمة التشغيل لديكم"
+        ],
+        "en": [
+          "Detection and response (EDR), not just traditional antivirus",
+          "Central management console",
+          "Covers the operating systems you use"
+        ]
+      },
+      "examples": [
+        "Microsoft Defender for Business",
+        "CrowdStrike Falcon Go",
+        "SentinelOne Singularity",
+        "ESET PROTECT"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-devices",
+        "a-patch"
+      ],
+      "phase": 1,
+      "included": {
+        "m365": {
+          "editions": [
+            "premium",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "Microsoft Defender for Business (أو Defender for Endpoint في E3/E5)",
+            "en": "Microsoft Defender for Business (or Defender for Endpoint in E3/E5)"
+          }
+        }
+      },
+      "upgrade": {
+        "m365": "premium"
+      },
+      "addon": {
+        "m365": {
+          "ar": "أو أضف Microsoft Defender for Business منفصلًا",
+          "en": "or add Microsoft Defender for Business on its own"
+        }
+      },
+      "haveIf": "endpoint"
+    },
+    {
+      "id": "mdm",
+      "kind": "tool",
+      "name": {
+        "ar": "إدارة الأجهزة",
+        "en": "Device management"
+      },
+      "what": {
+        "ar": "فرض التشفير وقفل الشاشة والتحديثات، والمسح عن بُعد، وحماية بيانات العمل على الجوالات الشخصية.",
+        "en": "Enforces encryption, screen lock and updates, remote wipe, and protects work data on personal phones."
+      },
+      "criteria": {
+        "ar": [
+          "يدعم كل أنواع أجهزتكم (ويندوز، ماك، جوال)",
+          "حماية تطبيقات العمل على الأجهزة الشخصية",
+          "تقارير امتثال الأجهزة"
+        ],
+        "en": [
+          "Supports all your device types (Windows, Mac, mobile)",
+          "Protects work apps on personal devices",
+          "Device compliance reports"
+        ]
+      },
+      "examples": [
+        "Microsoft Intune",
+        "Google endpoint management",
+        "Jamf (Mac)"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-devices",
+        "a-byod",
+        "a-patch"
+      ],
+      "phase": 1,
+      "included": {
+        "m365": {
+          "editions": [
+            "premium",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "Microsoft Intune (الخطة 1)",
+            "en": "Microsoft Intune Plan 1"
+          }
+        },
+        "google": {
+          "editions": [
+            "plus",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "إدارة الأجهزة المتقدمة في Google Workspace",
+            "en": "Google Workspace advanced endpoint management"
+          }
+        }
+      },
+      "upgrade": {
+        "m365": "premium",
+        "google": "plus"
+      }
+    },
+    {
+      "id": "saasBackup",
+      "kind": "tool",
+      "name": {
+        "ar": "النسخ الاحتياطي للبريد والملفات السحابية",
+        "en": "Backup for cloud email and files"
+      },
+      "what": {
+        "ar": "نسخة مستقلة من البريد والملفات، لأن الاحتفاظ المدمج ليس نسخة احتياطية.",
+        "en": "An independent copy of email and files, because built-in retention isn't a backup."
+      },
+      "criteria": {
+        "ar": [
+          "يمكن اختيار منطقة التخزين (لقواعد موقع البيانات)",
+          "نسخ غير قابلة للتعديل",
+          "استعادة سريعة لعنصر أو حساب كامل"
+        ],
+        "en": [
+          "You can choose the storage region (for data location rules)",
+          "Immutable copies",
+          "Fast restore of a single item or a whole account"
+        ]
+      },
+      "examples": [
+        "Microsoft 365 Backup",
+        "Veeam Backup for Microsoft 365",
+        "Acronis Cyber Protect"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-backup",
+        "a-restore"
+      ],
+      "phase": 1,
+      "haveIf": "backups",
+      "when": [
+        {
+          "platform": [
+            "m365",
+            "google"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "serverBackup",
+      "kind": "tool",
+      "name": {
+        "ar": "النسخ الاحتياطي للخوادم",
+        "en": "Server backup"
+      },
+      "what": {
+        "ar": "نسخ كامل للخوادم مع نسخة خارج الموقع ونسخة معزولة.",
+        "en": "Full server backup with an off-site copy and an isolated copy."
+      },
+      "criteria": {
+        "ar": [
+          "نسخ غير قابلة للتعديل ضد الفدية",
+          "استعادة كاملة للخادم",
+          "تنبيهات عند فشل النسخ"
+        ],
+        "en": [
+          "Immutable copies against ransomware",
+          "Full server restore",
+          "Alerts when a backup fails"
+        ]
+      },
+      "examples": [
+        "Veeam",
+        "Acronis Cyber Protect",
+        "Synology (with immutable snapshots)"
+      ],
+      "cost": "medium",
+      "covers": [
+        "a-backup",
+        "a-restore"
+      ],
+      "phase": 1,
+      "haveIf": "backups",
+      "when": [
+        {
+          "platform": [
+            "servers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "kind": "tool",
+      "name": {
+        "ar": "حماية الشبكة والوصول عن بُعد",
+        "en": "Network protection and remote access"
+      },
+      "what": {
+        "ar": "جدار حماية للمكتب، أو وصول آمن للعاملين عن بُعد بدل الشبكات المفتوحة.",
+        "en": "A firewall for the office, or secure access for remote staff instead of open networks."
+      },
+      "criteria": {
+        "ar": [
+          "تحديثات أمنية مستمرة",
+          "فصل شبكة الضيوف",
+          "وصول آمن عن بُعد مع التحقق بخطوتين"
+        ],
+        "en": [
+          "Ongoing security updates",
+          "Guest network separation",
+          "Secure remote access with two-step login"
+        ]
+      },
+      "examples": [
+        "Fortinet FortiGate",
+        "Sophos Firewall",
+        "Cloudflare Zero Trust"
+      ],
+      "cost": "medium",
+      "covers": [
+        "a-network"
+      ],
+      "phase": 2,
+      "haveIf": "firewall"
+    },
+    {
+      "id": "awareness",
+      "kind": "tool",
+      "name": {
+        "ar": "منصة التوعية واختبارات التصيد",
+        "en": "Awareness and phishing-test platform"
+      },
+      "what": {
+        "ar": "دورات قصيرة ورسائل تصيّد تجريبية تقيس من ينقر ومن يبلّغ.",
+        "en": "Short courses and simulated phishing emails that show who clicks and who reports."
+      },
+      "criteria": {
+        "ar": [
+          "محتوى باللغة العربية",
+          "قوالب تصيد واقعية محلية",
+          "تقارير تقدم لكل موظف"
+        ],
+        "en": [
+          "Content in Arabic",
+          "Realistic local phishing templates",
+          "Progress reports per person"
+        ]
+      },
+      "examples": [
+        "KnowBe4",
+        "Proofpoint Security Awareness",
+        "Microsoft Attack simulation training"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-awareness"
+      ],
+      "phase": 2,
+      "included": {
+        "m365": {
+          "editions": [
+            "enterprise"
+          ],
+          "product": {
+            "ar": "محاكاة الهجمات في E5 (Defender for Office 365 الخطة 2)",
+            "en": "Attack simulation training in E5 (Defender for Office 365 Plan 2)"
+          }
+        }
+      },
+      "when": [
+        {
+          "tier": [
+            "enhanced",
+            "high"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vulnScan",
+      "kind": "tool",
+      "name": {
+        "ar": "فحص الثغرات",
+        "en": "Vulnerability scanning"
+      },
+      "what": {
+        "ar": "فحص دوري للخدمات المكشوفة على الإنترنت والأجهزة بحثًا عن ثغرات معروفة.",
+        "en": "Regular scans of internet-facing services and devices for known flaws."
+      },
+      "criteria": {
+        "ar": [
+          "يغطي الخدمات المكشوفة على الإنترنت",
+          "تقارير مرتبة حسب الخطورة",
+          "جدولة تلقائية"
+        ],
+        "en": [
+          "Covers your internet-facing services",
+          "Reports ranked by severity",
+          "Automatic scheduling"
+        ]
+      },
+      "examples": [
+        "Tenable Nessus",
+        "Qualys",
+        "Greenbone OpenVAS (open source)"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-patch"
+      ],
+      "phase": 2,
+      "included": {
+        "m365": {
+          "editions": [
+            "premium",
+            "enterprise"
+          ],
+          "product": {
+            "ar": "إدارة الثغرات في Defender for Business (للأجهزة)",
+            "en": "Vulnerability management in Defender for Business (for devices)"
+          }
+        }
+      },
+      "partial": true
+    },
+    {
+      "id": "codeSecurity",
+      "kind": "tool",
+      "name": {
+        "ar": "أمان الكود",
+        "en": "Code security"
+      },
+      "what": {
+        "ar": "فحص الأسرار والمكتبات المعرضة والثغرات في الكود قبل وصوله للإنتاج.",
+        "en": "Scans for secrets, vulnerable libraries and code flaws before they reach production."
+      },
+      "criteria": {
+        "ar": [
+          "فحص الأسرار مع منع الدفع",
+          "تنبيهات المكتبات",
+          "يعمل داخل خط البناء"
+        ],
+        "en": [
+          "Secret scanning with push blocking",
+          "Dependency alerts",
+          "Runs inside your build pipeline"
+        ]
+      },
+      "examples": [
+        "GitHub (Dependabot, secret scanning)",
+        "GitLab",
+        "Snyk",
+        "Semgrep"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-code",
+        "a-testdata"
+      ],
+      "phase": 1,
+      "when": [
+        {
+          "profile": [
+            "dev",
+            "product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webProtection",
+      "kind": "tool",
+      "name": {
+        "ar": "حماية الموقع والتطبيق (WAF)",
+        "en": "Website and app protection (WAF)"
+      },
+      "what": {
+        "ar": "جدار حماية لتطبيقات الويب وحماية من هجمات حجب الخدمة أمام موقعك أو تطبيقك.",
+        "en": "A web application firewall and DDoS protection in front of your site or app."
+      },
+      "criteria": {
+        "ar": [
+          "قواعد جاهزة لأشهر الهجمات",
+          "حد لعدد الطلبات",
+          "شهادات HTTPS مُدارة"
+        ],
+        "en": [
+          "Ready rules for the most common attacks",
+          "Rate limiting",
+          "Managed HTTPS certificates"
+        ]
+      },
+      "examples": [
+        "Cloudflare",
+        "AWS WAF",
+        "Azure Front Door"
+      ],
+      "cost": "low",
+      "covers": [
+        "a-appsec",
+        "a-shop"
+      ],
+      "phase": 2,
+      "when": [
+        {
+          "profile": [
+            "product",
+            "shop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pentest",
+      "kind": "service",
+      "name": {
+        "ar": "اختبار الاختراق",
+        "en": "Penetration testing"
+      },
+      "what": {
+        "ar": "جهة متخصصة تحاول اختراق موقعك أو تطبيقك وتسلمك تقريرًا بالثغرات.",
+        "en": "A specialist firm tries to break into your website or app and reports the flaws."
+      },
+      "criteria": {
+        "ar": [
+          "مرخص من الهيئة الوطنية للأمن السيبراني متى كان الترخيص مطلوبًا",
+          "إعادة اختبار بعد الإصلاح",
+          "تقرير يقبله عملاؤكم"
+        ],
+        "en": [
+          "Licensed by the National Cybersecurity Authority where a licence is required",
+          "Re-test after fixes",
+          "A report your clients will accept"
+        ]
+      },
+      "examples": [],
+      "cost": "medium",
+      "covers": [
+        "a-appsec"
+      ],
+      "phase": 2
+    },
+    {
+      "id": "mdr",
+      "kind": "service",
+      "name": {
+        "ar": "المراقبة والاستجابة المُدارة (MDR)",
+        "en": "Managed detection and response (MDR)"
+      },
+      "what": {
+        "ar": "فريق خارجي يراقب التنبيهات على مدار الساعة ويستجيب للحوادث نيابة عنك.",
+        "en": "An outside team watches alerts around the clock and responds to incidents for you."
+      },
+      "criteria": {
+        "ar": [
+          "مرخص من الهيئة الوطنية للأمن السيبراني لخدمات مراكز العمليات المُدارة",
+          "يعمل مع أدواتكم الحالية",
+          "أوقات استجابة مكتوبة في العقد"
+        ],
+        "en": [
+          "Licensed by the National Cybersecurity Authority for managed SOC services",
+          "Works with the tools you already have",
+          "Response times written into the contract"
+        ]
+      },
+      "examples": [],
+      "cost": "high",
+      "covers": [
+        "a-logging",
+        "a-ir"
+      ],
+      "phase": 2,
+      "when": [
+        {
+          "tier": [
+            "high"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "irRetainer",
+      "kind": "service",
+      "name": {
+        "ar": "اتفاقية استجابة للحوادث",
+        "en": "Incident response retainer"
+      },
+      "what": {
+        "ar": "اتفاق مسبق مع جهة متخصصة تتدخل خلال ساعات عند الاختراق.",
+        "en": "A pre-agreed specialist who steps in within hours if you're breached."
+      },
+      "criteria": {
+        "ar": [
+          "مرخص من الهيئة الوطنية للأمن السيبراني متى كان الترخيص مطلوبًا",
+          "زمن استجابة مضمون",
+          "خبرة في برمجيات الفدية"
+        ],
+        "en": [
+          "Licensed by the National Cybersecurity Authority where a licence is required",
+          "Guaranteed response time",
+          "Ransomware experience"
+        ]
+      },
+      "examples": [],
+      "cost": "medium",
+      "covers": [
+        "a-ir"
+      ],
+      "phase": 2,
+      "when": [
+        {
+          "irPartner": [
+            "no"
+          ],
+          "tier": [
+            "enhanced",
+            "high"
+          ]
+        }
+      ]
+    }
+  ],
+  "disclosure": {
+    "ar": "Baseline محايد تجاه المورّدين. أسماء المنتجات أمثلة لتبدأ منها، وليست توصية أو إعلانًا، ولا نتلقى أي مقابل من أي مورّد. الإصدارات والأسعار تتغير، فتأكد منها مع موزع معتمد في المملكة، واطلب فاتورة ضريبية نظامية.",
+    "en": "Baseline is vendor-neutral. Product names are examples to help you start, not endorsements or ads, and we receive nothing from any vendor. Editions and prices change, so confirm with an authorised reseller in Saudi Arabia and ask for a proper VAT invoice."
+  }
+}

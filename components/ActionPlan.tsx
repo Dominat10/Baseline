@@ -7,6 +7,7 @@ import type { Lang } from "@/lib/kb";
 import { t } from "@/lib/i18n";
 import { missingFields, questions, valueOf } from "@/lib/policy";
 import { buildCalendar, buildPlan, library, providerRequest, type PlannedAction } from "@/lib/actions";
+import { buildSolutions } from "@/lib/solutions";
 import { useDone, useProfile } from "@/lib/useProfile";
 import ProfileForm from "./ProfileForm";
 
@@ -31,7 +32,21 @@ function download(name: string, type: string, content: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function Task({ p, lang, done, toggle, company }: { p: PlannedAction; lang: Lang; done: boolean; toggle: () => void; company: string }) {
+function Task({
+  p,
+  lang,
+  done,
+  toggle,
+  company,
+  sols
+}: {
+  p: PlannedAction;
+  lang: Lang;
+  done: boolean;
+  toggle: () => void;
+  company: string;
+  sols: { name: string; status: string }[];
+}) {
   const s = t(lang).actions;
   const [copied, setCopied] = useState(false);
   const x = p.action;
@@ -84,6 +99,17 @@ function Task({ p, lang, done, toggle, company }: { p: PlannedAction; lang: Lang
           <p className="small">
             <b>{s.evidence}:</b> {x.evidence[lang]}
           </p>
+          {sols.length > 0 && (
+            <p className="small">
+              <b>{t(lang).solutions.solution}:</b>{" "}
+              {sols.map((o, i) => (
+                <span key={o.name}>
+                  {i > 0 && " · "}
+                  <Link href={`/${lang}/solutions`}>{o.name}</Link> ({t(lang).solutions.status[o.status]})
+                </span>
+              ))}
+            </p>
+          )}
           <div className="tags">
             <span className="tag biz">
               {s.policy}: {p.policyTitle}
@@ -120,6 +146,12 @@ export default function ActionPlan({ lang }: { lang: Lang }) {
   const isDone = (p: PlannedAction) => p.alreadyInPlace || !!done[p.action.id];
   const doneCount = plan.filter(isDone).length;
   const cal = useMemo(() => buildCalendar(answers, lang, company), [answers, lang, company]);
+  const solsByAction = useMemo(() => {
+    const m: Record<string, { name: string; status: string }[]> = {};
+    for (const x of buildSolutions(answers, plan, lang))
+      for (const a of x.actions) (m[a.action.id] ??= []).push({ name: x.category.name[lang], status: x.status });
+    return m;
+  }, [answers, plan, lang]);
 
   return (
     <div className="stack-lg">
@@ -196,6 +228,7 @@ export default function ActionPlan({ lang }: { lang: Lang }) {
                           p={p}
                           lang={lang}
                           company={company}
+                          sols={solsByAction[p.action.id] ?? []}
                           done={isDone(p)}
                           toggle={() => setDone((d) => ({ ...d, [p.action.id]: !d[p.action.id] }))}
                         />

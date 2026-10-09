@@ -45,6 +45,7 @@ export default async function LangLayout({
           </Link>
           <nav className="nav">
             <Link href={`/${lang}/plan`}>{s.nav.plan}</Link>
+            <Link href={`/${lang}/solutions`}>{s.nav.solutions}</Link>
             <Link href={`/${lang}/policies`}>{s.nav.policies}</Link>
             <Link href={`/${other}`} className="lang" hrefLang={other}>
               {s.switchLang}
