@@ -1,0 +1,281 @@
+{
+  "id": "acceptable-use",
+  "version": "0.1.0",
+  "title": {
+    "ar": "سياسة الاستخدام المقبول",
+    "en": "Acceptable Use Policy"
+  },
+  "summary": {
+    "ar": "ما يجوز وما لا يجوز لكل من يستخدم أجهزة الشركة وأنظمتها وبياناتها.",
+    "en": "What everyone who uses the company's devices, systems and data may and may not do."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تحدد هذه السياسة قواعد الاستخدام الآمن لأجهزة {{companyName}} وأنظمتها وبياناتها، لحماية الشركة وعملائها من أكثر المخاطر شيوعًا: التصيّد، وتسرب البيانات، وسرقة الحسابات.",
+            "en": "This policy sets the rules for using {{companyName}}'s devices, systems and data safely, to protect the company and its clients from the most common risks: phishing, data leaks and account theft."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "النطاق",
+        "en": "Scope"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تنطبق على جميع الموظفين، وعلى كل جهاز أو حساب يُستخدم في عمل الشركة، بما في ذلك {{platform}}.",
+            "en": "It applies to all employees, and to every device or account used for company work, including {{platform}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "وتنطبق كذلك على المستقلين والمتعاقدين الذين يستخدمون أنظمة الشركة.",
+            "en": "It also applies to freelancers and contractors who use company systems."
+          },
+          "when": {
+            "workforce": [
+              "contractors",
+              "offshore"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "الأجهزة والحسابات",
+        "en": "Devices and accounts"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يُستخدم حساب العمل للعمل فقط، ولا يُشارَك مع أي شخص، ولا تُشارَك كلمات المرور أو رموز التحقق مطلقًا، حتى مع الإدارة أو الدعم الفني.",
+            "en": "Work accounts are for work only and are never shared. Passwords and verification codes are never shared with anyone, including managers or IT support."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُقفل الشاشة عند الابتعاد عن الجهاز، وتُقفل تلقائيًا بعد {{p.screenLock}} من عدم الاستخدام.",
+            "en": "Lock your screen whenever you step away. Screens lock automatically after {{p.screenLock}} of inactivity."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُثبَّت برامج أو إضافات متصفح إلا من مصادر موثوقة ووفق ما تعتمده الشركة، ولا تُعطَّل وسائل الحماية أو التحديثات.",
+            "en": "Install software and browser extensions only from trusted sources and as approved by the company. Never switch off security tools or updates."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُستخدم أجهزة الشركة فقط للوصول إلى بيانات الشركة، ولا يُسمح باستخدام الأجهزة الشخصية في العمل.",
+            "en": "Company data is accessed only on company devices. Personal devices are not used for work."
+          },
+          "when": {
+            "byod": [
+              "no"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يُسمح باستخدام الجوال الشخصي للبريد والتطبيقات المعتمدة فقط إذا كان محميًا بقفل شاشة ومحدّثًا، وتُفعَّل عليه حماية تطبيقات الشركة أو إمكانية مسح بيانات العمل عن بُعد. ولا يُستخدم الحاسوب الشخصي في العمل.",
+            "en": "Personal phones may be used for email and approved apps only if they have a screen lock and are up to date, with company app protection or remote wipe of work data enabled. Personal laptops are not used for work."
+          },
+          "when": {
+            "byod": [
+              "phones"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يُسمح باستخدام الأجهزة الشخصية في العمل بشرط وجود قفل شاشة، وتحديثات تلقائية، وحماية من البرمجيات الضارة، وتشفير التخزين في الحواسيب، وإمكانية مسح بيانات العمل عن بُعد. وتُحذف بيانات العمل منها عند انتهاء العلاقة مع الشركة.",
+            "en": "Personal devices may be used for work if they have a screen lock, automatic updates, malware protection, encrypted storage on laptops, and remote wipe of work data. Work data is removed from them when the person leaves."
+          },
+          "when": {
+            "byod": [
+              "all"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "البريد والرسائل",
+        "en": "Email and messaging"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُفحص الرسائل غير المتوقعة بحذر، ولا تُفتح الروابط أو المرفقات المشبوهة، ويُبلَّغ عنها مسؤول الأمن السيبراني.",
+            "en": "Treat unexpected messages with caution. Don't open suspicious links or attachments, and report them to the security owner."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُنفَّذ أي طلبات تحويل أموال أو تغيير بيانات بنكية تصل بالبريد أو الرسائل إلا بعد التأكد بمكالمة على رقم معروف مسبقًا.",
+            "en": "Never act on an emailed or messaged request to transfer money or change bank details without confirming it by calling a number you already know."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُتبادل معلومات العمل عبر القنوات التي تعتمدها الشركة. وإذا استُخدم واتساب في العمل، فعبر واتساب للأعمال على رقم تملكه الشركة.",
+            "en": "Work information is shared through company-approved channels. If WhatsApp is used for work, it is WhatsApp Business on a company-owned number."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُعاد توجيه رسائل العمل إلى بريد شخصي، ولا تُحفظ ملفات العمل في حسابات تخزين شخصية.",
+            "en": "Don't forward work email to personal accounts, or keep work files in personal cloud storage."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "العمل عن بُعد",
+        "en": "Working remotely"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "لا تُستخدم شبكات الواي فاي العامة للعمل إلا عبر اتصال آمن تعتمده الشركة، ويُفضَّل استخدام نقطة اتصال الجوال.",
+            "en": "Public Wi-Fi is used for work only through a secure connection the company approves. A phone hotspot is preferred."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا يُعمل على بيانات سرية في الأماكن العامة حيث يمكن رؤية الشاشة، ولا تُترك الأجهزة دون مراقبة.",
+            "en": "Don't work on confidential data in public places where your screen can be seen, and never leave devices unattended."
+          }
+        },
+        {
+          "text": {
+            "ar": "يُبلَّغ عن فقدان أي جهاز عمل أو سرقته فورًا، ليتم قفله ومسح بيانات العمل منه عن بُعد.",
+            "en": "Report a lost or stolen work device immediately, so it can be locked and work data wiped remotely."
+          }
+        }
+      ],
+      "when": {
+        "workModel": [
+          "hybrid",
+          "remote"
+        ]
+      }
+    },
+    {
+      "heading": {
+        "ar": "أدوات الذكاء الاصطناعي",
+        "en": "AI tools"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "لا يُسمح بإدخال أي بيانات للشركة أو عملائها في أدوات الذكاء الاصطناعي التوليدي، مثل روبوتات المحادثة ومولدات النصوص.",
+            "en": "No company or client data may be entered into generative AI tools, such as chatbots and text generators."
+          },
+          "when": {
+            "aiTools": [
+              "banned"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُستخدم أدوات الذكاء الاصطناعي التي تعتمدها الشركة فقط، وبحسابات العمل. ولا تُدخل فيها بيانات شخصية أو سرية أو بيانات عملاء إلا إذا اعتُمدت الأداة لذلك صراحةً.",
+            "en": "Only AI tools approved by the company are used, with work accounts. Personal, confidential or client data is never entered into them unless the tool has been explicitly approved for it."
+          },
+          "when": {
+            "aiTools": [
+              "approved"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُراجَع مخرجات الذكاء الاصطناعي قبل استخدامها، ولا يُعتمد عليها في القرارات دون تحقق.",
+            "en": "AI output is checked before use, and is never relied on for decisions without verification."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا يُلصق الكود المصدري للشركة أو لعملائها في أدوات ذكاء اصطناعي غير معتمدة.",
+            "en": "Company or client source code is never pasted into AI tools that are not approved."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "قواعد خاصة بنوع العمل",
+        "en": "Rules for your type of business"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يبقى الكود المصدري في مستودعات الشركة فقط، ولا يُنسخ إلى حسابات أو أجهزة شخصية.",
+            "en": "Source code stays in company repositories only, and is never copied to personal accounts or devices."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُنسخ بيانات العملاء أو ملفاتهم إلى أجهزة أو حسابات غير معتمدة، ولا تُستخدم إلا للعمل الذي قُدمت من أجله.",
+            "en": "Client data and files are never copied to unapproved devices or accounts, and are used only for the work they were provided for."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "supplier"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُشارَك حسابات لوحة تحكم المتجر مطلقًا، ولا تُعالَج المبالغ المستردة خارج المنصة.",
+            "en": "Store admin accounts are never shared, and refunds are never processed outside the platform."
+          },
+          "when": {
+            "profile": [
+              "shop"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "include": "exceptions"
+    },
+    {
+      "include": "violations"
+    },
+    {
+      "include": "references"
+    }
+  ]
+}

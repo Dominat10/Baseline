@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "steps": [
     {
       "id": "company",
@@ -36,9 +36,34 @@
       "fields": [
         "ownerName",
         "ownerTitle",
+        "deputyName",
         "approverTitle",
         "itManagedBy",
         "workforce"
+      ]
+    },
+    {
+      "id": "work",
+      "title": {
+        "ar": "طريقة العمل",
+        "en": "Ways of working"
+      },
+      "fields": [
+        "workModel",
+        "byod",
+        "aiTools"
+      ]
+    },
+    {
+      "id": "continuity",
+      "title": {
+        "ar": "الاستمرارية",
+        "en": "Continuity"
+      },
+      "fields": [
+        "maxDowntime",
+        "maxDataLoss",
+        "irPartner"
       ]
     },
     {
@@ -383,6 +408,22 @@
       },
       "required": true
     },
+    "deputyName": {
+      "type": "text",
+      "label": {
+        "ar": "من ينوب عنه في الحوادث؟",
+        "en": "Who covers for them in an incident?"
+      },
+      "help": {
+        "ar": "شخص ثانٍ يتولى القيادة إذا لم يكن المسؤول متاحًا.",
+        "en": "A second person who takes charge if the owner isn't available."
+      },
+      "placeholder": {
+        "ar": "مثال: سارة القحطاني",
+        "en": "e.g. Sara Alqahtani"
+      },
+      "required": true
+    },
     "approverTitle": {
       "type": "select",
       "label": {
@@ -479,6 +520,190 @@
           "label": {
             "ar": "فرق أو متعاقدون خارج السعودية",
             "en": "Teams or contractors outside Saudi Arabia"
+          }
+        }
+      ],
+      "required": true
+    },
+    "workModel": {
+      "type": "select",
+      "label": {
+        "ar": "أين يعمل الفريق؟",
+        "en": "Where does the team work?"
+      },
+      "options": [
+        {
+          "value": "office",
+          "label": {
+            "ar": "من المكتب فقط",
+            "en": "Office only"
+          }
+        },
+        {
+          "value": "hybrid",
+          "label": {
+            "ar": "مختلط (مكتب وعن بُعد)",
+            "en": "Hybrid (office and remote)"
+          }
+        },
+        {
+          "value": "remote",
+          "label": {
+            "ar": "عن بُعد بالكامل",
+            "en": "Fully remote"
+          }
+        }
+      ],
+      "required": true
+    },
+    "byod": {
+      "type": "select",
+      "label": {
+        "ar": "هل يُسمح باستخدام الأجهزة الشخصية في العمل؟",
+        "en": "Can people use personal devices for work?"
+      },
+      "options": [
+        {
+          "value": "no",
+          "label": {
+            "ar": "لا، أجهزة الشركة فقط",
+            "en": "No, company devices only"
+          }
+        },
+        {
+          "value": "phones",
+          "label": {
+            "ar": "الجوال فقط",
+            "en": "Phones only"
+          }
+        },
+        {
+          "value": "all",
+          "label": {
+            "ar": "الجوال والحاسوب",
+            "en": "Phones and laptops"
+          }
+        }
+      ],
+      "required": true
+    },
+    "aiTools": {
+      "type": "select",
+      "label": {
+        "ar": "أدوات الذكاء الاصطناعي (مثل ChatGPT) في العمل",
+        "en": "AI tools (like ChatGPT) at work"
+      },
+      "help": {
+        "ar": "أكبر قناة جديدة لتسرب البيانات.",
+        "en": "The biggest new channel for data leaks."
+      },
+      "options": [
+        {
+          "value": "banned",
+          "label": {
+            "ar": "غير مسموحة",
+            "en": "Not allowed"
+          }
+        },
+        {
+          "value": "approved",
+          "label": {
+            "ar": "أدوات معتمدة فقط",
+            "en": "Approved tools only"
+          }
+        }
+      ],
+      "required": true
+    },
+    "maxDowntime": {
+      "type": "select",
+      "label": {
+        "ar": "أقصى مدة يمكن أن تتوقف فيها أنظمتكم الأساسية",
+        "en": "Longest your core systems can be down"
+      },
+      "help": {
+        "ar": "قبل أن تبدأ خسارة حقيقية في العملاء أو الإيراد.",
+        "en": "Before you start really losing customers or revenue."
+      },
+      "options": [
+        {
+          "value": "4h",
+          "label": {
+            "ar": "4 ساعات",
+            "en": "4 hours"
+          }
+        },
+        {
+          "value": "1d",
+          "label": {
+            "ar": "يوم واحد",
+            "en": "1 day"
+          }
+        },
+        {
+          "value": "3d",
+          "label": {
+            "ar": "3 أيام",
+            "en": "3 days"
+          }
+        }
+      ],
+      "required": true
+    },
+    "maxDataLoss": {
+      "type": "select",
+      "label": {
+        "ar": "أقصى قدر من العمل يمكن أن تفقدوه",
+        "en": "Most recent work you could afford to lose"
+      },
+      "help": {
+        "ar": "مثلًا: لو اضطررتم للاسترجاع من نسخة أمس، هل هذا مقبول؟",
+        "en": "For example: if you had to restore yesterday's copy, is that acceptable?"
+      },
+      "options": [
+        {
+          "value": "1h",
+          "label": {
+            "ar": "ساعة واحدة",
+            "en": "1 hour"
+          }
+        },
+        {
+          "value": "1d",
+          "label": {
+            "ar": "يوم واحد",
+            "en": "1 day"
+          }
+        },
+        {
+          "value": "1w",
+          "label": {
+            "ar": "أسبوع واحد",
+            "en": "1 week"
+          }
+        }
+      ],
+      "required": true
+    },
+    "irPartner": {
+      "type": "select",
+      "label": {
+        "ar": "هل لديكم شركة متخصصة تتصلون بها عند الاختراق؟",
+        "en": "Do you have a specialist firm to call if you're breached?"
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "ar": "نعم",
+            "en": "Yes"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "ar": "لا",
+            "en": "No"
           }
         }
       ],
@@ -613,6 +838,29 @@
           "label": {
             "ar": "مرتفع",
             "en": "High"
+          }
+        }
+      ]
+    },
+    "policy": {
+      "type": "derived",
+      "label": {
+        "ar": "نوع السياسة",
+        "en": "Policy type"
+      },
+      "options": [
+        {
+          "value": "parent",
+          "label": {
+            "ar": "السياسة الأم",
+            "en": "Umbrella policy"
+          }
+        },
+        {
+          "value": "child",
+          "label": {
+            "ar": "سياسة فرعية",
+            "en": "Supporting policy"
           }
         }
       ]

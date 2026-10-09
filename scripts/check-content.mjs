@@ -40,29 +40,55 @@ for (const [id, f] of Object.entries(q.fields)) {
   if (f.exclusive && !f.options?.some((o) => o.value === f.exclusive)) errors.push(`field ${id}: exclusive "${f.exclusive}" isn't an option`);
   if ((f.type === "select" || f.type === "multi" || f.type === "derived") && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
 }
-for (const file of ["information-security"]) {
-  const pol = JSON.parse(readFileSync(new URL(`../content/policies/${file}.json`, import.meta.url)));
-  pol.sections.forEach((sec, si) => {
-    if (!sec.heading?.ar || !sec.heading?.en) errors.push(`${file} section ${si}: heading needs ar and en`);
-    sec.blocks.forEach((b, bi) => {
-      const where = `${file} section ${si} block ${bi}`;
-      if (!b.text?.ar || !b.text?.en) errors.push(`${where}: text needs ar and en`);
-      for (const lang of ["ar", "en"]) {
-        for (const m of (b.text?.[lang] ?? "").matchAll(/\{\{(\w+)\}\}/g)) {
-          if (!q.fields[m[1]]) errors.push(`${where}: unknown blank {{${m[1]}}} in ${lang}`);
-        }
-      }
-      const blanks = (l) => [...(b.text?.[l] ?? "").matchAll(/\{\{(\w+)\}\}/g)].map((m) => m[1]).sort().join();
-      if (blanks("ar") !== blanks("en")) errors.push(`${where}: ar and en use different blanks`);
-      const conds = Array.isArray(b.when) ? b.when : b.when ? [b.when] : [];
-      for (const c of conds) for (const [k, vals] of Object.entries(c)) {
-        const field = q.fields[k];
-        if (!field) errors.push(`${where}: condition on unknown field "${k}"`);
-        else for (const v of vals) if (!field.options?.some((o) => o.value === v)) errors.push(`${where}: "${v}" isn't an option of ${k}`);
-      }
-    });
+const params = JSON.parse(readFileSync(new URL("../content/policies/parameters.json", import.meta.url))).params;
+const tiers = q.fields.tier.options.map((o) => o.value);
+for (const [name, byTier] of Object.entries(params)) {
+  for (const tr of tiers) if (!byTier[tr]?.ar || !byTier[tr]?.en) errors.push(`parameter ${name}: needs ar and en for tier "${tr}"`);
+}
+const sharedSections = JSON.parse(readFileSync(new URL("../content/policies/shared.json", import.meta.url))).sections;
+
+function checkCond(when, where) {
+  const conds = Array.isArray(when) ? when : when ? [when] : [];
+  for (const c of conds) for (const [k, vals] of Object.entries(c)) {
+    const field = q.fields[k];
+    if (!field) errors.push(`${where}: condition on unknown field "${k}"`);
+    else for (const v of vals) if (!field.options?.some((o) => o.value === v)) errors.push(`${where}: "${v}" isn't an option of ${k}`);
+  }
+}
+function checkSection(sec, where) {
+  if (!sec.heading?.ar || !sec.heading?.en) errors.push(`${where}: heading needs ar and en`);
+  checkCond(sec.when, where);
+  sec.blocks.forEach((b, bi) => {
+    const w = `${where} block ${bi}`;
+    if (!b.text?.ar || !b.text?.en) errors.push(`${w}: text needs ar and en`);
+    const blanks = (l) => [...(b.text?.[l] ?? "").matchAll(/\{\{([\w.]+)\}\}/g)].map((m) => m[1]);
+    for (const lang of ["ar", "en"]) for (const k of blanks(lang)) {
+      if (k.startsWith("p.")) { if (!params[k.slice(2)]) errors.push(`${w}: unknown parameter {{${k}}}`); }
+      else if (!q.fields[k]) errors.push(`${w}: unknown blank {{${k}}} in ${lang}`);
+    }
+    if (blanks("ar").sort().join() !== blanks("en").sort().join()) errors.push(`${w}: ar and en use different blanks`);
+    checkCond(b.when, w);
   });
 }
+for (const [name, sec] of Object.entries(sharedSections)) checkSection(sec, `shared ${name}`);
+
+const POLICY_FILES = ["information-security", "acceptable-use", "access-control", "data-protection", "incident-response", "backup-recovery"];
+const seen = new Map();
+for (const file of POLICY_FILES) {
+  const pol = JSON.parse(readFileSync(new URL(`../content/policies/${file}.json`, import.meta.url)));
+  if (pol.id !== file) errors.push(`${file}: id must match file name`);
+  pol.sections.forEach((sec, si) => {
+    if (sec.include) { if (!sharedSections[sec.include]) errors.push(`${file}: unknown shared section "${sec.include}"`); return; }
+    checkSection(sec, `${file} section ${si}`);
+    // The same rule written twice (in any policy) is a sign of redundancy.
+    for (const b of sec.blocks) {
+      const key = b.text.en.trim();
+      if (seen.has(key)) errors.push(`${file}: duplicate clause also in ${seen.get(key)}: "${key.slice(0, 60)}…"`);
+      else seen.set(key, file);
+    }
+  });
+}
+if (!errors.length) console.log(`Policies OK: ${POLICY_FILES.length} policies, ${Object.keys(q.fields).length} fields, ${Object.keys(params).length} tier parameters.`);
 
 if (errors.length) {
   console.error(`Knowledge base has ${errors.length} problem(s):\n- ` + errors.join("\n- "));

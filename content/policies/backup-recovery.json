@@ -1,0 +1,178 @@
+{
+  "id": "backup-recovery",
+  "version": "0.1.0",
+  "title": {
+    "ar": "سياسة النسخ الاحتياطي والاستعادة",
+    "en": "Backup and Recovery Policy"
+  },
+  "summary": {
+    "ar": "ما يُنسخ احتياطيًا، وكم مرة، وأين، وكيف نتأكد أن الاستعادة تعمل.",
+    "en": "What gets backed up, how often, where, and how we know restoring works."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تضمن هذه السياسة أن تستطيع {{companyName}} استعادة أنظمتها وبياناتها بعد أي عطل أو حادثة، بما في ذلك برمجيات الفدية، ضمن المدد المقبولة لأعمالها.",
+            "en": "This policy makes sure {{companyName}} can restore its systems and data after any failure or incident, including ransomware, within the times its business can accept."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "النطاق",
+        "en": "Scope"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تنطبق على جميع الأنظمة والبيانات اللازمة لاستمرار العمل، بما في ذلك {{platform}}.",
+            "en": "It applies to all systems and data the business needs to keep running, including {{platform}}."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "أهداف الاستعادة",
+        "en": "Recovery targets"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "أقصى مدة توقف مقبولة للأنظمة الأساسية: {{maxDowntime}}.",
+            "en": "Maximum acceptable downtime for core systems: {{maxDowntime}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "أقصى قدر مقبول من فقدان البيانات: {{maxDataLoss}}، ويُضبط تكرار النسخ الاحتياطي بحيث لا يتجاوزه.",
+            "en": "Maximum acceptable data loss: {{maxDataLoss}}. Backups run often enough never to exceed it."
+          }
+        }
+      ],
+      "list": true
+    },
+    {
+      "heading": {
+        "ar": "قواعد النسخ الاحتياطي",
+        "en": "Backup rules"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُنسخ الأنظمة والبيانات الأساسية تلقائيًا، وتُراقب عمليات النسخ ويُعالَج أي فشل فيها في يوم العمل نفسه.",
+            "en": "Core systems and data are backed up automatically. Backup jobs are monitored, and any failure is fixed the same working day."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُحفظ نسخة واحدة على الأقل منفصلة عن الأنظمة الأصلية وغير متصلة بها أو غير قابلة للتعديل، بحيث لا تصل إليها برمجيات الفدية.",
+            "en": "At least one copy is kept separate from the original systems, offline or unchangeable, so ransomware can't reach it."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُشفَّر النسخ الاحتياطية، ويقتصر الوصول إليها على حسابات مسؤولين محددة مع التحقق بخطوتين.",
+            "en": "Backups are encrypted, and only specific administrator accounts with two-step login can access them."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُحفظ النسخ الاحتياطية لمدة {{p.backupRetention}}.",
+            "en": "Backups are kept for {{p.backupRetention}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "تخضع النسخ الاحتياطية لقواعد موقع البيانات نفسها التي تخضع لها البيانات الأصلية.",
+            "en": "Backups follow the same data location rules as the original data."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا يُعد الاحتفاظ المدمج في Microsoft 365 أو Google Workspace نسخة احتياطية. تُنسخ بيانات البريد والملفات فيهما بخدمة نسخ احتياطي مستقلة، لأن مزود الخدمة مسؤول عن تشغيل المنصة لا عن استعادة بيانات الشركة المحذوفة أو المشفرة.",
+            "en": "The built-in retention in Microsoft 365 or Google Workspace is not a backup. Email and files there are backed up with a separate backup service, because the provider is responsible for running the platform, not for restoring the company's deleted or encrypted data."
+          },
+          "when": {
+            "platform": [
+              "m365",
+              "google"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُنسخ الخوادم الخاصة بالشركة بالكامل (البيانات والإعدادات)، وتُحفظ نسخة منها خارج موقع الخوادم.",
+            "en": "The company's own servers are backed up in full (data and configuration), with one copy kept away from the server location."
+          },
+          "when": {
+            "platform": [
+              "servers"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُنسخ مستودعات الكود المصدري وقواعد البيانات الإنتاجية احتياطيًا، بما في ذلك الإعدادات اللازمة لإعادة بناء البيئة.",
+            "en": "Source code repositories and production databases are backed up, including the settings needed to rebuild the environment."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُحدَّد مع مزود الاستضافة السحابية مسؤوليات النسخ الاحتياطي والاستعادة كتابيًا، ولا يُفترض أن المزود يتولاها.",
+            "en": "Backup and recovery responsibilities are agreed in writing with the cloud hosting provider, rather than assumed to be the provider's."
+          },
+          "when": {
+            "platform": [
+              "cloud"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "اختبار الاستعادة",
+        "en": "Restore testing"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُجرى تجربة استعادة فعلية لنظام أساسي واحد على الأقل {{p.restoreTest}}، ويُسجَّل الوقت المستغرق ويُقارن بأهداف الاستعادة.",
+            "en": "A real restore of at least one core system is tested {{p.restoreTest}}. The time taken is recorded and compared with the recovery targets."
+          }
+        },
+        {
+          "text": {
+            "ar": "إذا تجاوزت الاستعادة أهدافها، يضع مسؤول الأمن السيبراني خطة لتحسينها ويرفعها إلى {{approverTitle}}.",
+            "en": "If a restore misses its targets, the security owner puts together an improvement plan and reports it to the {{approverTitle}}."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "include": "exceptions"
+    },
+    {
+      "include": "violations"
+    },
+    {
+      "include": "references"
+    }
+  ]
+}

@@ -1,5 +1,12 @@
 import questionsRaw from "@/content/policies/questions.json";
 import infosecRaw from "@/content/policies/information-security.json";
+import aupRaw from "@/content/policies/acceptable-use.json";
+import accessRaw from "@/content/policies/access-control.json";
+import dataRaw from "@/content/policies/data-protection.json";
+import irRaw from "@/content/policies/incident-response.json";
+import backupRaw from "@/content/policies/backup-recovery.json";
+import sharedRaw from "@/content/policies/shared.json";
+import paramsRaw from "@/content/policies/parameters.json";
 import type { Lang, T } from "./kb";
 
 export type Answers = Record<string, string>;
@@ -31,13 +38,27 @@ interface Block {
   when?: Cond | Cond[];
 }
 
+interface Section {
+  heading: T;
+  list?: boolean;
+  numbered?: boolean;
+  capabilities?: boolean;
+  /** Show the whole section only when this matches. */
+  when?: Cond | Cond[];
+  blocks: Block[];
+}
+
 export interface PolicyTemplate {
   id: string;
   version: string;
   title: T;
   summary: T;
-  sections: { heading: T; list?: boolean; numbered?: boolean; capabilities?: boolean; blocks: Block[] }[];
+  /** A section, or { include: "exceptions" } to pull a shared section from shared.json. */
+  sections: (Section | { include: string })[];
 }
+
+const shared = (sharedRaw as unknown as { sections: Record<string, Section> }).sections;
+const params = (paramsRaw as unknown as { params: Record<string, Record<string, T>> }).params;
 
 export const questions = questionsRaw as unknown as Questions;
 
@@ -96,7 +117,7 @@ function addDays(iso: string, days: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-export const policies: PolicyTemplate[] = [infosecRaw as unknown as PolicyTemplate];
+export const policies: PolicyTemplate[] = [infosecRaw, aupRaw, accessRaw, dataRaw, irRaw, backupRaw] as unknown as PolicyTemplate[];
 
 /** A piece of rendered text: plain, a filled-in answer, or a blank still to fill. */
 export interface Segment {
@@ -162,11 +183,18 @@ function nextReview(answers: Answers, lang: Lang): string | null {
 
 function fill(template: string, answers: Answers, lang: Lang): Segment[] {
   const out: Segment[] = [];
-  const re = /\{\{(\w+)\}\}/g;
+  const re = /\{\{([\w.]+)\}\}/g;
   let last = 0;
   let m: RegExpExecArray | null;
   while ((m = re.exec(template))) {
     if (m.index > last) out.push({ text: template.slice(last, m.index), kind: "plain" });
+    if (m[1].startsWith("p.")) {
+      // Tier parameter: the value depends on the strictness tier, not on a direct answer.
+      const tierValue = params[m[1].slice(2)]?.[answers.tier];
+      out.push({ text: tierValue ? tierValue[lang] : m[1], kind: "plain" });
+      last = m.index + m[0].length;
+      continue;
+    }
     const v = valueOf(m[1], answers, lang);
     const label = questions.fields[m[1]]?.label[lang] ?? m[1];
     out.push(v ? { text: v, kind: "filled" } : { text: label, kind: "blank" });
@@ -176,7 +204,7 @@ function fill(template: string, answers: Answers, lang: Lang): Segment[] {
   return out;
 }
 
-function applies(block: Block, answers: Answers): boolean {
+function applies(block: { when?: Cond | Cond[] }, answers: Answers): boolean {
   if (!block.when) return true;
   const any = Array.isArray(block.when) ? block.when : [block.when];
   return any.some((c) => matches(c, answers));
@@ -201,7 +229,7 @@ function capabilityRows(answers: Answers, lang: Lang): Segment[][] {
 }
 
 export function render(policy: PolicyTemplate, raw: Answers, lang: Lang): RenderedPolicy {
-  const answers = effectiveAnswers(raw);
+  const answers = { ...effectiveAnswers(raw), policy: policy.id === "information-security" ? "parent" : "child" };
   const L = META_LABELS[lang];
   const seg = (id: string): Segment[] => fill(`{{${id}}}`, answers, lang);
   const review = nextReview(answers, lang);
@@ -225,6 +253,8 @@ export function render(policy: PolicyTemplate, raw: Answers, lang: Lang): Render
       { label: L.tier, value: seg("tier") }
     ],
     sections: policy.sections
+      .map((x) => ("include" in x ? shared[x.include] : x))
+      .filter((s) => applies(s, answers))
       .map((s) => ({
         heading: s.heading[lang],
         style: (s.numbered ? "numbered" : s.list ? "list" : "para") as RenderedSection["style"],
@@ -249,11 +279,7 @@ const esc = (s: string) =>
 const segHtml = (segs: Segment[]) =>
   segs.map((s) => (s.kind === "blank" ? `<span style="background:#fff3c4">[${esc(s.text)}]</span>` : esc(s.text))).join("");
 
-/** A self-contained HTML document that Word opens directly. Every user value is escaped. */
-export function toWordHtml(p: RenderedPolicy, lang: Lang, footer: string): string {
-  const dir = lang === "ar" ? "rtl" : "ltr";
-  const align = lang === "ar" ? "right" : "left";
-  const font = lang === "ar" ? "'Arial', 'Traditional Arabic', sans-serif" : "'Calibri', 'Arial', sans-serif";
+function docBody(p: RenderedPolicy, lang: Lang, footer: string): string {
   const meta = p.meta
     .map((m) => `<tr><td style="padding:4px 10px;border:1px solid #ccc;background:#f3f5f4;width:30%"><b>${esc(m.label)}</b></td><td style="padding:4px 10px;border:1px solid #ccc">${segHtml(m.value)}</td></tr>`)
     .join("");
@@ -266,12 +292,21 @@ export function toWordHtml(p: RenderedPolicy, lang: Lang, footer: string): strin
       return `<h2 style="font-size:14pt;color:#1d6b4c">${i + 1}. ${esc(s.heading)}</h2>${items}`;
     })
     .join("");
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><title>${esc(p.title)}</title></head>
-<body style="font-family:${font};font-size:11pt;line-height:1.6;direction:${dir};text-align:${align}">
-<h1 style="font-size:20pt">${esc(p.title)}</h1>
+  return `<h1 style="font-size:20pt">${esc(p.title)}</h1>
 <table style="border-collapse:collapse;width:100%;margin-bottom:16px">${meta}</table>
 ${body}
 <p style="margin-top:28px">__________________________<br>${esc(lang === "ar" ? "التوقيع والتاريخ" : "Signature and date")}</p>
-<p style="font-size:9pt;color:#777;margin-top:24px">${esc(footer)}</p>
-</body></html>`;
+<p style="font-size:9pt;color:#777;margin-top:24px">${esc(footer)}</p>`;
+}
+
+/** A self-contained HTML document that Word opens directly; several policies get page breaks. Every user value is escaped. */
+export function toWordHtml(docs: RenderedPolicy[], lang: Lang, footer: string, title: string): string {
+  const dir = lang === "ar" ? "rtl" : "ltr";
+  const align = lang === "ar" ? "right" : "left";
+  const font = lang === "ar" ? "'Arial', 'Traditional Arabic', sans-serif" : "'Calibri', 'Arial', sans-serif";
+  const body = docs
+    .map((d, i) => (i ? `<br clear="all" style="page-break-before:always">` : "") + docBody(d, lang, footer))
+    .join("");
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><title>${esc(title)}</title></head>
+<body style="font-family:${font};font-size:11pt;line-height:1.6;direction:${dir};text-align:${align}">${body}</body></html>`;
 }

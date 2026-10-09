@@ -1,0 +1,336 @@
+{
+  "id": "data-protection",
+  "version": "0.1.0",
+  "title": {
+    "ar": "سياسة حماية البيانات",
+    "en": "Data Protection Policy"
+  },
+  "summary": {
+    "ar": "كيف تُصنَّف البيانات وتُحمى وتُحفظ وتُحذف، بما في ذلك البيانات الشخصية.",
+    "en": "How data is classified, protected, kept and deleted, including personal data."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تحدد هذه السياسة كيف تتعامل {{companyName}} مع بياناتها وبيانات عملائها طوال دورة حياتها، وكيف تلتزم بنظام حماية البيانات الشخصية.",
+            "en": "This policy sets out how {{companyName}} handles its own and its clients' data throughout its life, and how it complies with the Personal Data Protection Law."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "النطاق",
+        "en": "Scope"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تنطبق على جميع البيانات التي تجمعها الشركة أو تحفظها أو تعالجها، بأي شكل كانت، وفي أي مكان، بما في ذلك {{platform}}.",
+            "en": "It applies to all data the company collects, keeps or processes, in any form and anywhere, including on {{platform}}."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "تصنيف البيانات",
+        "en": "Data classification"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "عامة: معلومات منشورة أو مسموح بنشرها.",
+            "en": "Public: information that is published or approved for publishing."
+          }
+        },
+        {
+          "text": {
+            "ar": "داخلية: معلومات العمل اليومية التي لا تُنشر خارج الشركة.",
+            "en": "Internal: everyday business information not shared outside the company."
+          }
+        },
+        {
+          "text": {
+            "ar": "سرية: بيانات العملاء، والبيانات الشخصية، والبيانات المالية، والعقود، وأي بيانات يضر كشفها بالشركة أو بعملائها.",
+            "en": "Confidential: client data, personal data, financial data, contracts, and anything whose disclosure would harm the company or its clients."
+          }
+        },
+        {
+          "text": {
+            "ar": "الكود المصدري للشركة سري ومملوك لها.",
+            "en": "The company's source code is Confidential and owned by the company."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تحتفظ البيانات الواردة من العملاء الحكوميين بالتصنيف الذي يحدده العميل وفق مستويات تصنيف البيانات الوطنية، وتُعامل وفق متطلباته.",
+            "en": "Data received from government clients keeps the classification the client gives it under the national data classification levels, and is handled according to the client's requirements."
+          },
+          "when": {
+            "clients": [
+              "government"
+            ]
+          }
+        }
+      ],
+      "list": true
+    },
+    {
+      "heading": {
+        "ar": "التعامل مع البيانات",
+        "en": "Handling data"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُخزَّن البيانات السرية في الأنظمة التي تعتمدها الشركة فقط، ولا تُخزَّن في أجهزة أو حسابات شخصية أو على وسائط تخزين غير مشفرة.",
+            "en": "Confidential data is stored only on systems the company approves, never on personal devices or accounts, or on unencrypted storage."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُشفَّر البيانات السرية عند نقلها، وتُشفَّر أجهزة الشركة المحمولة وأماكن تخزين البيانات السرية.",
+            "en": "Confidential data is encrypted when it's transmitted, and company laptops and Confidential data stores are encrypted."
+          }
+        },
+        {
+          "text": {
+            "ar": "يقتصر الوصول إلى البيانات السرية على من يحتاجها لأداء عمله.",
+            "en": "Only people who need Confidential data for their work can access it."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُشارَك البيانات السرية مع أي طرف خارجي إلا بموجب اتفاقية مكتوبة تتضمن السرية والحماية.",
+            "en": "Confidential data is shared with outside parties only under a written agreement covering confidentiality and protection."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُفصل بيانات كل عميل عن غيره، ويقتصر الوصول إليها على الفريق العامل مع ذلك العميل.",
+            "en": "Each client's data is kept separate, and only the team working for that client can access it."
+          },
+          "when": {
+            "profile": [
+              "supplier"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُستخدم بيانات شخصية حقيقية في بيئات التطوير والاختبار، ويُستخدم بدلًا منها بيانات وهمية أو مموَّهة.",
+            "en": "Real personal data is not used in development or test environments. Dummy or masked data is used instead."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُعالَج مدفوعات البطاقات عبر بوابات دفع مرخصة فقط، ولا تُخزَّن بيانات البطاقات لدى الشركة.",
+            "en": "Card payments are processed only through licensed payment gateways, and card data is never stored by the company."
+          },
+          "when": {
+            "profile": [
+              "shop"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "البيانات الشخصية",
+        "en": "Personal data"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تجمع الشركة أقل قدر من البيانات الشخصية يلزم لغرض واضح ومحدد، ولا تستخدمها لغرض آخر دون أساس نظامي.",
+            "en": "The company collects the minimum personal data needed for a clear, specific purpose, and does not use it for any other purpose without a lawful basis."
+          }
+        },
+        {
+          "text": {
+            "ar": "تحتفظ الشركة بسجل لأنشطة معالجة البيانات الشخصية يبين ما تجمعه ولماذا وأين يُحفظ ومدة الاحتفاظ به، وتحتفظ بهذا السجل طوال مدة المعالجة وخمس سنوات بعد انتهائها.",
+            "en": "The company keeps a record of its personal data processing (what it collects, why, where it's kept and for how long), and keeps that record for the whole processing period and five years after it ends."
+          }
+        },
+        {
+          "text": {
+            "ar": "تحتفظ الشركة ببيانات شخصية حساسة تشمل: {{personalData}}. ويقتصر الوصول إليها على أقل عدد من الأشخاص، وتُشفَّر عند تخزينها ونقلها.",
+            "en": "The company holds sensitive personal data, including {{personalData}}. Access is limited to the fewest people possible, and it is encrypted when stored and when transmitted."
+          },
+          "when": {
+            "personalData": [
+              "ids",
+              "financial",
+              "health"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "إذا كانت معالجة البيانات الشخصية الحساسة جزءًا من النشاط الأساسي للشركة، تعيّن الشركة مسؤولًا عن حماية البيانات الشخصية.",
+            "en": "If processing sensitive personal data is part of the company's core activity, the company appoints a personal data protection officer."
+          },
+          "when": [
+            {
+              "personalData": [
+                "ids",
+                "financial",
+                "health"
+              ],
+              "profile": [
+                "product",
+                "shop"
+              ]
+            }
+          ]
+        },
+        {
+          "text": {
+            "ar": "تنشر الشركة إشعار خصوصية واضحًا يبين ما تجمعه من عملائها الأفراد ولماذا، وكيف يمارسون حقوقهم.",
+            "en": "The company publishes a clear privacy notice explaining what it collects from individual customers, why, and how they can exercise their rights."
+          },
+          "when": {
+            "clients": [
+              "consumers"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُجاب طلبات الأفراد للاطلاع على بياناتهم أو تصحيحها أو إتلافها خلال 30 يومًا، ويمكن تمديد المدة مرة واحدة 30 يومًا في الحالات المبررة مع إبلاغ صاحب الطلب.",
+            "en": "Requests from individuals to access, correct or destroy their data are answered within 30 days. This can be extended once by 30 days in justified cases, with the requester informed."
+          },
+          "when": {
+            "personalData": [
+              "contact",
+              "ids",
+              "financial",
+              "health"
+            ]
+          }
+        }
+      ],
+      "numbered": true,
+      "when": {
+        "personalData": [
+          "contact",
+          "ids",
+          "financial",
+          "health"
+        ]
+      }
+    },
+    {
+      "heading": {
+        "ar": "موقع البيانات ونقلها",
+        "en": "Data location and transfer"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "قبل تخزين أي بيانات شخصية أو معالجتها خارج المملكة العربية السعودية، تتأكد الشركة أن ذلك مسموح وفق أحكام نقل البيانات في نظام حماية البيانات الشخصية وشروط عقود عملائها.",
+            "en": "Before any personal data is stored or processed outside Saudi Arabia, the company confirms this is permitted under the Personal Data Protection Law's transfer rules and its client contracts."
+          },
+          "when": [
+            {
+              "hosting": [
+                "outside",
+                "unsure"
+              ]
+            },
+            {
+              "workforce": [
+                "offshore"
+              ]
+            }
+          ]
+        },
+        {
+          "text": {
+            "ar": "تتحقق الشركة خلال 30 يومًا من الموقع الذي تخزن فيه كل منصة رئيسية بياناتها، وتوثقه.",
+            "en": "Within 30 days, the company confirms and records where each of its main platforms stores its data."
+          },
+          "when": {
+            "hosting": [
+              "unsure"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُستضاف بيانات العملاء الحكوميين خارج المملكة العربية السعودية إلا بموافقة كتابية من العميل.",
+            "en": "Government clients' data is not hosted outside Saudi Arabia without the client's written approval."
+          },
+          "when": {
+            "clients": [
+              "government"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تُحفظ بيانات الشركة داخل المملكة العربية السعودية، ولا يُغيَّر ذلك إلا بعد تقييم متطلبات النقل.",
+            "en": "Company data is kept inside Saudi Arabia, and this only changes after the transfer requirements are assessed."
+          },
+          "when": {
+            "hosting": [
+              "ksa"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الاحتفاظ والإتلاف",
+        "en": "Retention and disposal"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُحفظ البيانات طوال المدة التي يتطلبها غرضها أو النظام أو العقد فقط، ثم تُتلف أو تُجعل غير قابلة لتحديد الأشخاص.",
+            "en": "Data is kept only as long as its purpose, the law or a contract requires, then destroyed or made anonymous."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُتلف البيانات بطريقة آمنة لا تسمح باسترجاعها، بما في ذلك المسح الآمن للأجهزة قبل التخلص منها أو إعادة استخدامها، وإتلاف المستندات الورقية السرية.",
+            "en": "Data is destroyed so it can't be recovered, including securely wiping devices before disposal or reuse, and shredding Confidential paper documents."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "include": "exceptions"
+    },
+    {
+      "include": "violations"
+    },
+    {
+      "include": "references"
+    }
+  ]
+}

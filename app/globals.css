@@ -219,3 +219,9 @@ mark.blank { background: #fff3c4; color: #7a5200; border-radius: 3px; padding: 0
 .tier-basic { background: var(--nca-soft); }
 .tier-enhanced { background: var(--pdpl-soft); }
 .tier-high { background: var(--prof-soft); }
+
+.ptabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.ptabs button { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 5px 11px; cursor: pointer; }
+.ptabs button span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.ptabs button[aria-selected="true"] { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); }
+.ptabs button[aria-selected="true"] span { color: inherit; opacity: .7; }

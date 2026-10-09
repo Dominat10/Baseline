@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "exceptions": {
+      "heading": {
+        "ar": "الاستثناءات",
+        "en": "Exceptions"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يُقدَّم أي طلب استثناء من هذه السياسة كتابيًا إلى مسؤول الأمن السيبراني، ويعتمده {{approverTitle}}، ويكون لمدة محددة، ويُسجَّل.",
+            "en": "Any request for an exception to this policy is made in writing to the security owner, approved by the {{approverTitle}}, time-limited, and recorded."
+          }
+        }
+      ]
+    },
+    "violations": {
+      "heading": {
+        "ar": "المخالفات",
+        "en": "Violations"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "قد تؤدي مخالفة هذه السياسة إلى إجراءات تأديبية وفق لائحة تنظيم العمل في الشركة والأنظمة المعمول بها في المملكة العربية السعودية.",
+            "en": "Breaching this policy may lead to disciplinary action under the company's internal work regulations and the applicable laws of the Kingdom of Saudi Arabia."
+          }
+        },
+        {
+          "text": {
+            "ar": "وتُعالج مخالفات المستقلين والمتعاقدين وفق شروط عقودهم.",
+            "en": "Breaches by freelancers and contractors are handled under the terms of their contracts."
+          },
+          "when": {
+            "workforce": [
+              "contractors",
+              "offshore"
+            ]
+          }
+        }
+      ]
+    },
+    "references": {
+      "heading": {
+        "ar": "المراجع",
+        "en": "References"
+      },
+      "list": true,
+      "blocks": [
+        {
+          "text": {
+            "ar": "ضوابط الأمن السيبراني لجهات القطاع الخاص من غير ذوات البنى التحتية الحساسة (NCNICC-1:2025)، الهيئة الوطنية للأمن السيبراني.",
+            "en": "Cybersecurity Controls for Non-CNI Private Sector Entities (NCNICC-1:2025), National Cybersecurity Authority."
+          }
+        },
+        {
+          "text": {
+            "ar": "نظام حماية البيانات الشخصية ولوائحه التنفيذية.",
+            "en": "Personal Data Protection Law and its implementing regulations."
+          }
+        },
+        {
+          "text": {
+            "ar": "سياسة الأمن السيبراني للشركة، وهي السياسة الأم لهذه السياسة.",
+            "en": "The company's Information Security Policy, the umbrella policy for this one."
+          },
+          "when": {
+            "policy": [
+              "child"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

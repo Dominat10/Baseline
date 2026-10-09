@@ -37,7 +37,8 @@ function Seg({ s }: { s: Segment[] }) {
 
 export default function PolicyBuilder({ lang }: { lang: Lang }) {
   const s = t(lang).policy;
-  const policy = policies[0];
+  const [pIndex, setPIndex] = useState(0);
+  const policy = policies[pIndex];
   const [answers, setAnswers] = useState<Answers>({});
   const [step, setStep] = useState(0);
   const [ready, setReady] = useState(false);
@@ -83,13 +84,14 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
   const current = questions.steps[step];
   const tier = deriveTier(answers);
 
-  const downloadWord = () => {
-    const html = toWordHtml(doc, lang, s.footer);
-    const blob = new Blob(["﻿", html], { type: "application/msword" });
+  const downloadWord = (all: boolean) => {
+    const docs = all ? policies.map((p) => render(p, answers, lang)) : [doc];
+    const html = toWordHtml(docs, lang, s.footer, all ? s.allTitle : doc.title);
+    const blob = new Blob(["\ufeff", html], { type: "application/msword" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${policy.id}-${lang}.doc`;
+    a.download = all ? `baseline-policies-${lang}.doc` : `${policy.id}-${lang}.doc`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -100,8 +102,8 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
     <div className="stack-lg">
       <header className="stack no-print">
         <p className="eyebrow">{s.eyebrow}</p>
-        <h1>{policy.title[lang]}</h1>
-        <p className="lede">{policy.summary[lang]}</p>
+        <h1>{s.heading}</h1>
+        <p className="lede">{s.intro}</p>
         <p className="muted small">{s.privacy}</p>
       </header>
 
@@ -201,7 +203,10 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
           </div>
 
           <div className="actions">
-            <button type="button" className="btn" onClick={downloadWord} disabled={missing.length > 0}>
+            <button type="button" className="btn" onClick={() => downloadWord(true)} disabled={missing.length > 0}>
+              {s.wordAll}
+            </button>
+            <button type="button" className="chip" onClick={() => downloadWord(false)} disabled={missing.length > 0}>
               {s.word}
             </button>
             <button type="button" className="chip" onClick={() => window.print()} disabled={missing.length > 0}>
@@ -211,6 +216,15 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        <div className="stack">
+        <div className="ptabs no-print" role="tablist" aria-label={s.policiesLabel}>
+          {policies.map((p, i) => (
+            <button key={p.id} type="button" role="tab" aria-selected={i === pIndex} onClick={() => setPIndex(i)}>
+              <span>{i + 1}</span> {p.title[lang]}
+            </button>
+          ))}
+        </div>
+        <p className="muted small no-print">{policy.summary[lang]}</p>
         <article className="paper" aria-label={s.previewLabel}>
           <h1 className="paper-title">{doc.title}</h1>
           <table className="meta">
@@ -262,6 +276,7 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
           </p>
           <p className="paper-foot">{s.footer}</p>
         </article>
+        </div>
       </div>
     </div>
   );

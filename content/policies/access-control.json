@@ -1,0 +1,247 @@
+{
+  "id": "access-control",
+  "version": "0.1.0",
+  "title": {
+    "ar": "سياسة التحكم في الوصول",
+    "en": "Access Control Policy"
+  },
+  "summary": {
+    "ar": "من يصل إلى ماذا، وكيف يُمنح الوصول ويُراجع ويُسحب.",
+    "en": "Who can access what, and how access is granted, reviewed and removed."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تضمن هذه السياسة ألا يصل إلى أنظمة {{companyName}} وبياناتها إلا الأشخاص المصرح لهم، وبالقدر الذي يحتاجه عملهم فقط.",
+            "en": "This policy makes sure only authorised people can access {{companyName}}'s systems and data, and only as much as their work requires."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "النطاق",
+        "en": "Scope"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تنطبق على جميع حسابات المستخدمين والمسؤولين في أنظمة الشركة، بما فيها {{platform}}، وعلى كل من يُمنح وصولًا إليها.",
+            "en": "It applies to every user and administrator account on company systems, including {{platform}}, and to everyone given access to them."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "الحسابات والهوية",
+        "en": "Accounts and identity"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "لكل شخص حساب خاص به، ولا تُستخدم الحسابات المشتركة إلا عند الضرورة التقنية وبموافقة مسؤول الأمن السيبراني، مع معرفة من يستخدمها.",
+            "en": "Every person has their own account. Shared accounts are used only where technically unavoidable, with the security owner's approval and a record of who uses them."
+          }
+        },
+        {
+          "text": {
+            "ar": "يُفعَّل التحقق بخطوتين على {{p.mfaScope}}.",
+            "en": "Two-step login is switched on for {{p.mfaScope}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "لا يقل طول كلمة المرور عن {{p.passwordLength}}، ولا يُعاد استخدامها في خدمات أخرى، وتُحفظ في مدير كلمات المرور الذي تعتمده الشركة.",
+            "en": "Passwords are at least {{p.passwordLength}} long, never reused on other services, and kept in the password manager the company approves."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُغيَّر كلمات المرور الافتراضية لأي نظام أو جهاز قبل استخدامه.",
+            "en": "Default passwords on any system or device are changed before it's used."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الصلاحيات",
+        "en": "Permissions"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُمنح الصلاحيات على أساس الحاجة للعمل وبأقل قدر ممكن، ويعتمدها مسؤول الأمن السيبراني أو من يفوضه.",
+            "en": "Access is granted on a need-to-work basis, at the lowest level that works, and approved by the security owner or their delegate."
+          }
+        },
+        {
+          "text": {
+            "ar": "يستخدم المسؤولون حسابًا منفصلًا للمهام الإدارية، غير حسابهم اليومي للبريد والتصفح.",
+            "en": "Administrators use a separate account for admin tasks, not their everyday email and browsing account."
+          }
+        },
+        {
+          "text": {
+            "ar": "يكون لكل منصة رئيسية مسؤولان مسمّيان على الأقل، ولا يزيد عدد المسؤولين عن الحاجة.",
+            "en": "Each main platform has at least two named administrators, and no more than needed."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُراجع جميع الصلاحيات {{p.accessReview}}، وتُسحب أي صلاحية لم تعد مطلوبة، وتُوثَّق المراجعة.",
+            "en": "All access is reviewed {{p.accessReview}}. Anything no longer needed is removed, and the review is recorded."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الالتحاق والانتقال والمغادرة",
+        "en": "Joining, moving and leaving"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يُنشأ حساب الموظف الجديد بطلب من مديره، وبالصلاحيات اللازمة لدوره فقط.",
+            "en": "New starters' accounts are created at their manager's request, with only the access their role needs."
+          }
+        },
+        {
+          "text": {
+            "ar": "عند تغيّر دور الموظف، تُعدَّل صلاحياته وتُسحب صلاحيات الدور السابق.",
+            "en": "When someone changes role, their access is updated and the old role's access removed."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُغلق جميع حسابات المغادر وصلاحياته في يوم مغادرته نفسه، وتُستلم أجهزة الشركة، وتُغيَّر أي كلمات مرور مشتركة كان يعرفها.",
+            "en": "Everyone who leaves has all accounts and access closed on their last day, returns company devices, and any shared passwords they knew are changed."
+          }
+        },
+        {
+          "text": {
+            "ar": "تنتهي صلاحيات المستقلين والمتعاقدين تلقائيًا عند {{p.contractorAccess}}.",
+            "en": "Freelancers' and contractors' access expires automatically at {{p.contractorAccess}}."
+          },
+          "when": {
+            "workforce": [
+              "contractors",
+              "offshore"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الوصول عن بُعد والأطراف الخارجية",
+        "en": "Remote and third-party access"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يتم الوصول عن بُعد إلى أنظمة الشركة عبر قنوات آمنة تعتمدها الشركة ومع التحقق بخطوتين.",
+            "en": "Remote access to company systems uses secure channels the company approves, with two-step login."
+          },
+          "when": {
+            "workModel": [
+              "hybrid",
+              "remote"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يتم وصول الفرق والمتعاقدين من خارج المملكة عبر حسابات تديرها الشركة مع التحقق بخطوتين، ويقتصر على ما يتطلبه عملهم، ويخضع لأحكام نقل البيانات الشخصية.",
+            "en": "Teams and contractors outside Saudi Arabia access company systems only through company-managed accounts with two-step login, limited to what their work requires, and subject to the personal data transfer rules."
+          },
+          "when": {
+            "workforce": [
+              "offshore"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يستخدم مزود تقنية المعلومات حسابات مسماة باسم أفراده مع التحقق بخطوتين، وتُسجَّل أعمالهم الإدارية، وتُغلق حساباتهم عند انتهاء العقد.",
+            "en": "The outside IT provider uses named accounts for each of its staff with two-step login. Their admin activity is logged, and their accounts are closed when the contract ends."
+          },
+          "when": {
+            "itManagedBy": [
+              "provider"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يستخدم الفريق حسابًا منفصلًا لكل عميل عند الوصول إلى أنظمته، مع التحقق بخطوتين، ويُغلق الوصول عند انتهاء المشروع.",
+            "en": "The team uses a separate account for each client when accessing that client's systems, with two-step login, and access is closed when the project ends."
+          },
+          "when": {
+            "profile": [
+              "dev",
+              "supplier"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لكل موظف حساب خاص في لوحة تحكم المتجر بالصلاحيات التي يحتاجها فقط، مع التحقق بخطوتين.",
+            "en": "Every staff member has their own store admin account with only the permissions they need, and two-step login."
+          },
+          "when": {
+            "profile": [
+              "shop"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "يرى كل مستخدم في تطبيق الشركة بياناته فقط، ويُتحقق من الهوية والصلاحية في كل طلب، ويُحدّ عدد محاولات الدخول الخاطئة.",
+            "en": "In the company's app, each user sees only their own data, identity and permission are checked on every request, and failed login attempts are limited."
+          },
+          "when": {
+            "profile": [
+              "product"
+            ]
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "السجلات",
+        "en": "Records"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُفعَّل سجلات الدخول والأنشطة الإدارية في المنصات الرئيسية، وتُحفظ لمدة {{p.logRetention}} على الأقل، ويراجعها مسؤول الأمن السيبراني بحثًا عن أي نشاط غير معتاد.",
+            "en": "Login and admin activity logs are switched on for the main platforms, kept for at least {{p.logRetention}}, and reviewed by the security owner for anything unusual."
+          }
+        }
+      ]
+    },
+    {
+      "include": "exceptions"
+    },
+    {
+      "include": "violations"
+    },
+    {
+      "include": "references"
+    }
+  ]
+}

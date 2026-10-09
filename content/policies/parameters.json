@@ -1,0 +1,188 @@
+{
+  "version": "0.1.0",
+  "note": "Professional baseline values per strictness tier. Review against NCA minimums before each release.",
+  "params": {
+    "reportEvery": {
+      "basic": {
+        "ar": "كل ستة أشهر",
+        "en": "every six months"
+      },
+      "enhanced": {
+        "ar": "كل ربع سنة",
+        "en": "every quarter"
+      },
+      "high": {
+        "ar": "كل ربع سنة",
+        "en": "every quarter"
+      }
+    },
+    "riskReview": {
+      "basic": {
+        "ar": "مرة في السنة",
+        "en": "once a year"
+      },
+      "enhanced": {
+        "ar": "مرة في السنة",
+        "en": "once a year"
+      },
+      "high": {
+        "ar": "كل ستة أشهر",
+        "en": "every six months"
+      }
+    },
+    "awareness": {
+      "basic": {
+        "ar": "عند التحاقه بالعمل، ومرة في السنة على الأقل بعد ذلك",
+        "en": "when they join, and at least once a year after that"
+      },
+      "enhanced": {
+        "ar": "عند التحاقه بالعمل، ومرة في السنة على الأقل بعد ذلك، مع اختبار تصيّد تجريبي مرة في السنة على الأقل",
+        "en": "when they join and at least once a year after that, with a simulated phishing test at least once a year"
+      },
+      "high": {
+        "ar": "عند التحاقه بالعمل، ومرتين في السنة على الأقل بعد ذلك، مع اختبارات تصيّد تجريبية مرتين في السنة على الأقل",
+        "en": "when they join and at least twice a year after that, with simulated phishing tests at least twice a year"
+      }
+    },
+    "accessReview": {
+      "basic": {
+        "ar": "كل ستة أشهر",
+        "en": "every six months"
+      },
+      "enhanced": {
+        "ar": "كل ثلاثة أشهر",
+        "en": "every three months"
+      },
+      "high": {
+        "ar": "كل ثلاثة أشهر، وكل شهر لحسابات المسؤولين",
+        "en": "every three months, and every month for administrator accounts"
+      }
+    },
+    "mfaScope": {
+      "basic": {
+        "ar": "البريد الإلكتروني وحسابات المسؤولين والدخول عن بُعد",
+        "en": "email, administrator accounts and remote access"
+      },
+      "enhanced": {
+        "ar": "جميع التطبيقات السحابية وحسابات المسؤولين والدخول عن بُعد",
+        "en": "all cloud applications, administrator accounts and remote access"
+      },
+      "high": {
+        "ar": "جميع الأنظمة التي تدعمه، بما فيها حسابات المسؤولين والدخول عن بُعد والشبكة الافتراضية الخاصة (VPN)",
+        "en": "every system that supports it, including administrator accounts, remote access and VPN"
+      }
+    },
+    "passwordLength": {
+      "basic": {
+        "ar": "12 حرفًا",
+        "en": "12 characters"
+      },
+      "enhanced": {
+        "ar": "12 حرفًا",
+        "en": "12 characters"
+      },
+      "high": {
+        "ar": "14 حرفًا",
+        "en": "14 characters"
+      }
+    },
+    "screenLock": {
+      "basic": {
+        "ar": "15 دقيقة",
+        "en": "15 minutes"
+      },
+      "enhanced": {
+        "ar": "10 دقائق",
+        "en": "10 minutes"
+      },
+      "high": {
+        "ar": "5 دقائق",
+        "en": "5 minutes"
+      }
+    },
+    "contractorAccess": {
+      "basic": {
+        "ar": "نهاية العقد",
+        "en": "the end of the contract"
+      },
+      "enhanced": {
+        "ar": "نهاية العقد أو بعد 90 يومًا، أيهما أقرب، ثم تُجدَّد عند الحاجة",
+        "en": "the end of the contract or 90 days, whichever comes first, and is renewed if still needed"
+      },
+      "high": {
+        "ar": "نهاية العقد أو بعد 30 يومًا، أيهما أقرب، ثم تُجدَّد عند الحاجة",
+        "en": "the end of the contract or 30 days, whichever comes first, and is renewed if still needed"
+      }
+    },
+    "logRetention": {
+      "basic": {
+        "ar": "3 أشهر",
+        "en": "3 months"
+      },
+      "enhanced": {
+        "ar": "6 أشهر",
+        "en": "6 months"
+      },
+      "high": {
+        "ar": "12 شهرًا",
+        "en": "12 months"
+      }
+    },
+    "restoreTest": {
+      "basic": {
+        "ar": "مرة في السنة",
+        "en": "once a year"
+      },
+      "enhanced": {
+        "ar": "كل ستة أشهر",
+        "en": "every six months"
+      },
+      "high": {
+        "ar": "كل ربع سنة",
+        "en": "every quarter"
+      }
+    },
+    "backupRetention": {
+      "basic": {
+        "ar": "30 يومًا",
+        "en": "30 days"
+      },
+      "enhanced": {
+        "ar": "90 يومًا",
+        "en": "90 days"
+      },
+      "high": {
+        "ar": "90 يومًا، مع نسخة شهرية تُحفظ 12 شهرًا",
+        "en": "90 days, plus a monthly copy kept for 12 months"
+      }
+    },
+    "escalation": {
+      "basic": {
+        "ar": "خلال 24 ساعة",
+        "en": "within 24 hours"
+      },
+      "enhanced": {
+        "ar": "خلال 4 ساعات",
+        "en": "within 4 hours"
+      },
+      "high": {
+        "ar": "خلال ساعة واحدة",
+        "en": "within 1 hour"
+      }
+    },
+    "incidentDrill": {
+      "basic": {
+        "ar": "مرة في السنة",
+        "en": "once a year"
+      },
+      "enhanced": {
+        "ar": "مرة في السنة",
+        "en": "once a year"
+      },
+      "high": {
+        "ar": "كل ستة أشهر",
+        "en": "every six months"
+      }
+    }
+  }
+}

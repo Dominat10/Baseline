@@ -1,0 +1,253 @@
+{
+  "id": "incident-response",
+  "version": "0.1.0",
+  "title": {
+    "ar": "سياسة الاستجابة للحوادث",
+    "en": "Incident Response Policy"
+  },
+  "summary": {
+    "ar": "ماذا نفعل عند وقوع حادثة أمن سيبراني، ومن يقرر، ومن يجب إبلاغه.",
+    "en": "What to do when a cybersecurity incident happens, who decides, and who must be told."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تضمن هذه السياسة أن تكتشف {{companyName}} حوادث الأمن السيبراني بسرعة، وتحتويها، وتتعافى منها، وتبلّغ الجهات المعنية في الوقت المحدد.",
+            "en": "This policy makes sure {{companyName}} detects cybersecurity incidents quickly, contains them, recovers from them, and notifies the right parties on time."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "ما الحادثة؟",
+        "en": "What is an incident?"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "أي حدث يهدد سرية بيانات الشركة أو عملائها أو سلامتها أو توافرها، مثل: اختراق حساب، أو برمجية فدية، أو تسرب بيانات، أو فقدان جهاز، أو رسالة تصيّد نُقر عليها، أو احتيال في الدفع.",
+            "en": "Any event that threatens the confidentiality, integrity or availability of the company's or its clients' data, such as a hacked account, ransomware, a data leak, a lost device, a phishing link that was clicked, or payment fraud."
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ar": "فريق الاستجابة",
+        "en": "Response team"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "قائد الاستجابة: {{ownerName}} ({{ownerTitle}})، وينوب عنه {{deputyName}}.",
+            "en": "Incident lead: {{ownerName}} ({{ownerTitle}}). Deputy: {{deputyName}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "صاحب القرار في الحوادث الكبيرة: {{approverTitle}}.",
+            "en": "Decision-maker for major incidents: {{approverTitle}}."
+          }
+        },
+        {
+          "text": {
+            "ar": "مزود تقنية المعلومات الخارجي: يبلّغ الشركة فورًا بأي حادثة يكتشفها، وينفذ إجراءات الاحتواء التقنية وفق عقده.",
+            "en": "The outside IT provider: reports any incident it detects to the company immediately, and carries out technical containment under its contract."
+          },
+          "when": {
+            "itManagedBy": [
+              "provider"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "شريك الاستجابة للحوادث: يُستدعى في الحوادث الكبيرة وفق العقد المبرم معه.",
+            "en": "Incident response partner: called in for major incidents under its contract."
+          },
+          "when": {
+            "irPartner": [
+              "yes"
+            ]
+          }
+        }
+      ],
+      "list": true
+    },
+    {
+      "heading": {
+        "ar": "الخطوات",
+        "en": "Steps"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "الإبلاغ: يبلّغ أي شخص يشتبه في حادثة قائد الاستجابة فورًا، ولا يحاول التحقيق بنفسه.",
+            "en": "Report: anyone who suspects an incident tells the incident lead immediately, and doesn't try to investigate on their own."
+          }
+        },
+        {
+          "text": {
+            "ar": "الاحتواء في الساعة الأولى: فصل الجهاز المصاب عن الشبكة دون إطفائه، وتغيير كلمات مرور الحسابات المتأثرة وإنهاء جلساتها، وإيقاف أي تحويلات مالية مشبوهة.",
+            "en": "Contain within the first hour: disconnect the affected device from the network without switching it off, change passwords and end sessions on affected accounts, and stop any suspicious payments."
+          }
+        },
+        {
+          "text": {
+            "ar": "حفظ الأدلة: الاحتفاظ بالسجلات والرسائل والصور الملتقطة للشاشة، وعدم حذف أي شيء.",
+            "en": "Preserve evidence: keep logs, messages and screenshots, and delete nothing."
+          }
+        },
+        {
+          "text": {
+            "ar": "التصعيد: يُبلَّغ {{approverTitle}} بالحادثة الكبيرة {{p.escalation}} من اكتشافها.",
+            "en": "Escalate: the {{approverTitle}} is informed of a major incident {{p.escalation}} of its discovery."
+          }
+        },
+        {
+          "text": {
+            "ar": "الاستعانة بالمتخصصين: يُستدعى شريك الاستجابة للحوادث في الحوادث الكبيرة.",
+            "en": "Bring in specialists: the incident response partner is called in for major incidents."
+          },
+          "when": {
+            "irPartner": [
+              "yes"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "الاستعانة بالمتخصصين: في الحوادث الكبيرة تستعين الشركة بمقدم خدمة متخصص في الاستجابة للحوادث، مرخص من الهيئة الوطنية للأمن السيبراني متى كان الترخيص مطلوبًا.",
+            "en": "Bring in specialists: for major incidents the company engages a specialist incident response provider, licensed by the National Cybersecurity Authority where a licence is required."
+          },
+          "when": {
+            "irPartner": [
+              "no"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "التعافي: إعادة الأنظمة من نسخ احتياطية سليمة وفق سياسة النسخ الاحتياطي والاستعادة، والتأكد من إزالة سبب الحادثة قبل إعادة التشغيل.",
+            "en": "Recover: restore systems from clean backups under the Backup and Recovery Policy, and make sure the cause has been removed before going live again."
+          }
+        },
+        {
+          "text": {
+            "ar": "الدروس المستفادة: خلال أسبوعين من إغلاق الحادثة، يوثق قائد الاستجابة ما حدث وسببه وما سيتغير لمنع تكراره.",
+            "en": "Lessons learned: within two weeks of closing the incident, the lead records what happened, why, and what will change to stop it happening again."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الإبلاغ الخارجي",
+        "en": "External notification"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "عند تسرب بيانات شخصية قد يلحق ضررًا بأصحابها، تبلّغ الشركة الهيئة السعودية للبيانات والذكاء الاصطناعي خلال 72 ساعة من علمها بالتسرب، وتبلّغ الأفراد المتأثرين دون تأخير غير مبرر.",
+            "en": "If personal data is breached in a way that may harm the people concerned, the company notifies the Saudi Data and AI Authority (SDAIA) within 72 hours of becoming aware, and tells the affected individuals without undue delay."
+          },
+          "when": {
+            "personalData": [
+              "contact",
+              "ids",
+              "financial",
+              "health"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "تبلّغ الشركة عملاءها المتأثرين بالحادثة وفق المدد والقنوات المحددة في عقودهم.",
+            "en": "The company notifies affected clients within the timeframes and through the channels set out in their contracts."
+          },
+          "when": [
+            {
+              "profile": [
+                "supplier"
+              ]
+            },
+            {
+              "clients": [
+                "government",
+                "finance"
+              ]
+            }
+          ]
+        },
+        {
+          "text": {
+            "ar": "تبلّغ الشركة الهيئة الوطنية للأمن السيبراني بالحادثة متى كانت ضوابطها أو عقود العملاء تتطلب ذلك.",
+            "en": "The company reports the incident to the National Cybersecurity Authority where its controls or client contracts require it."
+          }
+        },
+        {
+          "text": {
+            "ar": "في حالات الاحتيال في المدفوعات، تتواصل الشركة فورًا مع بوابة الدفع والبنك.",
+            "en": "In cases of payment fraud, the company contacts its payment gateway and bank immediately."
+          },
+          "when": {
+            "profile": [
+              "shop"
+            ]
+          }
+        },
+        {
+          "text": {
+            "ar": "لا تُدفع أي فدية إلا بقرار من {{approverTitle}} بعد استشارة قانونية، والأصل هو الاستعادة من النسخ الاحتياطية.",
+            "en": "No ransom is paid without a decision by the {{approverTitle}} after legal advice. Restoring from backups is the default."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "heading": {
+        "ar": "الجاهزية",
+        "en": "Readiness"
+      },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تُحفظ قائمة اتصال للحوادث (فريق الاستجابة، ومزودي الخدمات، والجهات الواجب إبلاغها) في مكان يمكن الوصول إليه حتى لو تعطلت الأنظمة.",
+            "en": "An incident contact list (response team, service providers, and parties to notify) is kept somewhere it can be reached even if systems are down."
+          }
+        },
+        {
+          "text": {
+            "ar": "يُسجَّل كل حادث في سجل الحوادث، حتى الصغير منها.",
+            "en": "Every incident, however small, is recorded in the incident log."
+          }
+        },
+        {
+          "text": {
+            "ar": "يُجرى تمرين محاكاة لحادثة {{p.incidentDrill}} على الأقل.",
+            "en": "An incident simulation exercise is run at least {{p.incidentDrill}}."
+          }
+        }
+      ],
+      "numbered": true
+    },
+    {
+      "include": "exceptions"
+    },
+    {
+      "include": "violations"
+    },
+    {
+      "include": "references"
+    }
+  ]
+}
