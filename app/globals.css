@@ -272,3 +272,53 @@ a.chip { text-decoration: none; display: inline-block; }
 .sol-summary .st-service b { color: var(--prof); }
 .upgrade-box { background: var(--biz-soft); border-radius: 12px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px; }
 @media (max-width: 560px) { .sol-summary { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- architecture ---------- */
+.profile-drawer { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.profile-drawer > summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+.profile-drawer .form { position: static; border: 0; padding: 12px 0 0; }
+.arch-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.arch-bar b { margin-inline-end: auto; font-variant-numeric: tabular-nums; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13.5px; border: 0; background: var(--surface); color: var(--ink); padding: 5px 16px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--sel); color: var(--sel-ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.bx-key { font-size: 12px; padding: 2px 10px; border-radius: 6px; border: 1.5px solid; }
+
+.arch { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.arch-people { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px; border: 1.5px dashed var(--line); border-radius: 10px; }
+.arch-people .arrow { font-size: 12.5px; color: var(--muted); }
+.layer-row { display: grid; grid-template-columns: 210px 1fr; gap: 14px; padding: 12px; border-radius: 10px; background: var(--bg); }
+.layer-label { display: flex; flex-direction: column; gap: 2px; }
+.layer-label span { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.layer-n { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--brand) !important; font-size: 12px !important; }
+.region { margin-top: 6px; font-weight: 600; color: var(--ink) !important; }
+.region.r-outside, .region.r-unsure { color: var(--p1) !important; }
+.boxes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; align-content: start; }
+.bx { font-size: 13px; line-height: 1.45; padding: 8px 10px; border-radius: 8px; border: 1.5px solid; background: var(--surface); min-height: 48px; display: flex; align-items: center; }
+
+/* status colours: solid = in place, outline = planned */
+.c-have { border-color: var(--nca); color: var(--nca); }
+.c-included { border-color: var(--nca); color: var(--nca); border-style: dashed; }
+.c-upgrade { border-color: var(--biz); color: var(--biz); }
+.c-buy { border-color: var(--pdpl); color: var(--pdpl); }
+.c-service { border-color: var(--prof); color: var(--prof); }
+.c-todo { border-color: var(--muted); color: var(--muted); border-style: dashed; }
+.c-platform { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.bx.on.c-have { background: var(--nca-soft); }
+.bx-key.c-have { background: var(--nca-soft); }
+.view-today .bx:not(.on) { opacity: .35; border-style: dotted; }
+
+.outside { border: 1.5px dashed var(--line); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.outside ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.outside li { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 8px; background: var(--bg); font-size: 13px; }
+.outside li span { color: var(--muted); font-size: 12.5px; }
+.outside li.cross { border: 1.5px dashed var(--p1); }
+.outside li em { color: var(--p1); font-style: normal; font-size: 12px; }
+.decisions { margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 6px; max-width: 80ch; }
+
+@media (max-width: 640px) { .layer-row { grid-template-columns: 1fr; } }
+@media print {
+  .arch { border: 0; padding: 0; }
+  .layer-row { break-inside: avoid; }
+}

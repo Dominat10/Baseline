@@ -1,0 +1,687 @@
+{
+  "version": "0.1.0",
+  "layers": [
+    {
+      "id": "identity",
+      "title": {
+        "ar": "الهوية والوصول",
+        "en": "Identity and access"
+      },
+      "sub": {
+        "ar": "كل دخول يمر من هنا أولًا.",
+        "en": "Every sign-in passes through here first."
+      },
+      "components": [
+        {
+          "id": "idp-m365",
+          "name": {
+            "ar": "Microsoft Entra ID (هوية واحدة لكل التطبيقات)",
+            "en": "Microsoft Entra ID (one identity for every app)"
+          },
+          "when": [
+            {
+              "platform": [
+                "m365"
+              ]
+            }
+          ],
+          "kind": "platform"
+        },
+        {
+          "id": "idp-google",
+          "name": {
+            "ar": "هوية Google Workspace (هوية واحدة لكل التطبيقات)",
+            "en": "Google Workspace identity (one identity for every app)"
+          },
+          "when": [
+            {
+              "platform": [
+                "google"
+              ]
+            }
+          ],
+          "kind": "platform"
+        },
+        {
+          "id": "mfa",
+          "name": {
+            "ar": "التحقق بخطوتين",
+            "en": "Two-step login"
+          },
+          "solution": "mfa"
+        },
+        {
+          "id": "admins",
+          "name": {
+            "ar": "حسابات مسؤولين منفصلة",
+            "en": "Separate admin accounts"
+          },
+          "action": "a-admins"
+        },
+        {
+          "id": "pwmgr",
+          "name": {
+            "ar": "مدير كلمات المرور",
+            "en": "Password manager"
+          },
+          "solution": "password"
+        },
+        {
+          "id": "offboard",
+          "name": {
+            "ar": "إغلاق الوصول يوم المغادرة",
+            "en": "Access closed on leaving day"
+          },
+          "action": "a-offboard"
+        }
+      ]
+    },
+    {
+      "id": "devices",
+      "title": {
+        "ar": "الأجهزة",
+        "en": "Devices"
+      },
+      "sub": {
+        "ar": "الحواسيب والجوالات التي تصل إلى البيانات.",
+        "en": "The laptops and phones that reach your data."
+      },
+      "components": [
+        {
+          "id": "mdm",
+          "name": {
+            "ar": "إدارة الأجهزة",
+            "en": "Device management"
+          },
+          "solution": "mdm"
+        },
+        {
+          "id": "edr",
+          "name": {
+            "ar": "حماية الأجهزة (EDR)",
+            "en": "Endpoint protection (EDR)"
+          },
+          "solution": "endpoint"
+        },
+        {
+          "id": "encrypt",
+          "name": {
+            "ar": "تشفير وقفل ومسح عن بُعد",
+            "en": "Encryption, lock and remote wipe"
+          },
+          "action": "a-devices"
+        },
+        {
+          "id": "byod",
+          "name": {
+            "ar": "حماية بيانات العمل على الأجهزة الشخصية",
+            "en": "Work data protection on personal devices"
+          },
+          "action": "a-byod"
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "title": {
+        "ar": "البريد والتعاون",
+        "en": "Email and collaboration"
+      },
+      "sub": {
+        "ar": "أول هدف للتصيد والاحتيال.",
+        "en": "The first target for phishing and fraud."
+      },
+      "components": [
+        {
+          "id": "emailauth",
+          "name": {
+            "ar": "SPF وDKIM وDMARC",
+            "en": "SPF, DKIM and DMARC"
+          },
+          "action": "a-email"
+        },
+        {
+          "id": "emailsec",
+          "name": {
+            "ar": "فحص الروابط والمرفقات",
+            "en": "Link and attachment checking"
+          },
+          "solution": "email"
+        },
+        {
+          "id": "awareness",
+          "name": {
+            "ar": "توعية واختبارات تصيّد للموظفين",
+            "en": "Staff awareness and phishing tests"
+          },
+          "solution": "awareness"
+        }
+      ]
+    },
+    {
+      "id": "apps",
+      "title": {
+        "ar": "التطبيقات والتطوير",
+        "en": "Applications and development"
+      },
+      "sub": {
+        "ar": "ما تبنيه أو تشغّله لعملائك.",
+        "en": "What you build or run for your customers."
+      },
+      "components": [
+        {
+          "id": "repos",
+          "name": {
+            "ar": "مستودعات الكود باسم الشركة",
+            "en": "Company-owned code repositories"
+          },
+          "action": "a-code"
+        },
+        {
+          "id": "pipeline",
+          "name": {
+            "ar": "فحص الكود والأسرار في خط البناء",
+            "en": "Code and secret scanning in the pipeline"
+          },
+          "solution": "codeSecurity"
+        },
+        {
+          "id": "envs",
+          "name": {
+            "ar": "فصل التطوير عن الإنتاج",
+            "en": "Development separate from production"
+          },
+          "action": "a-testdata"
+        },
+        {
+          "id": "waf",
+          "name": {
+            "ar": "جدار حماية التطبيقات (WAF)",
+            "en": "Web application firewall (WAF)"
+          },
+          "solution": "webProtection"
+        },
+        {
+          "id": "appsec",
+          "name": {
+            "ar": "صلاحيات كل طلب وحد المحاولات",
+            "en": "Per-request permissions and rate limits"
+          },
+          "action": "a-appsec"
+        },
+        {
+          "id": "pentest",
+          "name": {
+            "ar": "اختبار اختراق دوري",
+            "en": "Regular penetration test"
+          },
+          "solution": "pentest"
+        },
+        {
+          "id": "store",
+          "name": {
+            "ar": "لوحة المتجر بحسابات فردية",
+            "en": "Store admin with individual accounts"
+          },
+          "action": "a-shop"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": {
+        "ar": "البيانات",
+        "en": "Data"
+      },
+      "sub": {
+        "ar": "ما تحميه في النهاية.",
+        "en": "What you're ultimately protecting."
+      },
+      "components": [
+        {
+          "id": "classify",
+          "name": {
+            "ar": "تصنيف: عامة / داخلية / سرية",
+            "en": "Classification: Public / Internal / Confidential"
+          },
+          "action": "a-classify"
+        },
+        {
+          "id": "inventory",
+          "name": {
+            "ar": "قائمة الأصول والبيانات",
+            "en": "Asset and data list"
+          },
+          "action": "a-assets"
+        },
+        {
+          "id": "pdpl",
+          "name": {
+            "ar": "سجل المعالجة وإشعار الخصوصية",
+            "en": "Processing record and privacy notice"
+          },
+          "action": "a-pdpl"
+        },
+        {
+          "id": "segregate",
+          "name": {
+            "ar": "بيانات كل عميل منفصلة",
+            "en": "Each client's data kept separate"
+          },
+          "action": "a-clients",
+          "when": [
+            {
+              "profile": [
+                "supplier"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "title": {
+        "ar": "الشبكة والوصول عن بُعد",
+        "en": "Network and remote access"
+      },
+      "sub": {
+        "ar": "الطريق بين الأجهزة والأنظمة.",
+        "en": "The path between devices and systems."
+      },
+      "components": [
+        {
+          "id": "network",
+          "name": {
+            "ar": "جدار حماية أو وصول آمن عن بُعد",
+            "en": "Firewall or secure remote access"
+          },
+          "solution": "network"
+        },
+        {
+          "id": "routers",
+          "name": {
+            "ar": "أجهزة توجيه مؤمّنة وشبكة ضيوف منفصلة",
+            "en": "Secured routers and a separate guest network"
+          },
+          "action": "a-network"
+        }
+      ]
+    },
+    {
+      "id": "operate",
+      "title": {
+        "ar": "المراقبة والاستجابة والتعافي",
+        "en": "Monitor, respond and recover"
+      },
+      "sub": {
+        "ar": "كيف تعرف وتتصرف وتعود للعمل.",
+        "en": "How you notice, act, and get back to work."
+      },
+      "components": [
+        {
+          "id": "logs",
+          "name": {
+            "ar": "سجلات التدقيق محفوظة ومراجَعة",
+            "en": "Audit logs kept and reviewed"
+          },
+          "action": "a-logging"
+        },
+        {
+          "id": "vulnscan",
+          "name": {
+            "ar": "فحص دوري للثغرات",
+            "en": "Regular vulnerability scans"
+          },
+          "solution": "vulnScan"
+        },
+        {
+          "id": "mdr",
+          "name": {
+            "ar": "مراقبة مُدارة على مدار الساعة",
+            "en": "24/7 managed monitoring"
+          },
+          "solution": "mdr"
+        },
+        {
+          "id": "ir",
+          "name": {
+            "ar": "خطة الاستجابة وقائمة الاتصال",
+            "en": "Response plan and contact list"
+          },
+          "action": "a-ir"
+        },
+        {
+          "id": "retainer",
+          "name": {
+            "ar": "اتفاقية استجابة للحوادث",
+            "en": "Incident response retainer"
+          },
+          "solution": "irRetainer"
+        },
+        {
+          "id": "saasbackup",
+          "name": {
+            "ar": "نسخ احتياطي مستقل للبريد والملفات",
+            "en": "Independent backup of email and files"
+          },
+          "solution": "saasBackup"
+        },
+        {
+          "id": "serverbackup",
+          "name": {
+            "ar": "نسخ احتياطي للخوادم بنسخة معزولة",
+            "en": "Server backup with an isolated copy"
+          },
+          "solution": "serverBackup"
+        },
+        {
+          "id": "restore",
+          "name": {
+            "ar": "تجربة استعادة دورية",
+            "en": "Regular restore test"
+          },
+          "action": "a-restore"
+        }
+      ]
+    }
+  ],
+  "external": [
+    {
+      "id": "provider",
+      "name": {
+        "ar": "مزود تقنية المعلومات",
+        "en": "IT provider"
+      },
+      "note": {
+        "ar": "حسابات مسماة مع التحقق بخطوتين وتسجيل الأنشطة",
+        "en": "Named accounts, two-step login, activity logged"
+      },
+      "when": [
+        {
+          "itManagedBy": [
+            "provider"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "offshore",
+      "name": {
+        "ar": "فريق خارج المملكة",
+        "en": "Team outside Saudi Arabia"
+      },
+      "note": {
+        "ar": "عبر حسابات تديرها الشركة فقط، وفق أحكام نقل البيانات",
+        "en": "Only through company-managed accounts, under the data transfer rules"
+      },
+      "when": [
+        {
+          "workforce": [
+            "offshore"
+          ]
+        }
+      ],
+      "crossBorder": true
+    },
+    {
+      "id": "contractors",
+      "name": {
+        "ar": "المستقلون والمتعاقدون",
+        "en": "Freelancers and contractors"
+      },
+      "note": {
+        "ar": "وصول ينتهي تلقائيًا بانتهاء العقد",
+        "en": "Access that expires with the contract"
+      },
+      "when": [
+        {
+          "workforce": [
+            "contractors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clientsys",
+      "name": {
+        "ar": "أنظمة العملاء",
+        "en": "Clients' systems"
+      },
+      "note": {
+        "ar": "حساب منفصل لكل عميل، يُغلق بانتهاء المشروع",
+        "en": "A separate account per client, closed when the project ends"
+      },
+      "when": [
+        {
+          "profile": [
+            "dev",
+            "supplier"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gateway",
+      "name": {
+        "ar": "بوابة الدفع",
+        "en": "Payment gateway"
+      },
+      "note": {
+        "ar": "بيانات البطاقات تبقى لدى البوابة ولا تدخل أنظمة الشركة",
+        "en": "Card data stays with the gateway and never enters company systems"
+      },
+      "when": [
+        {
+          "profile": [
+            "shop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "govcloud",
+      "name": {
+        "ar": "الجهات الحكومية المستفيدة من خدمتكم السحابية",
+        "en": "Government entities using your cloud service"
+      },
+      "note": {
+        "ar": "نطاق ضوابط الحوسبة السحابية (CCC) لمقدّمي الخدمات",
+        "en": "In scope of NCA's cloud controls (CCC) for providers"
+      },
+      "when": [
+        {
+          "saasToGov": [
+            "yes"
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "text": {
+        "ar": "هوية واحدة لكل شيء: يدخل الموظفون كل التطبيقات بحساب Microsoft 365 مع التحقق بخطوتين.",
+        "en": "One identity for everything: staff sign in to every app with their Microsoft 365 account and two-step login."
+      },
+      "when": [
+        {
+          "platform": [
+            "m365"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "text": {
+        "ar": "هوية واحدة لكل شيء: يدخل الموظفون كل التطبيقات بحساب Google Workspace مع التحقق بخطوتين.",
+        "en": "One identity for everything: staff sign in to every app with their Google Workspace account and two-step login."
+      },
+      "when": [
+        {
+          "platform": [
+            "google"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "text": {
+        "ar": "لا تُستخدم حسابات المسؤولين للبريد أو التصفح، ولا يُدار أي نظام إلا من جهاز تابع للشركة.",
+        "en": "Admin accounts are never used for email or browsing, and systems are administered only from company devices."
+      }
+    },
+    {
+      "id": "d4",
+      "text": {
+        "ar": "لا يُفتح سطح المكتب البعيد (RDP) أو أي لوحة إدارة مباشرة على الإنترنت.",
+        "en": "Remote desktop (RDP) and admin panels are never exposed directly to the internet."
+      }
+    },
+    {
+      "id": "d5",
+      "text": {
+        "ar": "الوصول عن بُعد عبر قناة آمنة معتمدة مع التحقق بخطوتين، لا عبر شبكات مفتوحة.",
+        "en": "Remote access goes through an approved secure channel with two-step login, never over open networks."
+      },
+      "when": [
+        {
+          "workModel": [
+            "hybrid",
+            "remote"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "text": {
+        "ar": "بيانات الشركة والعملاء في منطقة استضافة داخل المملكة العربية السعودية.",
+        "en": "Company and customer data lives in a hosting region inside Saudi Arabia."
+      },
+      "when": [
+        {
+          "hosting": [
+            "ksa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d7",
+      "text": {
+        "ar": "أي بيانات شخصية خارج المملكة موثقة بأساس نقل نظامي، وبيانات العملاء الحكوميين لا تخرج إلا بموافقتهم الكتابية.",
+        "en": "Any personal data outside Saudi Arabia is documented with a lawful transfer basis, and government clients' data leaves only with their written approval."
+      },
+      "when": [
+        {
+          "hosting": [
+            "outside",
+            "unsure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d8",
+      "text": {
+        "ar": "النسخة الاحتياطية المعزولة لا يمكن حذفها أو تشفيرها من نفس الحسابات التي تدير الأنظمة.",
+        "en": "The isolated backup copy can't be deleted or encrypted from the same accounts that run the systems."
+      }
+    },
+    {
+      "id": "d9",
+      "text": {
+        "ar": "الكود يبقى في مستودعات الشركة، وبيانات الإنتاج الحقيقية لا تصل إلى بيئات التطوير.",
+        "en": "Code stays in company repositories, and real production data never reaches development environments."
+      },
+      "when": [
+        {
+          "profile": [
+            "dev",
+            "product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d10",
+      "text": {
+        "ar": "كل طلب إلى التطبيق يمر عبر جدار حماية التطبيقات، ويُتحقق فيه من الهوية والصلاحية.",
+        "en": "Every request to the app passes the web application firewall and is checked for identity and permission."
+      },
+      "when": [
+        {
+          "profile": [
+            "product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d11",
+      "text": {
+        "ar": "بيانات كل عميل في مساحة منفصلة بصلاحيات خاصة بفريقه.",
+        "en": "Each client's data sits in its own space, accessible only to that client's team."
+      },
+      "when": [
+        {
+          "profile": [
+            "supplier"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d12",
+      "text": {
+        "ar": "المتجر لا يرى ولا يخزن أرقام البطاقات؛ الدفع كله لدى بوابة دفع مرخصة.",
+        "en": "The store never sees or stores card numbers; all payment happens at a licensed gateway."
+      },
+      "when": [
+        {
+          "profile": [
+            "shop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d13",
+      "text": {
+        "ar": "الأطراف الخارجية (مزود تقنية، متعاقدون، فرق خارجية) تدخل بحسابات مسماة تنتهي تلقائيًا ولا تشارك حسابات الموظفين.",
+        "en": "Outside parties (IT provider, contractors, offshore teams) use named accounts that expire automatically and never share staff accounts."
+      },
+      "when": [
+        {
+          "itManagedBy": [
+            "provider"
+          ]
+        },
+        {
+          "workforce": [
+            "contractors",
+            "offshore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d14",
+      "text": {
+        "ar": "التنبيهات الأمنية تُراقب على مدار الساعة من فريق مُدار مرخص.",
+        "en": "Security alerts are watched around the clock by a licensed managed team."
+      },
+      "when": [
+        {
+          "tier": [
+            "high"
+          ]
+        }
+      ]
+    }
+  ]
+}

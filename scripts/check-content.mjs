@@ -137,6 +137,28 @@ for (const c of sol.categories) {
 if (!sol.disclosure?.ar || !sol.disclosure?.en) errors.push("solutions: vendor disclosure text is required");
 if (!errors.length) console.log(`Solutions OK: ${sol.categories.length} categories.`);
 
+// ---------- architecture ----------
+const arch = JSON.parse(readFileSync(new URL("../content/architecture.json", import.meta.url)));
+const compIds = new Set();
+for (const l of arch.layers) {
+  if (!l.title?.ar || !l.title?.en || !l.sub?.ar || !l.sub?.en) errors.push(`layer ${l.id}: title/sub need ar and en`);
+  for (const c of l.components) {
+    const w = `component ${c.id}`;
+    if (compIds.has(c.id)) errors.push(`${w}: duplicate id`);
+    compIds.add(c.id);
+    if (!c.name?.ar || !c.name?.en) errors.push(`${w}: name needs ar and en`);
+    if (!c.kind && !c.solution && !c.action) errors.push(`${w}: must link to a solution or an action`);
+    if (c.solution && !catIds.has(c.solution)) errors.push(`${w}: unknown solution "${c.solution}"`);
+    if (c.action && !actionIds.has(c.action)) errors.push(`${w}: unknown action "${c.action}"`);
+    checkCond(c.when, w);
+  }
+}
+for (const e of arch.external) { if (!e.name?.ar || !e.note?.en) errors.push(`external ${e.id}: needs ar and en`); checkCond(e.when, `external ${e.id}`); }
+for (const d of arch.decisions) { if (!d.text?.ar || !d.text?.en) errors.push(`decision ${d.id}: needs ar and en`); checkCond(d.when, `decision ${d.id}`); }
+// Every solution category should appear somewhere in the architecture picture.
+for (const c of sol.categories) if (!arch.layers.some((l) => l.components.some((x) => x.solution === c.id))) errors.push(`solution ${c.id} isn't shown in any architecture layer`);
+if (!errors.length) console.log(`Architecture OK: ${arch.layers.length} layers, ${compIds.size} components, ${arch.decisions.length} decisions.`);
+
 if (errors.length) {
   console.error(`Knowledge base has ${errors.length} problem(s):\n- ` + errors.join("\n- "));
   process.exit(1);
