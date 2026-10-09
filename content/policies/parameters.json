@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "note": "Professional baseline values per strictness tier. Review against NCA minimums before each release.",
+  "note": "Professional baseline values per strictness tier. 'schedule' must stay consistent with the matching text params (reportEvery, accessReview, restoreTest, awareness, incidentDrill, riskReview). Review against NCA minimums before each release.",
   "params": {
     "reportEvery": {
       "basic": {
@@ -184,5 +184,117 @@
         "en": "every six months"
       }
     }
-  }
+  },
+  "schedule": [
+    {
+      "id": "report",
+      "months": {
+        "basic": 6,
+        "enhanced": 3,
+        "high": 3
+      },
+      "title": {
+        "ar": "تقرير الأمن السيبراني للإدارة",
+        "en": "Cybersecurity report to management"
+      },
+      "policy": "information-security"
+    },
+    {
+      "id": "accessReview",
+      "months": {
+        "basic": 6,
+        "enhanced": 3,
+        "high": 3
+      },
+      "title": {
+        "ar": "مراجعة الصلاحيات",
+        "en": "Access review"
+      },
+      "policy": "access-control"
+    },
+    {
+      "id": "adminReview",
+      "months": {
+        "high": 1
+      },
+      "title": {
+        "ar": "مراجعة حسابات المسؤولين",
+        "en": "Administrator account review"
+      },
+      "policy": "access-control"
+    },
+    {
+      "id": "restoreTest",
+      "months": {
+        "basic": 12,
+        "enhanced": 6,
+        "high": 3
+      },
+      "title": {
+        "ar": "تجربة استعادة من النسخ الاحتياطي",
+        "en": "Backup restore test"
+      },
+      "policy": "backup-recovery"
+    },
+    {
+      "id": "awareness",
+      "months": {
+        "basic": 12,
+        "enhanced": 12,
+        "high": 6
+      },
+      "title": {
+        "ar": "توعية الموظفين بالأمن السيبراني",
+        "en": "Staff cybersecurity awareness"
+      },
+      "policy": "information-security"
+    },
+    {
+      "id": "phishing",
+      "months": {
+        "enhanced": 12,
+        "high": 6
+      },
+      "title": {
+        "ar": "اختبار تصيّد تجريبي",
+        "en": "Simulated phishing test"
+      },
+      "policy": "information-security"
+    },
+    {
+      "id": "drill",
+      "months": {
+        "basic": 12,
+        "enhanced": 12,
+        "high": 6
+      },
+      "title": {
+        "ar": "تمرين محاكاة حادثة",
+        "en": "Incident simulation exercise"
+      },
+      "policy": "incident-response"
+    },
+    {
+      "id": "risk",
+      "months": {
+        "basic": 12,
+        "enhanced": 12,
+        "high": 6
+      },
+      "title": {
+        "ar": "مراجعة مخاطر الأمن السيبراني",
+        "en": "Cybersecurity risk review"
+      },
+      "policy": "information-security"
+    },
+    {
+      "id": "policyReview",
+      "monthsFrom": "reviewMonths",
+      "title": {
+        "ar": "مراجعة السياسات",
+        "en": "Policy review"
+      },
+      "policy": "information-security"
+    }
+  ]
 }

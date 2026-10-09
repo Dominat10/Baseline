@@ -90,6 +90,32 @@ for (const file of POLICY_FILES) {
 }
 if (!errors.length) console.log(`Policies OK: ${POLICY_FILES.length} policies, ${Object.keys(q.fields).length} fields, ${Object.keys(params).length} tier parameters.`);
 
+// ---------- action library ----------
+const lib = JSON.parse(readFileSync(new URL("../content/actions.json", import.meta.url)));
+const kbIds = new Set(kb.items.map((i) => i.id));
+const actionIds = new Set();
+for (const a of lib.actions) {
+  const w = `action ${a.id}`;
+  if (actionIds.has(a.id)) errors.push(`${w}: duplicate id`);
+  actionIds.add(a.id);
+  if (!POLICY_FILES.includes(a.policy)) errors.push(`${w}: unknown policy "${a.policy}"`);
+  for (const k of a.kb) if (!kbIds.has(k)) errors.push(`${w}: unknown knowledge-base item "${k}"`);
+  for (const f of ["title", "why", "evidence"]) if (!a[f]?.ar || !a[f]?.en) errors.push(`${w}: ${f} needs ar and en`);
+  if (!a.how?.default && !Object.keys(a.how ?? {}).length) errors.push(`${w}: needs how-to steps`);
+  for (const [plat, st] of Object.entries(a.how ?? {})) if (st.ar?.length !== st.en?.length) errors.push(`${w}: ${plat} steps differ between ar and en`);
+  if (!lib.effort[a.effort]) errors.push(`${w}: unknown effort "${a.effort}"`);
+  if (!lib.cost[a.cost]) errors.push(`${w}: unknown cost "${a.cost}"`);
+  if (a.capability && !q.fields.capabilities.options.some((o) => o.value === a.capability)) errors.push(`${w}: unknown capability "${a.capability}"`);
+  checkCond(a.when, w);
+}
+for (const item of kb.items.filter((i) => i.group === "nca")) {
+  if (!lib.actions.some((a) => !a.when && a.kb.includes(item.id))) errors.push(`mandatory NCA domain ${item.id} (${item.title.en}) has no action that always applies`);
+}
+for (const cap of q.fields.capabilities.options.filter((o) => o.value !== q.fields.capabilities.exclusive)) {
+  if (!lib.actions.some((a) => a.capability === cap.value)) errors.push(`capability "${cap.value}" isn't linked to any action`);
+}
+if (!errors.length) console.log(`Actions OK: ${lib.actions.length} actions, all 13 mandatory NCA domains covered.`);
+
 if (errors.length) {
   console.error(`Knowledge base has ${errors.length} problem(s):\n- ` + errors.join("\n- "));
   process.exit(1);

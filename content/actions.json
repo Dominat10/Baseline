@@ -1,0 +1,1571 @@
+{
+  "version": "0.1.0",
+  "effort": {
+    "1h": {
+      "ar": "ساعة تقريبًا",
+      "en": "about 1 hour"
+    },
+    "halfday": {
+      "ar": "نصف يوم",
+      "en": "half a day"
+    },
+    "1day": {
+      "ar": "يوم",
+      "en": "1 day"
+    },
+    "1week": {
+      "ar": "أسبوع تقريبًا",
+      "en": "about a week"
+    }
+  },
+  "cost": {
+    "free": {
+      "ar": "مجاني",
+      "en": "Free"
+    },
+    "low": {
+      "ar": "تكلفة منخفضة",
+      "en": "Low cost"
+    },
+    "paid": {
+      "ar": "خدمة مدفوعة",
+      "en": "Paid service"
+    }
+  },
+  "actions": [
+    {
+      "id": "a-approve",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "rec-01",
+        "rec-02"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "اعتماد السياسات الست وتسمية المسؤولين",
+        "en": "Approve the six policies and name the owners"
+      },
+      "why": {
+        "ar": "بدون اعتماد رسمي ومسؤول محدد، لا يُطبَّق شيء ولا يُحاسَب أحد.",
+        "en": "Without formal approval and a named owner, nothing gets applied and no one is accountable."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "راجع السياسات الست المولَّدة مع الإدارة.",
+            "وقّعها وأرّخها.",
+            "أبلغ جميع الموظفين بها واطلب منهم الإقرار بالاطلاع."
+          ],
+          "en": [
+            "Review the six generated policies with management.",
+            "Sign and date them.",
+            "Share them with all staff and ask each person to confirm they've read them."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "السياسات الموقعة وإقرارات الموظفين.",
+        "en": "Signed policies and staff acknowledgements."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-mfa",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "nca-02"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "تفعيل التحقق بخطوتين",
+        "en": "Turn on two-step login"
+      },
+      "why": {
+        "ar": "يمنع الغالبية العظمى من عمليات سرقة الحسابات، وهو أهم إجراء منفرد.",
+        "en": "It stops most account takeovers. It's the single most important step."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "في مركز إدارة Microsoft Entra، فعّل الإعدادات الأمنية الافتراضية (Security defaults)، أو سياسات الوصول المشروط إن كان ترخيصك يدعمها.",
+            "اطلب من كل موظف تسجيل تطبيق Microsoft Authenticator.",
+            "تأكد أن حسابات المسؤولين مشمولة."
+          ],
+          "en": [
+            "In the Microsoft Entra admin center, turn on Security defaults, or Conditional Access if your licence includes it.",
+            "Ask every employee to register the Microsoft Authenticator app.",
+            "Check that administrator accounts are covered."
+          ]
+        },
+        "google": {
+          "ar": [
+            "في Google Admin console: الأمان ← المصادقة ← التحقق بخطوتين.",
+            "اسمح به أولًا، وامنح الموظفين أسبوعًا للتسجيل، ثم اجعله إلزاميًا.",
+            "استخدم مفاتيح الأمان أو تطبيق المصادقة لحسابات المسؤولين."
+          ],
+          "en": [
+            "In the Google Admin console: Security → Authentication → 2-step verification.",
+            "Allow it first, give staff a week to enrol, then enforce it.",
+            "Use security keys or an authenticator app for admin accounts."
+          ]
+        },
+        "default": {
+          "ar": [
+            "فعّل التحقق بخطوتين في البريد، ولوحات تحكم الأنظمة، والدخول عن بُعد.",
+            "استخدم تطبيق مصادقة بدلًا من الرسائل النصية متى أمكن."
+          ],
+          "en": [
+            "Turn on two-step login for email, system admin panels and remote access.",
+            "Use an authenticator app rather than SMS wherever possible."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "لقطة شاشة للإعداد مفعّلًا، وقائمة بالحسابات المسجلة.",
+        "en": "Screenshot of the setting switched on, and a list of enrolled accounts."
+      },
+      "effort": "1h",
+      "cost": "free",
+      "capability": "mfa"
+    },
+    {
+      "id": "a-admins",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "nca-02"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "فصل حسابات المسؤولين",
+        "en": "Separate administrator accounts"
+      },
+      "why": {
+        "ar": "حساب المسؤول المستخدم للبريد والتصفح هو أسهل طريق للمخترق إلى كل شيء.",
+        "en": "An admin account used for email and browsing is an attacker's easiest route to everything."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "أنشئ حساب مسؤول منفصلًا لكل مسؤول (مثل admin-name@).",
+            "اسحب صلاحيات المسؤول من الحسابات اليومية.",
+            "أبقِ مسؤولَين عامَّين اثنين على الأقل، ولا أكثر من الحاجة."
+          ],
+          "en": [
+            "Create a separate admin account for each administrator (e.g. admin-name@).",
+            "Remove admin rights from everyday accounts.",
+            "Keep at least two Global Administrators, and no more than needed."
+          ]
+        },
+        "google": {
+          "ar": [
+            "أنشئ حساب مسؤول منفصلًا لكل مسؤول.",
+            "امنح أدوار المسؤول المحددة بدل المسؤول الأعلى متى أمكن.",
+            "أبقِ مسؤولَين أعلَيين اثنين على الأقل."
+          ],
+          "en": [
+            "Create a separate admin account for each administrator.",
+            "Use specific admin roles instead of Super Admin wherever possible.",
+            "Keep at least two Super Admins."
+          ]
+        },
+        "default": {
+          "ar": [
+            "استخدم حسابًا منفصلًا للمهام الإدارية في كل نظام.",
+            "راجع من يملك صلاحيات المسؤول واسحب غير الضروري."
+          ],
+          "en": [
+            "Use a separate account for admin tasks on every system.",
+            "Review who has admin rights and remove anything unnecessary."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة بحسابات المسؤولين وأصحابها.",
+        "en": "List of admin accounts and who owns each."
+      },
+      "effort": "1h",
+      "cost": "free"
+    },
+    {
+      "id": "a-pwmgr",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "nca-02",
+        "biz-02"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "مدير كلمات مرور للفريق",
+        "en": "Roll out a team password manager"
+      },
+      "why": {
+        "ar": "ينهي مشاركة كلمات المرور عبر واتساب ويجعل كلمات المرور القوية ممكنة.",
+        "en": "Ends password sharing over WhatsApp and makes strong passwords practical."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اختر مدير كلمات مرور للأعمال يدعم الخزائن المشتركة.",
+            "انقل كلمات المرور المشتركة إليه واحذفها من الرسائل والملفات.",
+            "فعّل التحقق بخطوتين على المدير نفسه."
+          ],
+          "en": [
+            "Choose a business password manager with shared vaults.",
+            "Move shared passwords into it, and delete them from chats and files.",
+            "Turn on two-step login for the password manager itself."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة المستخدمين المسجلين في مدير كلمات المرور.",
+        "en": "List of users enrolled in the password manager."
+      },
+      "effort": "halfday",
+      "cost": "low"
+    },
+    {
+      "id": "a-offboard",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "nca-02"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "قائمة إجراءات المغادرة في اليوم نفسه",
+        "en": "Same-day leaver checklist"
+      },
+      "why": {
+        "ar": "الحسابات المنسية للموظفين السابقين من أكثر أبواب الاختراق شيوعًا.",
+        "en": "Forgotten accounts of former staff are one of the most common ways in."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اكتب قائمة من صفحة واحدة: الحسابات، والأجهزة، وكلمات المرور المشتركة، والمفاتيح.",
+            "اربطها بإجراءات الموارد البشرية لتُنفذ في آخر يوم عمل.",
+            "راجع الآن حسابات كل من غادر سابقًا وأغلقها."
+          ],
+          "en": [
+            "Write a one-page list: accounts, devices, shared passwords, keys.",
+            "Link it to HR so it runs on everyone's last day.",
+            "Check now for accounts belonging to people who already left, and close them."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة المغادرة مكتملة لكل موظف غادر.",
+        "en": "A completed leaver checklist for each person who leaves."
+      },
+      "effort": "1h",
+      "cost": "free",
+      "capability": "offboarding"
+    },
+    {
+      "id": "a-ownership",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "biz-01"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "نقل الحسابات الحساسة إلى اسم الشركة",
+        "en": "Put critical accounts in the company's name"
+      },
+      "why": {
+        "ar": "إذا كان النطاق أو السحابة باسم موظف، فالشركة رهينة له عند مغادرته.",
+        "en": "If the domain or cloud account is in an employee's name, the company is at their mercy when they leave."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "راجع: مسجّل النطاق، والسحابة، ومتجر التطبيقات، ووسائل التواصل، وبوابة الدفع.",
+            "انقل الملكية إلى بريد عام للشركة (مثل it@) يصل إليه أكثر من شخص.",
+            "احفظ بيانات الدخول في مدير كلمات المرور."
+          ],
+          "en": [
+            "Check: domain registrar, cloud, app stores, social media, payment gateway.",
+            "Move ownership to a company role mailbox (e.g. it@) that more than one person can reach.",
+            "Store the logins in the password manager."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة الحسابات الحساسة ومالكها.",
+        "en": "List of critical accounts and their owner."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-email",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "nca-04"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "حماية البريد من الانتحال والتصيد",
+        "en": "Protect email from spoofing and phishing"
+      },
+      "why": {
+        "ar": "بدون SPF وDKIM وDMARC يستطيع أي شخص إرسال فواتير مزيفة باسمك.",
+        "en": "Without SPF, DKIM and DMARC, anyone can send fake invoices in your name."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "أضف سجل SPF لنطاقك لدى مزود DNS.",
+            "فعّل DKIM من إعدادات مصادقة البريد في بوابة Microsoft Defender.",
+            "أضف سجل DMARC بسياسة مراقبة أولًا، ثم شدّدها بعد التأكد.",
+            "فعّل سياسات مكافحة التصيد والبرمجيات الضارة."
+          ],
+          "en": [
+            "Add an SPF record for your domain at your DNS provider.",
+            "Turn on DKIM in the email authentication settings of the Microsoft Defender portal.",
+            "Add a DMARC record in monitoring mode first, then tighten it once mail checks out.",
+            "Switch on the anti-phishing and anti-malware policies."
+          ]
+        },
+        "google": {
+          "ar": [
+            "أضف سجل SPF لنطاقك لدى مزود DNS.",
+            "في Google Admin console: التطبيقات ← Gmail ← مصادقة البريد، أنشئ مفتاح DKIM وأضفه إلى DNS ثم فعّله.",
+            "أضف سجل DMARC بسياسة مراقبة أولًا، ثم شدّدها."
+          ],
+          "en": [
+            "Add an SPF record for your domain at your DNS provider.",
+            "In the Google Admin console: Apps → Gmail → Authenticate email, generate a DKIM key, add it to DNS, then start authentication.",
+            "Add a DMARC record in monitoring mode first, then tighten it."
+          ]
+        },
+        "default": {
+          "ar": [
+            "أضف سجلات SPF وDKIM وDMARC لنطاقك.",
+            "فعّل تصفية رسائل التصيد والمرفقات الخطرة."
+          ],
+          "en": [
+            "Add SPF, DKIM and DMARC records for your domain.",
+            "Turn on filtering for phishing and dangerous attachments."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "نتيجة فحص النطاق تظهر SPF وDKIM وDMARC صحيحة.",
+        "en": "A domain check showing SPF, DKIM and DMARC valid."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "phaseFor": {
+        "supplier": 1,
+        "shop": 1
+      }
+    },
+    {
+      "id": "a-backup",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "nca-09"
+      ],
+      "policy": "backup-recovery",
+      "title": {
+        "ar": "تشغيل نسخ احتياطي تلقائي بنسخة معزولة",
+        "en": "Set up automatic backups with an isolated copy"
+      },
+      "why": {
+        "ar": "النسخة المعزولة هي ما ينقذ الشركة من برمجيات الفدية.",
+        "en": "An isolated copy is what saves a company from ransomware."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "لا تعتمد على سلة المحذوفات والاحتفاظ المدمج.",
+            "فعّل خدمة نسخ احتياطي للبريد وOneDrive وSharePoint وTeams (من Microsoft أو مزود موثوق).",
+            "اضبط التكرار بما يحقق أقصى فقدان مقبول للبيانات."
+          ],
+          "en": [
+            "Don't rely on the recycle bin or built-in retention.",
+            "Set up a backup service for Exchange, OneDrive, SharePoint and Teams (from Microsoft or a trusted provider).",
+            "Set the frequency to meet your maximum acceptable data loss."
+          ]
+        },
+        "google": {
+          "ar": [
+            "لا تعتمد على سلة المحذوفات وVault.",
+            "فعّل خدمة نسخ احتياطي مستقلة لـ Gmail وDrive.",
+            "اضبط التكرار بما يحقق أقصى فقدان مقبول للبيانات."
+          ],
+          "en": [
+            "Don't rely on the trash or Vault.",
+            "Set up an independent backup service for Gmail and Drive.",
+            "Set the frequency to meet your maximum acceptable data loss."
+          ]
+        },
+        "servers": {
+          "ar": [
+            "انسخ الخوادم كاملة (البيانات والإعدادات).",
+            "احفظ نسخة خارج الموقع، ونسخة غير متصلة أو غير قابلة للتعديل.",
+            "راقب نجاح النسخ يوميًا."
+          ],
+          "en": [
+            "Back up servers in full (data and configuration).",
+            "Keep one copy off-site, and one offline or unchangeable.",
+            "Check every day that backups succeeded."
+          ]
+        },
+        "default": {
+          "ar": [
+            "حدد الأنظمة والبيانات الأساسية.",
+            "فعّل نسخًا تلقائيًا، مع نسخة واحدة معزولة لا تصل إليها برمجيات الفدية."
+          ],
+          "en": [
+            "List your core systems and data.",
+            "Turn on automatic backups, with one isolated copy ransomware can't reach."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "تقرير نجاح النسخ الاحتياطي ومكان النسخة المعزولة.",
+        "en": "Backup success report, and where the isolated copy is kept."
+      },
+      "effort": "1day",
+      "cost": "low",
+      "capability": "backups"
+    },
+    {
+      "id": "a-restore",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "nca-09"
+      ],
+      "policy": "backup-recovery",
+      "title": {
+        "ar": "أول تجربة استعادة فعلية",
+        "en": "Run your first real restore test"
+      },
+      "why": {
+        "ar": "النسخة الاحتياطية التي لم تُجرَّب استعادتها ليست ضمانًا.",
+        "en": "A backup you've never restored from isn't a guarantee."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اختر نظامًا أساسيًا واستعده في مكان تجريبي.",
+            "سجّل الوقت المستغرق وقارنه بأقصى مدة توقف مقبولة.",
+            "وثّق النتيجة وأي تحسين مطلوب."
+          ],
+          "en": [
+            "Pick a core system and restore it somewhere safe to test.",
+            "Time it, and compare with your maximum acceptable downtime.",
+            "Record the result and anything to improve."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "تقرير تجربة الاستعادة بالتاريخ والمدة.",
+        "en": "Restore test report with date and duration."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "capability": "restoreTest"
+    },
+    {
+      "id": "a-patch",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "nca-10",
+        "nca-03"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "تفعيل التحديثات التلقائية وجدول الترقيع",
+        "en": "Turn on automatic updates and a patch routine"
+      },
+      "why": {
+        "ar": "معظم الاختراقات تستغل ثغرات لها تحديثات متاحة منذ وقت طويل.",
+        "en": "Most breaches exploit flaws that had fixes available for a long time."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "فعّل التحديثات التلقائية لأنظمة التشغيل والمتصفحات والتطبيقات على كل الأجهزة.",
+            "حدّث أجهزة الشبكة والخوادم شهريًا على الأقل.",
+            "افحص الثغرات في الخدمات المكشوفة على الإنترنت دوريًا."
+          ],
+          "en": [
+            "Turn on automatic updates for operating systems, browsers and apps on every device.",
+            "Update network devices and servers at least monthly.",
+            "Scan internet-facing services for vulnerabilities on a schedule."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "تقرير بحالة التحديثات على الأجهزة.",
+        "en": "Report showing update status across devices."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-devices",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "nca-03",
+        "nca-06",
+        "nca-08"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "حماية الأجهزة: تشفير وحماية وقفل عن بُعد",
+        "en": "Protect devices: encryption, anti-malware, remote wipe"
+      },
+      "why": {
+        "ar": "جهاز مسروق دون تشفير يعني تسرب كل ما عليه.",
+        "en": "A stolen unencrypted laptop means everything on it leaks."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "إن كان ترخيصك يشمل Intune، سجّل الأجهزة فيه.",
+            "فعّل تشفير BitLocker أو FileVault، وMicrosoft Defender، وقفل الشاشة.",
+            "فعّل إمكانية المسح عن بُعد."
+          ],
+          "en": [
+            "If your licence includes Intune, enrol devices in it.",
+            "Turn on BitLocker or FileVault encryption, Microsoft Defender and screen lock.",
+            "Make sure remote wipe works."
+          ]
+        },
+        "google": {
+          "ar": [
+            "في Google Admin console: الأجهزة ← الأجهزة المحمولة والطرفية، فعّل الإدارة المناسبة.",
+            "اشترط قفل الشاشة والتشفير، وفعّل المسح عن بُعد."
+          ],
+          "en": [
+            "In the Google Admin console: Devices → Mobile & endpoints, turn on the right level of management.",
+            "Require screen lock and encryption, and make sure remote wipe works."
+          ]
+        },
+        "default": {
+          "ar": [
+            "فعّل تشفير القرص على كل حاسوب.",
+            "ثبّت حماية من البرمجيات الضارة وأبقها محدثة.",
+            "فعّل قفل الشاشة والمسح عن بُعد."
+          ],
+          "en": [
+            "Turn on disk encryption on every laptop.",
+            "Install malware protection and keep it updated.",
+            "Turn on screen lock and remote wipe."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة الأجهزة وحالة التشفير والحماية لكل منها.",
+        "en": "Device list with encryption and protection status."
+      },
+      "effort": "1day",
+      "cost": "low",
+      "phaseFor": {
+        "dev": 1
+      }
+    },
+    {
+      "id": "a-byod",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "nca-06"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "ضبط الأجهزة الشخصية المسموح بها",
+        "en": "Enrol the personal devices you allow"
+      },
+      "why": {
+        "ar": "السماح بالأجهزة الشخصية دون ضوابط يعني بيانات عمل على أجهزة لا تتحكم فيها.",
+        "en": "Allowing personal devices without controls puts work data on devices you don't control."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "فعّل حماية تطبيقات العمل أو المسح الانتقائي لبيانات العمل.",
+            "اشترط قفل الشاشة والتحديثات.",
+            "أضف حذف بيانات العمل إلى قائمة المغادرة."
+          ],
+          "en": [
+            "Turn on work app protection or selective wipe of work data.",
+            "Require a screen lock and updates.",
+            "Add removing work data to the leaver checklist."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة الأجهزة الشخصية المسجلة.",
+        "en": "List of enrolled personal devices."
+      },
+      "effort": "halfday",
+      "cost": "low",
+      "when": {
+        "byod": [
+          "phones",
+          "all"
+        ]
+      }
+    },
+    {
+      "id": "a-assets",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "nca-01",
+        "pdpl-01"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "قائمة الأصول والبيانات",
+        "en": "Build your asset and data list"
+      },
+      "why": {
+        "ar": "لا يمكن حماية ما لا تعرف بوجوده.",
+        "en": "You can't protect what you don't know you have."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اكتب جدولًا بالأجهزة والأنظمة والخدمات السحابية ومالك كل منها.",
+            "أضف عمودًا: ما البيانات فيه، وتصنيفها، ومكان استضافتها.",
+            "حدّثه عند أي إضافة أو إزالة."
+          ],
+          "en": [
+            "Make a table of devices, systems and cloud services, with an owner for each.",
+            "Add columns: what data it holds, its classification, and where it's hosted.",
+            "Update it whenever something is added or removed."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "جدول الأصول والبيانات المحدّث.",
+        "en": "The up-to-date asset and data table."
+      },
+      "effort": "1day",
+      "cost": "free",
+      "phaseFor": {
+        "supplier": 1
+      }
+    },
+    {
+      "id": "a-logging",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "nca-11"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "تفعيل السجلات والاحتفاظ بها",
+        "en": "Switch on and keep audit logs"
+      },
+      "why": {
+        "ar": "بدون سجلات لا يمكن معرفة ما حدث عند وقوع حادثة.",
+        "en": "Without logs, there's no way to know what happened in an incident."
+      },
+      "how": {
+        "m365": {
+          "ar": [
+            "تأكد أن سجل التدقيق مفعّل في بوابة Microsoft Purview.",
+            "فعّل تنبيهات تسجيل الدخول المشبوه.",
+            "تحقق أن مدة الاحتفاظ تغطي ما تتطلبه سياستك."
+          ],
+          "en": [
+            "Check that audit logging is on in the Microsoft Purview portal.",
+            "Turn on alerts for suspicious sign-ins.",
+            "Check the retention period covers what your policy requires."
+          ]
+        },
+        "google": {
+          "ar": [
+            "راجع التقارير في Google Admin console: التقارير ← التدقيق والتحقيق.",
+            "فعّل تنبيهات الأنشطة المشبوهة.",
+            "صدّر السجلات إن كانت مدة الاحتفاظ المدمجة أقل مما تتطلبه سياستك."
+          ],
+          "en": [
+            "Review the Google Admin console: Reporting → Audit and investigation.",
+            "Turn on alerts for suspicious activity.",
+            "Export logs if built-in retention is shorter than your policy requires."
+          ]
+        },
+        "default": {
+          "ar": [
+            "فعّل سجلات الدخول والأنشطة الإدارية على الأنظمة المهمة.",
+            "احفظها للمدة المحددة في سياسة التحكم في الوصول، وراجعها دوريًا."
+          ],
+          "en": [
+            "Switch on login and admin activity logs on key systems.",
+            "Keep them for the period in your Access Control Policy, and review them regularly."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "لقطة إعدادات السجلات ومدة الاحتفاظ.",
+        "en": "Screenshot of log settings and retention."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "capability": "logging"
+    },
+    {
+      "id": "a-network",
+      "kind": "tech",
+      "phase": 3,
+      "kb": [
+        "nca-05"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "تأمين الشبكة التي تعملون منها",
+        "en": "Secure the network you work from"
+      },
+      "why": {
+        "ar": "جهاز توجيه بكلمة مرور افتراضية يفتح الباب لكل الشبكة.",
+        "en": "A router with its default password opens the door to the whole network."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "غيّر كلمة مرور جهاز التوجيه وحدّث برنامجه.",
+            "افصل شبكة الضيوف عن شبكة العمل.",
+            "للعاملين عن بُعد: اتصال آمن معتمد، وعدم استخدام الواي فاي العام دون حماية."
+          ],
+          "en": [
+            "Change the router password and update its firmware.",
+            "Keep guest Wi-Fi separate from the work network.",
+            "For remote staff: an approved secure connection, and no unprotected public Wi-Fi."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "إعدادات جهاز التوجيه وشبكة الضيوف.",
+        "en": "Router settings and guest network setup."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-physical",
+      "kind": "gov",
+      "phase": 3,
+      "kb": [
+        "nca-13"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "الأمن المادي للمكتب والأجهزة",
+        "en": "Physical security for office and devices"
+      },
+      "why": {
+        "ar": "سرقة جهاز أو مستند من مكتب مفتوح لا تحتاج أي مهارة تقنية.",
+        "en": "Stealing a device or document from an open office takes no technical skill."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "حدد من يدخل المكتب وأماكن الأجهزة.",
+            "احفظ المستندات السرية في مكان مقفل.",
+            "للعاملين عن بُعد: لا تُترك الأجهزة دون قفل في المنزل أو السيارة."
+          ],
+          "en": [
+            "Decide who can enter the office and where equipment is kept.",
+            "Lock away Confidential documents.",
+            "For remote staff: never leave devices unlocked at home or in the car."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة من يملك مفاتيح أو بطاقات الدخول.",
+        "en": "List of who holds keys or access cards."
+      },
+      "effort": "1h",
+      "cost": "free"
+    },
+    {
+      "id": "a-classify",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "nca-07",
+        "nca-08"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "تصنيف البيانات وقواعد تخزينها وإتلافها",
+        "en": "Classify data and set storage and disposal rules"
+      },
+      "why": {
+        "ar": "التصنيف يخبر كل موظف كيف يتعامل مع كل ملف دون أن يسأل.",
+        "en": "Classification tells everyone how to handle each file without asking."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "طبّق المستويات الثلاثة: عامة، داخلية، سرية.",
+            "حدد أين يُسمح بحفظ البيانات السرية فقط.",
+            "اتفق على طريقة إتلاف الأجهزة والمستندات (مسح آمن وتمزيق)."
+          ],
+          "en": [
+            "Apply the three levels: Public, Internal, Confidential.",
+            "Decide the only places Confidential data may be stored.",
+            "Agree how devices and documents are disposed of (secure wipe, shredding)."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "دليل التصنيف المعتمد وسجلات الإتلاف.",
+        "en": "Approved classification guide and disposal records."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-pdpl",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "pdpl-01",
+        "pdpl-02",
+        "pdpl-03",
+        "pdpl-04"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "سجل المعالجة وإشعار الخصوصية وطلبات الأفراد",
+        "en": "Processing record, privacy notice and individuals' requests"
+      },
+      "why": {
+        "ar": "هذه أهم متطلبات نظام حماية البيانات الشخصية لأي شركة تحفظ بيانات أفراد.",
+        "en": "These are the core Personal Data Protection Law duties for any company holding personal data."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "أنشئ سجل المعالجة: ما البيانات، ولماذا، وأين، وإلى متى.",
+            "انشر إشعار خصوصية واضحًا على موقعك أو تطبيقك.",
+            "حدد طريقة استقبال طلبات الاطلاع والتصحيح والإتلاف والرد عليها خلال 30 يومًا."
+          ],
+          "en": [
+            "Create the processing record: what data, why, where, and for how long.",
+            "Publish a clear privacy notice on your website or app.",
+            "Set up how access, correction and destruction requests are received and answered within 30 days."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "سجل المعالجة، ورابط إشعار الخصوصية، وسجل الطلبات.",
+        "en": "Processing record, privacy notice link, and request log."
+      },
+      "effort": "1day",
+      "cost": "free",
+      "when": {
+        "personalData": [
+          "contact",
+          "ids",
+          "financial",
+          "health"
+        ]
+      },
+      "phaseFor": {
+        "product": 1,
+        "shop": 1
+      }
+    },
+    {
+      "id": "a-transfer",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "rec-04",
+        "pdpl-01"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "تحديد موقع البيانات وأساس نقلها",
+        "en": "Confirm where data lives and the basis for any transfer"
+      },
+      "why": {
+        "ar": "نقل البيانات الشخصية خارج المملكة له شروط نظامية، والعملاء الحكوميون غالبًا يشترطون بقاءها داخلها.",
+        "en": "Moving personal data outside Saudi Arabia has legal conditions, and government clients often require it to stay inside."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "حدد منطقة الاستضافة لكل منصة من إعداداتها أو من المزود.",
+            "إن كانت خارج المملكة: تحقق من أحكام النقل في نظام حماية البيانات الشخصية وشروط العقود.",
+            "وثّق القرار، أو انقل البيانات إلى منطقة داخل المملكة."
+          ],
+          "en": [
+            "Find each platform's hosting region in its settings or from the provider.",
+            "If it's outside Saudi Arabia: check the PDPL transfer rules and client contract terms.",
+            "Record the decision, or move the data to a region inside Saudi Arabia."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "جدول المنصات ومناطق الاستضافة وأساس النقل.",
+        "en": "Table of platforms, hosting regions and transfer basis."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "when": [
+        {
+          "hosting": [
+            "outside",
+            "unsure"
+          ]
+        },
+        {
+          "workforce": [
+            "offshore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-ir",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "nca-12",
+        "pdpl-05"
+      ],
+      "policy": "incident-response",
+      "title": {
+        "ar": "جاهزية الاستجابة للحوادث",
+        "en": "Get ready for incidents"
+      },
+      "why": {
+        "ar": "في الساعة الأولى من الحادثة لا وقت للبحث عن الأرقام ومن يقرر.",
+        "en": "In the first hour of an incident there's no time to look for numbers or work out who decides."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اطبع قائمة اتصال الحوادث واحفظ نسخة خارج الأنظمة.",
+            "اختر شريك استجابة للحوادث أو حدد من ستتصل به.",
+            "أجرِ تمرين محاكاة قصيرًا لسيناريو برمجية فدية."
+          ],
+          "en": [
+            "Print the incident contact list and keep a copy outside your systems.",
+            "Choose an incident response partner, or decide who you'd call.",
+            "Run a short tabletop exercise on a ransomware scenario."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة الاتصال وتقرير التمرين.",
+        "en": "Contact list and exercise report."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "phaseFor": {
+        "supplier": 1,
+        "product": 1
+      }
+    },
+    {
+      "id": "a-awareness",
+      "kind": "people",
+      "phase": 2,
+      "kb": [
+        "rec-03"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "أول جلسة توعية للفريق",
+        "en": "Run the first staff awareness session"
+      },
+      "why": {
+        "ar": "الموظف هو خط الدفاع الأول ضد التصيد والاحتيال.",
+        "en": "Staff are the first line of defence against phishing and fraud."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "جلسة 45 دقيقة: التصيد، وكلمات المرور، والاحتيال في الدفع، والإبلاغ.",
+            "اشرح سياسة الاستخدام المقبول وقواعد أدوات الذكاء الاصطناعي.",
+            "سجّل الحضور."
+          ],
+          "en": [
+            "A 45-minute session: phishing, passwords, payment fraud, reporting.",
+            "Walk through the Acceptable Use Policy and the AI tools rules.",
+            "Record attendance."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "سجل الحضور ومحتوى الجلسة.",
+        "en": "Attendance record and session material."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "capability": "awareness"
+    },
+    {
+      "id": "a-vendors",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "rec-04"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "قائمة المزودين وشروطهم الأمنية",
+        "en": "List your suppliers and their security terms"
+      },
+      "why": {
+        "ar": "كثير من الاختراقات تبدأ من مزود خدمة لديه وصول.",
+        "en": "Many breaches start at a supplier that has access."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اكتب قائمة بكل مزود يصل إلى بياناتك أو أنظمتك.",
+            "تأكد من وجود بنود سرية وأمن مكتوبة مع كل منهم.",
+            "حدد صلاحيات كل مزود ومتى تنتهي."
+          ],
+          "en": [
+            "List every supplier with access to your data or systems.",
+            "Make sure each has written confidentiality and security terms.",
+            "Note what each supplier can access and when it ends."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة المزودين والعقود.",
+        "en": "Supplier list and contracts."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-contracts",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "biz-06"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "بنود السرية والملكية في العقود",
+        "en": "Confidentiality and ownership clauses in contracts"
+      },
+      "why": {
+        "ar": "بدون بند مكتوب قد لا تملك الشركة ما يطوره موظفوها ومتعاقدوها.",
+        "en": "Without a written clause, the company may not own what its staff and contractors create."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "أضف بند سرية لعقود الموظفين والمستقلين.",
+            "أضف بند ملكية الأعمال والكود للشركة.",
+            "راجع الصياغة مع مستشار قانوني."
+          ],
+          "en": [
+            "Add a confidentiality clause to staff and freelancer contracts.",
+            "Add a clause that the company owns the work and code.",
+            "Have the wording checked by a lawyer."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "نماذج العقود المحدثة الموقعة.",
+        "en": "Signed updated contract templates."
+      },
+      "effort": "halfday",
+      "cost": "paid",
+      "phaseFor": {
+        "dev": 1
+      }
+    },
+    {
+      "id": "a-risk",
+      "kind": "gov",
+      "phase": 3,
+      "kb": [
+        "rec-05"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "أول مراجعة للمخاطر",
+        "en": "Run your first risk review"
+      },
+      "why": {
+        "ar": "تساعد على إنفاق الجهد والمال على ما يهم فعلًا.",
+        "en": "It focuses your effort and money on what actually matters."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اكتب أهم 10 مخاطر على الشركة.",
+            "قيّم كل منها: الاحتمال والأثر.",
+            "حدد إجراءً ومسؤولًا لكل خطر."
+          ],
+          "en": [
+            "Write down the company's top 10 risks.",
+            "Rate each one for likelihood and impact.",
+            "Set an action and an owner for each."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "سجل المخاطر.",
+        "en": "Risk register."
+      },
+      "effort": "halfday",
+      "cost": "free"
+    },
+    {
+      "id": "a-evidence",
+      "kind": "gov",
+      "phase": 3,
+      "kb": [
+        "rec-06"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "إنشاء ملف الأدلة",
+        "en": "Start your evidence folder"
+      },
+      "why": {
+        "ar": "ما لم يُوثَّق لم يحدث في نظر العميل أو المدقق.",
+        "en": "To a client or an auditor, what isn't recorded didn't happen."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "أنشئ مجلدًا محميًا بأقسام لكل سياسة.",
+            "احفظ فيه دليل كل مهمة عند إنجازها.",
+            "راجعه قبل أي استبيان من عميل."
+          ],
+          "en": [
+            "Create a protected folder with a section for each policy.",
+            "Save each task's evidence there as you complete it.",
+            "Check it before any client questionnaire."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "المجلد نفسه.",
+        "en": "The folder itself."
+      },
+      "effort": "1h",
+      "cost": "free",
+      "phaseFor": {
+        "supplier": 1
+      }
+    },
+    {
+      "id": "a-code",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "biz-03",
+        "dev-01",
+        "dev-04"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "تأمين مستودعات الكود",
+        "en": "Lock down code repositories"
+      },
+      "why": {
+        "ar": "الكود هو أصل الشركة، وتسريبه أو حقن ثغرة فيه يضر بك وبعملائك.",
+        "en": "Code is the company's core asset. A leak or a planted flaw hurts you and your clients."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "انقل المستودعات إلى حساب مؤسسة تملكه الشركة.",
+            "امنح كل مطور المستودعات التي يعمل عليها فقط.",
+            "فعّل فحص الأسرار وتنبيهات المكتبات وحماية الفرع الرئيسي.",
+            "امنع النسخ إلى حسابات شخصية."
+          ],
+          "en": [
+            "Move repositories into an organisation account the company owns.",
+            "Give each developer only the repositories they work on.",
+            "Turn on secret scanning, dependency alerts and main-branch protection.",
+            "Block copying to personal accounts."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "إعدادات المؤسسة وقائمة الصلاحيات.",
+        "en": "Organisation settings and access list."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "dev",
+          "product"
+        ]
+      }
+    },
+    {
+      "id": "a-testdata",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "biz-04"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "فصل بيئة التطوير عن بيانات العملاء",
+        "en": "Separate development from real customer data"
+      },
+      "why": {
+        "ar": "بيئات التطوير أقل حماية، ونسخ البيانات الحقيقية إليها تسرب ينتظر الحدوث.",
+        "en": "Dev environments are less protected; real data in them is a leak waiting to happen."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "افصل بيئة التطوير والاختبار عن بيئة الإنتاج.",
+            "استخدم بيانات وهمية أو مموهة للاختبار.",
+            "احذف أي نسخ من بيانات حقيقية على أجهزة المطورين."
+          ],
+          "en": [
+            "Separate development and test from production.",
+            "Use dummy or masked data for testing.",
+            "Delete any copies of real data from developers' laptops."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "وصف البيئات ومصدر بيانات الاختبار.",
+        "en": "Description of environments and test data source."
+      },
+      "effort": "1day",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "dev",
+          "product"
+        ]
+      }
+    },
+    {
+      "id": "a-appsec",
+      "kind": "tech",
+      "phase": 2,
+      "kb": [
+        "biz-05",
+        "product-01",
+        "product-02",
+        "rec-07"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "أساسيات أمان التطبيق واختبار الاختراق",
+        "en": "App security basics and a penetration test"
+      },
+      "why": {
+        "ar": "التطبيق هو واجهة الشركة أمام المهاجمين.",
+        "en": "The app is the company's front door to attackers."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "تحقق من الهوية والصلاحية في كل طلب، وحد عدد المحاولات.",
+            "تأكد أن كلمات المرور مخزنة بتجزئة قوية.",
+            "اطلب اختبار اختراق من جهة مرخصة قبل أول عميل كبير."
+          ],
+          "en": [
+            "Check identity and permission on every request, and rate-limit.",
+            "Make sure passwords are stored with strong hashing.",
+            "Get a penetration test from a licensed provider before your first large client."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "تقرير اختبار الاختراق وخطة المعالجة.",
+        "en": "Penetration test report and fix plan."
+      },
+      "effort": "1week",
+      "cost": "paid",
+      "when": {
+        "profile": [
+          "product"
+        ]
+      }
+    },
+    {
+      "id": "a-clients",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "dev-03",
+        "supplier-02",
+        "supplier-03"
+      ],
+      "policy": "access-control",
+      "title": {
+        "ar": "سجل الوصول إلى أنظمة العملاء ومتطلباتهم",
+        "en": "Register of client access and client requirements"
+      },
+      "why": {
+        "ar": "العميل الكبير سيسألك: من لديه وصول إلى أنظمتنا، وكيف تلتزم بمتطلباتنا؟",
+        "en": "A large client will ask: who has access to our systems, and how do you meet our requirements?"
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اكتب جدولًا لكل عميل: من لديه وصول، وبأي حساب، ومتى ينتهي.",
+            "أضف متطلبات الأمن الواردة في عقد كل عميل ومسؤولها.",
+            "أغلق أي وصول لمشاريع منتهية."
+          ],
+          "en": [
+            "Make a table per client: who has access, with which account, and when it ends.",
+            "Add the security requirements in each client's contract, and who owns each.",
+            "Close access for finished projects."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "سجل العملاء والوصول والمتطلبات.",
+        "en": "Client access and requirements register."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "dev",
+          "supplier"
+        ]
+      }
+    },
+    {
+      "id": "a-pack",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "supplier-01"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "ملف الامتثال الجاهز للعملاء",
+        "en": "Build a ready compliance pack for clients"
+      },
+      "why": {
+        "ar": "يختصر أسابيع من الأخذ والرد في كل مناقصة أو استبيان.",
+        "en": "Cuts weeks of back-and-forth from every tender or questionnaire."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اجمع السياسات الست الموقعة.",
+            "أضف ملخص حالة التطبيق وأهم الأدلة.",
+            "جهّز إجابات قياسية لأكثر أسئلة الاستبيانات تكرارًا."
+          ],
+          "en": [
+            "Gather the six signed policies.",
+            "Add the implementation status summary and key evidence.",
+            "Prepare standard answers to the most common questionnaire questions."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "ملف الامتثال بصيغة جاهزة للإرسال.",
+        "en": "The compliance pack, ready to send."
+      },
+      "effort": "1day",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "supplier"
+        ]
+      }
+    },
+    {
+      "id": "a-payments",
+      "kind": "people",
+      "phase": 1,
+      "kb": [
+        "supplier-04"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "التحقق من تغيير الحسابات البنكية",
+        "en": "Verify any change of bank details"
+      },
+      "why": {
+        "ar": "احتيال تغيير الحساب البنكي من أكثر الخسائر المالية المباشرة شيوعًا.",
+        "en": "Bank-detail change fraud is one of the most common direct money losses."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "اتفق مع الفريق المالي: لا تحويل إلى حساب جديد قبل مكالمة على رقم معروف مسبقًا.",
+            "وثّق كل تحقق.",
+            "درّب من يعالج الفواتير على هذه القاعدة."
+          ],
+          "en": [
+            "Agree with finance: no payment to new bank details before a call on a number you already know.",
+            "Record every check.",
+            "Train whoever handles invoices on this rule."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "سجل التحقق من التغييرات.",
+        "en": "Log of verified changes."
+      },
+      "effort": "1h",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "supplier",
+          "shop"
+        ]
+      }
+    },
+    {
+      "id": "a-shop",
+      "kind": "tech",
+      "phase": 1,
+      "kb": [
+        "shop-01",
+        "shop-02",
+        "shop-03",
+        "shop-04"
+      ],
+      "policy": "data-protection",
+      "title": {
+        "ar": "تأمين المتجر والمدفوعات",
+        "en": "Secure the store and payments"
+      },
+      "why": {
+        "ar": "المتجر هو مصدر الإيراد، والدفع أكثر ما يستهدفه المحتالون.",
+        "en": "The store is the revenue, and payments are what fraudsters target most."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "تأكد أن الدفع يتم عبر بوابة مرخصة ولا تُخزن بيانات البطاقات.",
+            "حساب مستقل لكل موظف في لوحة التحكم مع التحقق بخطوتين.",
+            "فعّل مراجعة الطلبات المشبوهة قبل الشحن."
+          ],
+          "en": [
+            "Make sure payments go through a licensed gateway and card data is never stored.",
+            "A separate store admin account for each staff member, with two-step login.",
+            "Review suspicious orders before shipping."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "إعدادات المتجر وقائمة حسابات لوحة التحكم.",
+        "en": "Store settings and admin account list."
+      },
+      "effort": "halfday",
+      "cost": "free",
+      "when": {
+        "profile": [
+          "shop"
+        ]
+      }
+    },
+    {
+      "id": "a-ccc",
+      "kind": "gov",
+      "phase": 1,
+      "kb": [
+        "rec-02"
+      ],
+      "policy": "information-security",
+      "title": {
+        "ar": "تحديد نطاق ضوابط الحوسبة السحابية (CCC)",
+        "en": "Scope NCA's Cloud Cybersecurity Controls (CCC)"
+      },
+      "why": {
+        "ar": "تقديم خدمة سحابية لجهات حكومية قد يُدخلك في نطاق ضوابط إضافية بصفتك مقدّم خدمة.",
+        "en": "Providing a cloud service to government may bring extra controls as a service provider."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "حمّل وثيقة ضوابط الحوسبة السحابية من موقع الهيئة.",
+            "حدد الضوابط الخاصة بمقدمي الخدمات التي تنطبق على خدمتك.",
+            "استعن بمختص إن احتجت، وأضف الفجوات إلى هذه الخطة."
+          ],
+          "en": [
+            "Download the CCC document from the NCA website.",
+            "Identify the service-provider controls that apply to your service.",
+            "Get specialist help if needed, and add the gaps to this plan."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "تحليل النطاق والفجوات.",
+        "en": "Scope and gap analysis."
+      },
+      "effort": "1week",
+      "cost": "paid",
+      "when": {
+        "saasToGov": [
+          "yes"
+        ]
+      }
+    },
+    {
+      "id": "a-ai",
+      "kind": "gov",
+      "phase": 2,
+      "kb": [
+        "rec-02"
+      ],
+      "policy": "acceptable-use",
+      "title": {
+        "ar": "اعتماد قائمة أدوات الذكاء الاصطناعي",
+        "en": "Approve your list of AI tools"
+      },
+      "why": {
+        "ar": "الموظفون سيستخدمونها على أي حال، فالأفضل أن تحدد الآمن منها.",
+        "en": "Staff will use them anyway, so it's better to decide which are safe."
+      },
+      "how": {
+        "default": {
+          "ar": [
+            "حدد الأدوات المعتمدة ونوع الحساب (حسابات أعمال لا تُستخدم بياناتها للتدريب).",
+            "حدد ما يُسمح بإدخاله في كل أداة.",
+            "أبلغ الفريق بالقائمة."
+          ],
+          "en": [
+            "Choose the approved tools and account type (business accounts that don't train on your data).",
+            "Set what may be entered into each tool.",
+            "Share the list with the team."
+          ]
+        }
+      },
+      "evidence": {
+        "ar": "قائمة الأدوات المعتمدة.",
+        "en": "Approved tools list."
+      },
+      "effort": "1h",
+      "cost": "free",
+      "when": {
+        "aiTools": [
+          "approved"
+        ]
+      }
+    }
+  ]
+}
