@@ -32,7 +32,7 @@ const q = JSON.parse(readFileSync(new URL("../content/policies/questions.json", 
 for (const st of q.steps) for (const f of st.fields) if (!q.fields[f]) errors.push(`questions step ${st.id}: unknown field "${f}"`);
 for (const [id, f] of Object.entries(q.fields)) {
   if (!f.label?.ar || !f.label?.en) errors.push(`field ${id}: label needs ar and en`);
-  if (f.type === "select" && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
+  if ((f.type === "select" || f.type === "multi") && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
 }
 for (const file of ["information-security"]) {
   const pol = JSON.parse(readFileSync(new URL(`../content/policies/${file}.json`, import.meta.url)));

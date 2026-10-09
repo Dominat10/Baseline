@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Lang } from "@/lib/kb";
 import { t } from "@/lib/i18n";
-import { missingFields, policies, questions, render, toWordHtml, type Answers, type Segment } from "@/lib/policy";
+import { missingFields, policies, questions, render, splitMulti, toWordHtml, type Answers, type Segment } from "@/lib/policy";
 
 const KEY = "baseline-policy-v1";
 const PLAN_KEY = "baseline-plan-v1";
@@ -61,6 +61,14 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
   const doc = useMemo(() => render(policy, answers, lang), [policy, answers, lang]);
   const missing = missingFields(answers);
   const set = (id: string, v: string) => setAnswers((a) => ({ ...a, [id]: v.slice(0, 120) }));
+  const toggleMulti = (id: string, v: string) =>
+    setAnswers((a) => {
+      const ex = questions.fields[id].exclusive;
+      let cur = splitMulti(a[id]);
+      if (cur.includes(v)) cur = cur.filter((x) => x !== v);
+      else cur = v === ex ? [v] : [...cur.filter((x) => x !== ex), v];
+      return { ...a, [id]: cur.join(",") };
+    });
   const current = questions.steps[step];
 
   const downloadWord = () => {
@@ -106,7 +114,7 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
               const f = questions.fields[id];
               return (
                 <div key={id} className="field">
-                  {f.type === "select" ? (
+                  {f.type === "select" || f.type === "multi" ? (
                     <span className="flabel" id={`l-${id}`}>{f.label[lang]}</span>
                   ) : (
                     <label className="flabel" htmlFor={`f-${id}`}>{f.label[lang]}</label>
@@ -121,6 +129,21 @@ export default function PolicyBuilder({ lang }: { lang: Lang }) {
                           role="radio"
                           aria-checked={answers[id] === o.value}
                           onClick={() => set(id, o.value)}
+                        >
+                          {o.label[lang]}
+                        </button>
+                      ))}
+                    </div>
+                  ) : f.type === "multi" ? (
+                    <div className="row" role="group" aria-labelledby={`l-${id}`}>
+                      {f.options!.map((o) => (
+                        <button
+                          key={o.value}
+                          type="button"
+                          className="chip"
+                          role="checkbox"
+                          aria-checked={splitMulti(answers[id]).includes(o.value)}
+                          onClick={() => toggleMulti(id, o.value)}
                         >
                           {o.label[lang]}
                         </button>

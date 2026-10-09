@@ -5,7 +5,9 @@ import type { Lang, T } from "./kb";
 export type Answers = Record<string, string>;
 
 export interface Field {
-  type: "text" | "select" | "date";
+  type: "text" | "select" | "multi" | "date";
+  /** For multi: an option that can't be combined with the others (e.g. "none"). */
+  exclusive?: string;
   label: T;
   help?: T;
   placeholder?: T;
@@ -34,6 +36,15 @@ export interface PolicyTemplate {
 }
 
 export const questions = questionsRaw as unknown as Questions;
+
+/** Multi-select answers are stored as comma-separated option values. */
+export const splitMulti = (v: string | undefined) => (v ?? "").split(",").filter(Boolean);
+
+function joinList(items: string[], lang: Lang): string {
+  if (items.length < 2) return items.join("");
+  if (lang === "ar") return items.slice(0, -1).join("، ") + "، و" + items[items.length - 1];
+  return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+}
 export const policies: PolicyTemplate[] = [infosecRaw as unknown as PolicyTemplate];
 
 /** A piece of rendered text: plain, a filled-in answer, or a blank still to fill. */
@@ -67,6 +78,12 @@ export function valueOf(id: string, answers: Answers, lang: Lang): string | null
   if (field.type === "select") {
     const opt = field.options?.find((o) => o.value === raw);
     return opt ? opt.label[lang] : null;
+  }
+  if (field.type === "multi") {
+    const labels = splitMulti(raw)
+      .map((v) => field.options?.find((o) => o.value === v)?.label[lang])
+      .filter((x): x is string => !!x);
+    return labels.length ? joinList(labels, lang) : null;
   }
   if (field.type === "date") return formatDate(raw, lang);
   return raw;
@@ -110,7 +127,7 @@ function fill(template: string, answers: Answers, lang: Lang): Segment[] {
 
 function applies(block: Block, answers: Answers): boolean {
   if (!block.when) return true;
-  return Object.entries(block.when).every(([k, vals]) => vals.includes(answers[k] ?? ""));
+  return Object.entries(block.when).every(([k, vals]) => splitMulti(answers[k]).some((v) => vals.includes(v)));
 }
 
 export function render(policy: PolicyTemplate, answers: Answers, lang: Lang): RenderedPolicy {

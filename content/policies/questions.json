@@ -1,96 +1,394 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "steps": [
     {
       "id": "company",
-      "title": { "ar": "الشركة", "en": "Company" },
-      "fields": ["companyName", "profile", "size"]
+      "title": {
+        "ar": "الشركة",
+        "en": "Company"
+      },
+      "fields": [
+        "companyName",
+        "profile",
+        "size"
+      ]
+    },
+    {
+      "id": "data",
+      "title": {
+        "ar": "العملاء والبيانات",
+        "en": "Clients & data"
+      },
+      "fields": [
+        "clients",
+        "personalData",
+        "platform"
+      ]
     },
     {
       "id": "people",
-      "title": { "ar": "المسؤوليات", "en": "Responsibilities" },
-      "fields": ["ownerName", "ownerTitle", "approverTitle", "usesContractors"]
+      "title": {
+        "ar": "المسؤوليات",
+        "en": "Responsibilities"
+      },
+      "fields": [
+        "ownerName",
+        "ownerTitle",
+        "approverTitle",
+        "usesContractors"
+      ]
     },
     {
       "id": "dates",
-      "title": { "ar": "الإصدار", "en": "Issue" },
-      "fields": ["effectiveDate", "reviewMonths"]
+      "title": {
+        "ar": "الإصدار",
+        "en": "Issue"
+      },
+      "fields": [
+        "effectiveDate",
+        "reviewMonths"
+      ]
     }
   ],
   "fields": {
     "companyName": {
       "type": "text",
-      "label": { "ar": "اسم الشركة كما تريده في السياسة", "en": "Company name as it should appear" },
-      "placeholder": { "ar": "مثال: شركة النخبة للبرمجيات", "en": "e.g. Nukhba Software Co." },
+      "label": {
+        "ar": "اسم الشركة كما تريده في السياسة",
+        "en": "Company name as it should appear"
+      },
+      "placeholder": {
+        "ar": "مثال: شركة النخبة للبرمجيات",
+        "en": "e.g. Nukhba Software Co."
+      },
       "required": true
     },
     "profile": {
-      "type": "select",
-      "label": { "ar": "نوع العمل", "en": "Business type" },
-      "help": { "ar": "يضيف بنودًا خاصة بنوع عملك.", "en": "Adds clauses specific to your business." },
+      "type": "multi",
+      "label": {
+        "ar": "نوع العمل (اختر كل ما ينطبق)",
+        "en": "Business type (pick all that apply)"
+      },
+      "help": {
+        "ar": "يضيف بنودًا خاصة بنوع عملك.",
+        "en": "Adds clauses specific to your business."
+      },
       "options": [
-        { "value": "dev", "label": { "ar": "شركة برمجيات", "en": "Software house" } },
-        { "value": "product", "label": { "ar": "منتج رقمي", "en": "Digital product" } },
-        { "value": "supplier", "label": { "ar": "مورّد خدمات", "en": "Service supplier" } },
-        { "value": "shop", "label": { "ar": "متجر إلكتروني", "en": "Online store" } }
+        {
+          "value": "dev",
+          "label": {
+            "ar": "شركة برمجيات",
+            "en": "Software house"
+          }
+        },
+        {
+          "value": "product",
+          "label": {
+            "ar": "منتج رقمي",
+            "en": "Digital product"
+          }
+        },
+        {
+          "value": "supplier",
+          "label": {
+            "ar": "مورّد خدمات",
+            "en": "Service supplier"
+          }
+        },
+        {
+          "value": "shop",
+          "label": {
+            "ar": "متجر إلكتروني",
+            "en": "Online store"
+          }
+        }
       ],
       "required": true
     },
     "size": {
       "type": "select",
-      "label": { "ar": "عدد الموظفين", "en": "Number of employees" },
-      "help": { "ar": "يحدد هل ضوابط الهيئة إلزامية عليك.", "en": "Decides whether NCA controls are mandatory for you." },
+      "label": {
+        "ar": "عدد الموظفين",
+        "en": "Number of employees"
+      },
+      "help": {
+        "ar": "يحدد هل ضوابط الهيئة إلزامية عليك.",
+        "en": "Decides whether NCA controls are mandatory for you."
+      },
       "options": [
-        { "value": "micro", "label": { "ar": "أقل من 6", "en": "Fewer than 6" } },
-        { "value": "sme", "label": { "ar": "6 إلى 249", "en": "6 to 249" } },
-        { "value": "large", "label": { "ar": "250 أو أكثر", "en": "250 or more" } }
+        {
+          "value": "micro",
+          "label": {
+            "ar": "أقل من 6",
+            "en": "Fewer than 6"
+          }
+        },
+        {
+          "value": "sme",
+          "label": {
+            "ar": "6 إلى 249",
+            "en": "6 to 249"
+          }
+        },
+        {
+          "value": "large",
+          "label": {
+            "ar": "250 أو أكثر",
+            "en": "250 or more"
+          }
+        }
+      ],
+      "required": true
+    },
+    "clients": {
+      "type": "multi",
+      "label": {
+        "ar": "من عملاؤك؟ (اختر كل ما ينطبق)",
+        "en": "Who are your clients? (pick all that apply)"
+      },
+      "help": {
+        "ar": "العملاء الحكوميون والماليون يفرضون متطلبات أمنية على مورديهم.",
+        "en": "Government and financial clients impose security requirements on their suppliers."
+      },
+      "options": [
+        {
+          "value": "government",
+          "label": {
+            "ar": "جهات حكومية",
+            "en": "Government entities"
+          }
+        },
+        {
+          "value": "finance",
+          "label": {
+            "ar": "بنوك وجهات مالية",
+            "en": "Banks and financial institutions"
+          }
+        },
+        {
+          "value": "private",
+          "label": {
+            "ar": "شركات خاصة",
+            "en": "Private companies"
+          }
+        },
+        {
+          "value": "consumers",
+          "label": {
+            "ar": "أفراد (مستهلكون)",
+            "en": "Individuals (consumers)"
+          }
+        }
+      ],
+      "required": true
+    },
+    "personalData": {
+      "type": "multi",
+      "exclusive": "none",
+      "label": {
+        "ar": "ما البيانات الشخصية التي تحتفظ بها؟",
+        "en": "What personal data do you hold?"
+      },
+      "help": {
+        "ar": "بيانات العملاء أو الموظفين أو المستخدمين.",
+        "en": "About customers, staff or users."
+      },
+      "options": [
+        {
+          "value": "none",
+          "label": {
+            "ar": "لا نحتفظ ببيانات شخصية",
+            "en": "None"
+          }
+        },
+        {
+          "value": "contact",
+          "label": {
+            "ar": "بيانات التواصل",
+            "en": "contact details"
+          }
+        },
+        {
+          "value": "ids",
+          "label": {
+            "ar": "أرقام الهوية والإقامة",
+            "en": "ID and Iqama numbers"
+          }
+        },
+        {
+          "value": "financial",
+          "label": {
+            "ar": "بيانات مالية",
+            "en": "financial data"
+          }
+        },
+        {
+          "value": "health",
+          "label": {
+            "ar": "بيانات صحية",
+            "en": "health data"
+          }
+        }
+      ],
+      "required": true
+    },
+    "platform": {
+      "type": "multi",
+      "label": {
+        "ar": "أين تعمل أنظمتكم الرئيسية؟",
+        "en": "Where do your main systems run?"
+      },
+      "options": [
+        {
+          "value": "m365",
+          "label": {
+            "ar": "Microsoft 365",
+            "en": "Microsoft 365"
+          }
+        },
+        {
+          "value": "google",
+          "label": {
+            "ar": "Google Workspace",
+            "en": "Google Workspace"
+          }
+        },
+        {
+          "value": "servers",
+          "label": {
+            "ar": "خوادم خاصة بالشركة",
+            "en": "the company's own servers"
+          }
+        },
+        {
+          "value": "cloud",
+          "label": {
+            "ar": "خدمات سحابية أخرى",
+            "en": "other cloud services"
+          }
+        }
       ],
       "required": true
     },
     "ownerName": {
       "type": "text",
-      "label": { "ar": "اسم مسؤول الأمن السيبراني", "en": "Security owner's name" },
-      "help": { "ar": "شخص واحد مسؤول، حتى لو لم يكن هذا عمله الوحيد.", "en": "One accountable person, even if it isn't their only job." },
-      "placeholder": { "ar": "مثال: أحمد العتيبي", "en": "e.g. Ahmed Alotaibi" },
+      "label": {
+        "ar": "اسم مسؤول الأمن السيبراني",
+        "en": "Security owner's name"
+      },
+      "help": {
+        "ar": "شخص واحد مسؤول، حتى لو لم يكن هذا عمله الوحيد.",
+        "en": "One accountable person, even if it isn't their only job."
+      },
+      "placeholder": {
+        "ar": "مثال: أحمد العتيبي",
+        "en": "e.g. Ahmed Alotaibi"
+      },
       "required": true
     },
     "ownerTitle": {
       "type": "text",
-      "label": { "ar": "مسماه الوظيفي", "en": "Their job title" },
-      "placeholder": { "ar": "مثال: مدير العمليات", "en": "e.g. Operations Manager" },
+      "label": {
+        "ar": "مسماه الوظيفي",
+        "en": "Their job title"
+      },
+      "placeholder": {
+        "ar": "مثال: مدير العمليات",
+        "en": "e.g. Operations Manager"
+      },
       "required": true
     },
     "approverTitle": {
       "type": "select",
-      "label": { "ar": "من يعتمد السياسة؟", "en": "Who approves the policy?" },
+      "label": {
+        "ar": "من يعتمد السياسة؟",
+        "en": "Who approves the policy?"
+      },
       "options": [
-        { "value": "ceo", "label": { "ar": "الرئيس التنفيذي", "en": "Chief Executive Officer" } },
-        { "value": "gm", "label": { "ar": "المدير العام", "en": "General Manager" } },
-        { "value": "owner", "label": { "ar": "المالك / الشريك المدير", "en": "Owner / Managing Partner" } },
-        { "value": "board", "label": { "ar": "مجلس الإدارة", "en": "Board of Directors" } }
+        {
+          "value": "ceo",
+          "label": {
+            "ar": "الرئيس التنفيذي",
+            "en": "Chief Executive Officer"
+          }
+        },
+        {
+          "value": "gm",
+          "label": {
+            "ar": "المدير العام",
+            "en": "General Manager"
+          }
+        },
+        {
+          "value": "owner",
+          "label": {
+            "ar": "المالك / الشريك المدير",
+            "en": "Owner / Managing Partner"
+          }
+        },
+        {
+          "value": "board",
+          "label": {
+            "ar": "مجلس الإدارة",
+            "en": "Board of Directors"
+          }
+        }
       ],
       "required": true
     },
     "usesContractors": {
       "type": "select",
-      "label": { "ar": "هل تعمل مع مستقلين أو متعاقدين خارجيين؟", "en": "Do you work with freelancers or contractors?" },
+      "label": {
+        "ar": "هل تعمل مع مستقلين أو متعاقدين خارجيين؟",
+        "en": "Do you work with freelancers or contractors?"
+      },
       "options": [
-        { "value": "yes", "label": { "ar": "نعم", "en": "Yes" } },
-        { "value": "no", "label": { "ar": "لا", "en": "No" } }
+        {
+          "value": "yes",
+          "label": {
+            "ar": "نعم",
+            "en": "Yes"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "ar": "لا",
+            "en": "No"
+          }
+        }
       ],
       "required": true
     },
     "effectiveDate": {
       "type": "date",
-      "label": { "ar": "تاريخ السريان", "en": "Effective date" },
+      "label": {
+        "ar": "تاريخ السريان",
+        "en": "Effective date"
+      },
       "required": true
     },
     "reviewMonths": {
       "type": "select",
-      "label": { "ar": "مراجعة السياسة كل", "en": "Review the policy every" },
+      "label": {
+        "ar": "مراجعة السياسة كل",
+        "en": "Review the policy every"
+      },
       "options": [
-        { "value": "6", "label": { "ar": "6 أشهر", "en": "6 months" } },
-        { "value": "12", "label": { "ar": "12 شهرًا", "en": "12 months" } }
+        {
+          "value": "6",
+          "label": {
+            "ar": "6 أشهر",
+            "en": "6 months"
+          }
+        },
+        {
+          "value": "12",
+          "label": {
+            "ar": "12 شهرًا",
+            "en": "12 months"
+          }
+        }
       ],
       "default": "12",
       "required": true

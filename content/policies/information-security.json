@@ -1,14 +1,20 @@
 {
   "id": "information-security",
-  "version": "0.1.0",
-  "title": { "ar": "سياسة الأمن السيبراني", "en": "Information Security Policy" },
+  "version": "0.2.0",
+  "title": {
+    "ar": "سياسة الأمن السيبراني",
+    "en": "Information Security Policy"
+  },
   "summary": {
     "ar": "السياسة الأم: من المسؤول عن الأمن السيبراني، وما القواعد العامة، ومتى تُراجع.",
     "en": "The umbrella policy: who owns cybersecurity, the general rules, and when they're reviewed."
   },
   "sections": [
     {
-      "heading": { "ar": "الغرض", "en": "Purpose" },
+      "heading": {
+        "ar": "الغرض",
+        "en": "Purpose"
+      },
       "blocks": [
         {
           "text": {
@@ -19,7 +25,10 @@
       ]
     },
     {
-      "heading": { "ar": "النطاق", "en": "Scope" },
+      "heading": {
+        "ar": "النطاق",
+        "en": "Scope"
+      },
       "blocks": [
         {
           "text": {
@@ -28,7 +37,17 @@
           }
         },
         {
-          "when": { "usesContractors": ["yes"] },
+          "text": {
+            "ar": "ويشمل ذلك المنصات الرئيسية التي تعمل عليها الشركة: {{platform}}.",
+            "en": "This includes the main platforms the company runs on: {{platform}}."
+          }
+        },
+        {
+          "when": {
+            "usesContractors": [
+              "yes"
+            ]
+          },
           "text": {
             "ar": "وتنطبق كذلك على المستقلين والمتعاقدين الخارجيين الذين يصلون إلى بيانات الشركة أو أنظمتها.",
             "en": "It also applies to freelancers and external contractors who access the company's data or systems."
@@ -37,7 +56,10 @@
       ]
     },
     {
-      "heading": { "ar": "الأدوار والمسؤوليات", "en": "Roles and responsibilities" },
+      "heading": {
+        "ar": "الأدوار والمسؤوليات",
+        "en": "Roles and responsibilities"
+      },
       "list": true,
       "blocks": [
         {
@@ -59,7 +81,11 @@
           }
         },
         {
-          "when": { "usesContractors": ["yes"] },
+          "when": {
+            "usesContractors": [
+              "yes"
+            ]
+          },
           "text": {
             "ar": "المستقلون والمتعاقدون: الالتزام بهذه السياسة وبالتزامات السرية والأمن الواردة في عقودهم.",
             "en": "Freelancers and contractors: follow this policy and the confidentiality and security obligations in their contracts."
@@ -68,7 +94,10 @@
       ]
     },
     {
-      "heading": { "ar": "قواعد السياسة", "en": "Policy rules" },
+      "heading": {
+        "ar": "قواعد السياسة",
+        "en": "Policy rules"
+      },
       "numbered": true,
       "blocks": [
         {
@@ -90,17 +119,68 @@
           }
         },
         {
-          "when": { "size": ["sme", "large"] },
+          "when": {
+            "size": [
+              "sme",
+              "large"
+            ]
+          },
           "text": {
             "ar": "تلتزم الشركة بضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بحسب فئتها، وبنظام حماية البيانات الشخصية، وبالمتطلبات الأمنية الواردة في عقود عملائها.",
             "en": "The company complies with the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) for its category, with the Personal Data Protection Law, and with the security requirements in its client contracts."
           }
         },
         {
-          "when": { "size": ["micro"] },
+          "when": {
+            "size": [
+              "micro"
+            ]
+          },
           "text": {
             "ar": "تلتزم الشركة بنظام حماية البيانات الشخصية وبالمتطلبات الأمنية الواردة في عقود عملائها، وتتبنى طوعًا ضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بوصفها مرجعًا للممارسات الجيدة.",
             "en": "The company complies with the Personal Data Protection Law and the security requirements in its client contracts, and voluntarily adopts the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) as its reference for good practice."
+          }
+        },
+        {
+          "when": {
+            "clients": [
+              "government",
+              "finance"
+            ]
+          },
+          "text": {
+            "ar": "عند تقديم خدمات لجهات حكومية أو مالية، تحدد الشركة في كل عقد المتطلبات الأمنية التي تفرضها هذه الجهات على مورديها، وتطبقها وتحتفظ بما يثبت ذلك.",
+            "en": "When serving government or financial entities, the company identifies in each contract the security requirements these entities impose on their suppliers, applies them, and keeps evidence that it does."
+          }
+        },
+        {
+          "when": {
+            "personalData": [
+              "ids",
+              "financial",
+              "health"
+            ]
+          },
+          "text": {
+            "ar": "تحتفظ الشركة ببيانات شخصية حساسة تشمل: {{personalData}}. ويقتصر الوصول إليها على من يحتاجها لأداء عمله، وتُشفَّر عند تخزينها ونقلها.",
+            "en": "The company holds sensitive personal data, including {{personalData}}. Access to it is limited to those who need it for their work, and it is encrypted when stored and when transmitted."
+          }
+        },
+        {
+          "when": {
+            "clients": [
+              "consumers"
+            ]
+          },
+          "text": {
+            "ar": "تعالج الشركة البيانات الشخصية لعملائها الأفراد وفق نظام حماية البيانات الشخصية، وتنشر إشعار خصوصية واضحًا يبين ما تجمعه ولماذا.",
+            "en": "The company processes its individual customers' personal data in line with the Personal Data Protection Law, and publishes a clear privacy notice explaining what it collects and why."
+          }
+        },
+        {
+          "text": {
+            "ar": "يتولى مسؤول الأمن السيبراني التأكد من ضبط إعدادات الأمان في المنصات الرئيسية للشركة، بما في ذلك التحقق بخطوتين وحسابات المسؤولين والنسخ الاحتياطي.",
+            "en": "The security owner makes sure security settings are configured on the company's main platforms, including two-step login, administrator accounts and backups."
           }
         },
         {
@@ -122,28 +202,45 @@
           }
         },
         {
-          "when": { "profile": ["dev"] },
+          "when": {
+            "profile": [
+              "dev"
+            ]
+          },
           "text": {
             "ar": "الكود المصدري والبرمجيات التي يطورها موظفو الشركة أو المتعاقدون معها ملك للشركة ويُعامل بوصفه معلومات سرية، ولا يُنسخ إلى حسابات أو أجهزة شخصية.",
             "en": "Source code and software developed by the company's employees or contractors is company property and is treated as confidential information. It must not be copied to personal accounts or devices."
           }
         },
         {
-          "when": { "profile": ["dev", "product"] },
+          "when": {
+            "profile": [
+              "dev",
+              "product"
+            ]
+          },
           "text": {
             "ar": "يُراعى الأمن السيبراني وحماية البيانات منذ مرحلة تصميم أي نظام أو ميزة جديدة، وفق متطلبات التطوير الآمن المعتمدة في الشركة.",
             "en": "Security and data protection are considered from the design stage of every new system or feature, following the company's secure development requirements."
           }
         },
         {
-          "when": { "profile": ["supplier"] },
+          "when": {
+            "profile": [
+              "supplier"
+            ]
+          },
           "text": {
             "ar": "عندما يتضمن عقد أحد العملاء متطلبات أمنية أشد من هذه السياسة، تُطبق متطلبات العقد على بيانات ذلك العميل والخدمات المقدمة له.",
             "en": "Where a client contract sets stricter security requirements than this policy, the contract's requirements apply to that client's data and the services provided to it."
           }
         },
         {
-          "when": { "profile": ["shop"] },
+          "when": {
+            "profile": [
+              "shop"
+            ]
+          },
           "text": {
             "ar": "تُعالج مدفوعات البطاقات عبر بوابات دفع مرخصة فقط، ولا تخزن الشركة بيانات البطاقات لديها.",
             "en": "Card payments are processed only through licensed payment gateways, and the company does not store card data."
@@ -164,7 +261,10 @@
       ]
     },
     {
-      "heading": { "ar": "الاستثناءات", "en": "Exceptions" },
+      "heading": {
+        "ar": "الاستثناءات",
+        "en": "Exceptions"
+      },
       "blocks": [
         {
           "text": {
@@ -175,7 +275,10 @@
       ]
     },
     {
-      "heading": { "ar": "المخالفات", "en": "Violations" },
+      "heading": {
+        "ar": "المخالفات",
+        "en": "Violations"
+      },
       "blocks": [
         {
           "text": {
@@ -184,7 +287,11 @@
           }
         },
         {
-          "when": { "usesContractors": ["yes"] },
+          "when": {
+            "usesContractors": [
+              "yes"
+            ]
+          },
           "text": {
             "ar": "وتُعالج مخالفات المستقلين والمتعاقدين وفق شروط عقودهم.",
             "en": "Breaches by freelancers and contractors are handled under the terms of their contracts."
@@ -193,7 +300,10 @@
       ]
     },
     {
-      "heading": { "ar": "المراجع", "en": "References" },
+      "heading": {
+        "ar": "المراجع",
+        "en": "References"
+      },
       "list": true,
       "blocks": [
         {
