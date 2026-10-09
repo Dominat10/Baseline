@@ -27,6 +27,36 @@ for (const i of kb.items) {
   }
 }
 
+// ---------- policies ----------
+const q = JSON.parse(readFileSync(new URL("../content/policies/questions.json", import.meta.url)));
+for (const st of q.steps) for (const f of st.fields) if (!q.fields[f]) errors.push(`questions step ${st.id}: unknown field "${f}"`);
+for (const [id, f] of Object.entries(q.fields)) {
+  if (!f.label?.ar || !f.label?.en) errors.push(`field ${id}: label needs ar and en`);
+  if (f.type === "select" && !(f.options?.length)) errors.push(`field ${id}: select needs options`);
+}
+for (const file of ["information-security"]) {
+  const pol = JSON.parse(readFileSync(new URL(`../content/policies/${file}.json`, import.meta.url)));
+  pol.sections.forEach((sec, si) => {
+    if (!sec.heading?.ar || !sec.heading?.en) errors.push(`${file} section ${si}: heading needs ar and en`);
+    sec.blocks.forEach((b, bi) => {
+      const where = `${file} section ${si} block ${bi}`;
+      if (!b.text?.ar || !b.text?.en) errors.push(`${where}: text needs ar and en`);
+      for (const lang of ["ar", "en"]) {
+        for (const m of (b.text?.[lang] ?? "").matchAll(/\{\{(\w+)\}\}/g)) {
+          if (!q.fields[m[1]]) errors.push(`${where}: unknown blank {{${m[1]}}} in ${lang}`);
+        }
+      }
+      const blanks = (l) => [...(b.text?.[l] ?? "").matchAll(/\{\{(\w+)\}\}/g)].map((m) => m[1]).sort().join();
+      if (blanks("ar") !== blanks("en")) errors.push(`${where}: ar and en use different blanks`);
+      for (const [k, vals] of Object.entries(b.when ?? {})) {
+        const field = q.fields[k];
+        if (!field) errors.push(`${where}: condition on unknown field "${k}"`);
+        else for (const v of vals) if (!field.options?.some((o) => o.value === v)) errors.push(`${where}: "${v}" isn't an option of ${k}`);
+      }
+    });
+  });
+}
+
 if (errors.length) {
   console.error(`Knowledge base has ${errors.length} problem(s):\n- ` + errors.join("\n- "));
   process.exit(1);

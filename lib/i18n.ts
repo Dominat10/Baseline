@@ -43,6 +43,23 @@ const ui = {
     kbVersion: "إصدار قاعدة المعرفة",
     sources: "المصادر",
     switchLang: "English",
+    nav: { plan: "الخطة", policies: "السياسات" },
+    policy: {
+      eyebrow: "مولّد السياسات · السياسة 1 من 6",
+      privacy: "إجاباتك تبقى في متصفحك فقط ولا تُرسل إلى أي خادم.",
+      formLabel: "بيانات السياسة",
+      previewLabel: "معاينة السياسة",
+      complete: "مكتمل",
+      back: "السابق",
+      next: "التالي",
+      left: (n: number) => `باقي ${n} حقول`,
+      allSet: "كل الحقول مكتملة",
+      word: "تنزيل ملف Word",
+      print: "طباعة / حفظ PDF",
+      fillFirst: "أكمل الحقول المظللة في المعاينة أولًا.",
+      signature: "التوقيع والتاريخ",
+      footer: "أُعدت هذه السياسة باستخدام Baseline (baseline.sa) بوصفها نموذجًا إرشاديًا. راجعها مع مستشارك القانوني قبل اعتمادها."
+    },
     footer: "Baseline: خط الأساس السيبراني للشركات الصغيرة والمتوسطة في السعودية."
   },
   en: {
@@ -87,6 +104,23 @@ const ui = {
     kbVersion: "Knowledge base version",
     sources: "Sources",
     switchLang: "العربية",
+    nav: { plan: "Plan", policies: "Policies" },
+    policy: {
+      eyebrow: "Policy generator · Policy 1 of 6",
+      privacy: "Your answers stay in your browser and are never sent to a server.",
+      formLabel: "Policy details",
+      previewLabel: "Policy preview",
+      complete: "complete",
+      back: "Back",
+      next: "Next",
+      left: (n: number) => `${n} fields left`,
+      allSet: "All fields complete",
+      word: "Download Word file",
+      print: "Print / save as PDF",
+      fillFirst: "Fill in the highlighted blanks in the preview first.",
+      signature: "Signature and date",
+      footer: "Prepared with Baseline (baseline.sa) as a guidance template. Review it with your legal advisor before approving it."
+    },
     footer: "Baseline: the cybersecurity baseline for Saudi SMEs."
   }
 };

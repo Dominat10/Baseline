@@ -1,0 +1,214 @@
+{
+  "id": "information-security",
+  "version": "0.1.0",
+  "title": { "ar": "سياسة الأمن السيبراني", "en": "Information Security Policy" },
+  "summary": {
+    "ar": "السياسة الأم: من المسؤول عن الأمن السيبراني، وما القواعد العامة، ومتى تُراجع.",
+    "en": "The umbrella policy: who owns cybersecurity, the general rules, and when they're reviewed."
+  },
+  "sections": [
+    {
+      "heading": { "ar": "الغرض", "en": "Purpose" },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تحدد هذه السياسة التزام {{companyName}} بحماية معلوماتها وأنظمتها وبيانات عملائها، وتوضح المسؤوليات والقواعد العامة التي تُبنى عليها جميع سياسات الأمن السيبراني الأخرى في الشركة.",
+            "en": "This policy sets out {{companyName}}'s commitment to protecting its information, systems and customer data, and defines the responsibilities and general rules on which all of the company's other cybersecurity policies are built."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "النطاق", "en": "Scope" },
+      "blocks": [
+        {
+          "text": {
+            "ar": "تنطبق هذه السياسة على جميع موظفي {{companyName}}، وعلى جميع الأنظمة والأجهزة والخدمات السحابية والبيانات التي تملكها الشركة أو تستخدمها، أينما كان مكان العمل.",
+            "en": "This policy applies to all employees of {{companyName}}, and to all systems, devices, cloud services and data the company owns or uses, wherever the work is done."
+          }
+        },
+        {
+          "when": { "usesContractors": ["yes"] },
+          "text": {
+            "ar": "وتنطبق كذلك على المستقلين والمتعاقدين الخارجيين الذين يصلون إلى بيانات الشركة أو أنظمتها.",
+            "en": "It also applies to freelancers and external contractors who access the company's data or systems."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "الأدوار والمسؤوليات", "en": "Roles and responsibilities" },
+      "list": true,
+      "blocks": [
+        {
+          "text": {
+            "ar": "{{approverTitle}}: يعتمد هذه السياسة، ويوفر الموارد اللازمة لتطبيقها، ويتلقى تقارير الأمن السيبراني.",
+            "en": "{{approverTitle}}: approves this policy, provides the resources to apply it, and receives cybersecurity reports."
+          }
+        },
+        {
+          "text": {
+            "ar": "مسؤول الأمن السيبراني ({{ownerName}}، {{ownerTitle}}): يتابع تطبيق هذه السياسة والسياسات المرتبطة بها، ويحدّثها، ويرفع تقريرًا إلى {{approverTitle}} مرة كل ربع سنة على الأقل، وينسق الاستجابة لأي حادثة.",
+            "en": "Security owner ({{ownerName}}, {{ownerTitle}}): oversees this policy and the related policies, keeps them up to date, reports to the {{approverTitle}} at least once a quarter, and coordinates the response to any incident."
+          }
+        },
+        {
+          "text": {
+            "ar": "جميع الموظفين: الالتزام بهذه السياسة، وإبلاغ مسؤول الأمن السيبراني فورًا عن أي نشاط مريب أو حادثة.",
+            "en": "All employees: follow this policy, and report any suspicious activity or incident to the security owner immediately."
+          }
+        },
+        {
+          "when": { "usesContractors": ["yes"] },
+          "text": {
+            "ar": "المستقلون والمتعاقدون: الالتزام بهذه السياسة وبالتزامات السرية والأمن الواردة في عقودهم.",
+            "en": "Freelancers and contractors: follow this policy and the confidentiality and security obligations in their contracts."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "قواعد السياسة", "en": "Policy rules" },
+      "numbered": true,
+      "blocks": [
+        {
+          "text": {
+            "ar": "تلتزم إدارة {{companyName}} بالأمن السيبراني بوصفه جزءًا من إدارة الأعمال، وتعتمد هذه السياسة رسميًا.",
+            "en": "The management of {{companyName}} treats cybersecurity as part of running the business, and formally approves this policy."
+          }
+        },
+        {
+          "text": {
+            "ar": "تعيّن الشركة مسؤولًا واحدًا عن الأمن السيبراني بالاسم، ويُحدَّث هذا التعيين عند تغيّر الشخص.",
+            "en": "The company names one person as security owner, and updates the appointment whenever that person changes."
+          }
+        },
+        {
+          "text": {
+            "ar": "تحتفظ الشركة بالسياسات التالية وتطبقها: سياسة الاستخدام المقبول، وسياسة التحكم في الوصول، وسياسة حماية البيانات، وسياسة الاستجابة للحوادث، وسياسة النسخ الاحتياطي والاستعادة.",
+            "en": "The company maintains and applies the following policies: Acceptable Use, Access Control, Data Protection, Incident Response, and Backup and Recovery."
+          }
+        },
+        {
+          "when": { "size": ["sme", "large"] },
+          "text": {
+            "ar": "تلتزم الشركة بضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بحسب فئتها، وبنظام حماية البيانات الشخصية، وبالمتطلبات الأمنية الواردة في عقود عملائها.",
+            "en": "The company complies with the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) for its category, with the Personal Data Protection Law, and with the security requirements in its client contracts."
+          }
+        },
+        {
+          "when": { "size": ["micro"] },
+          "text": {
+            "ar": "تلتزم الشركة بنظام حماية البيانات الشخصية وبالمتطلبات الأمنية الواردة في عقود عملائها، وتتبنى طوعًا ضوابط الأمن السيبراني لجهات القطاع الخاص الصادرة عن الهيئة الوطنية للأمن السيبراني (NCNICC-1:2025) بوصفها مرجعًا للممارسات الجيدة.",
+            "en": "The company complies with the Personal Data Protection Law and the security requirements in its client contracts, and voluntarily adopts the National Cybersecurity Authority's Cybersecurity Controls for Private Sector Entities (NCNICC-1:2025) as its reference for good practice."
+          }
+        },
+        {
+          "text": {
+            "ar": "تحدد الشركة أهم مخاطر الأمن السيبراني التي تواجهها مرة في السنة على الأقل، وقبل أي تغيير كبير مثل إدخال نظام جديد أو التعاقد مع مزود خدمة جديد.",
+            "en": "The company identifies its main cybersecurity risks at least once a year, and before any major change such as introducing a new system or signing a new service provider."
+          }
+        },
+        {
+          "text": {
+            "ar": "يحصل كل موظف على توعية بالأمن السيبراني عند التحاقه بالعمل، ومرة في السنة على الأقل بعد ذلك.",
+            "en": "Every employee receives cybersecurity awareness when they join, and at least once a year after that."
+          }
+        },
+        {
+          "text": {
+            "ar": "يلتزم أي مزود خدمة يصل إلى بيانات الشركة أو أنظمتها بالسرية وبمتطلبات أمنية مكتوبة قبل منحه الوصول.",
+            "en": "Any service provider that accesses the company's data or systems must commit in writing to confidentiality and security requirements before access is granted."
+          }
+        },
+        {
+          "when": { "profile": ["dev"] },
+          "text": {
+            "ar": "الكود المصدري والبرمجيات التي يطورها موظفو الشركة أو المتعاقدون معها ملك للشركة ويُعامل بوصفه معلومات سرية، ولا يُنسخ إلى حسابات أو أجهزة شخصية.",
+            "en": "Source code and software developed by the company's employees or contractors is company property and is treated as confidential information. It must not be copied to personal accounts or devices."
+          }
+        },
+        {
+          "when": { "profile": ["dev", "product"] },
+          "text": {
+            "ar": "يُراعى الأمن السيبراني وحماية البيانات منذ مرحلة تصميم أي نظام أو ميزة جديدة، وفق متطلبات التطوير الآمن المعتمدة في الشركة.",
+            "en": "Security and data protection are considered from the design stage of every new system or feature, following the company's secure development requirements."
+          }
+        },
+        {
+          "when": { "profile": ["supplier"] },
+          "text": {
+            "ar": "عندما يتضمن عقد أحد العملاء متطلبات أمنية أشد من هذه السياسة، تُطبق متطلبات العقد على بيانات ذلك العميل والخدمات المقدمة له.",
+            "en": "Where a client contract sets stricter security requirements than this policy, the contract's requirements apply to that client's data and the services provided to it."
+          }
+        },
+        {
+          "when": { "profile": ["shop"] },
+          "text": {
+            "ar": "تُعالج مدفوعات البطاقات عبر بوابات دفع مرخصة فقط، ولا تخزن الشركة بيانات البطاقات لديها.",
+            "en": "Card payments are processed only through licensed payment gateways, and the company does not store card data."
+          }
+        },
+        {
+          "text": {
+            "ar": "تحتفظ الشركة بسجلات تثبت تطبيق هذه السياسة، مثل مراجعات الصلاحيات وتجارب الاستعادة وسجلات التوعية.",
+            "en": "The company keeps records that show this policy is applied, such as access reviews, restore tests and awareness records."
+          }
+        },
+        {
+          "text": {
+            "ar": "تُراجع هذه السياسة كل {{reviewMonths}}، أو بعد أي حادثة أو تغيير كبير في الأعمال، أيهما أقرب.",
+            "en": "This policy is reviewed every {{reviewMonths}}, or after any incident or major business change, whichever comes first."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "الاستثناءات", "en": "Exceptions" },
+      "blocks": [
+        {
+          "text": {
+            "ar": "يُقدَّم أي طلب استثناء من هذه السياسة كتابيًا إلى مسؤول الأمن السيبراني، ويعتمده {{approverTitle}}، ويكون لمدة محددة، ويُسجَّل.",
+            "en": "Any request for an exception to this policy is made in writing to the security owner, approved by the {{approverTitle}}, time-limited, and recorded."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "المخالفات", "en": "Violations" },
+      "blocks": [
+        {
+          "text": {
+            "ar": "قد تؤدي مخالفة هذه السياسة إلى إجراءات تأديبية وفق لائحة تنظيم العمل في الشركة والأنظمة المعمول بها في المملكة العربية السعودية.",
+            "en": "Breaching this policy may lead to disciplinary action under the company's internal work regulations and the applicable laws of the Kingdom of Saudi Arabia."
+          }
+        },
+        {
+          "when": { "usesContractors": ["yes"] },
+          "text": {
+            "ar": "وتُعالج مخالفات المستقلين والمتعاقدين وفق شروط عقودهم.",
+            "en": "Breaches by freelancers and contractors are handled under the terms of their contracts."
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "ar": "المراجع", "en": "References" },
+      "list": true,
+      "blocks": [
+        {
+          "text": {
+            "ar": "ضوابط الأمن السيبراني لجهات القطاع الخاص من غير ذوات البنى التحتية الحساسة (NCNICC-1:2025)، الهيئة الوطنية للأمن السيبراني.",
+            "en": "Cybersecurity Controls for Non-CNI Private Sector Entities (NCNICC-1:2025), National Cybersecurity Authority."
+          }
+        },
+        {
+          "text": {
+            "ar": "نظام حماية البيانات الشخصية ولوائحه التنفيذية.",
+            "en": "Personal Data Protection Law and its implementing regulations."
+          }
+        }
+      ]
+    }
+  ]
+}

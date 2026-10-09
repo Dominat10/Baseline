@@ -25,3 +25,14 @@ Everything customers see in a plan comes from `content/knowledge-base.json`.
 2. Any claim about a regulation must be traceable to a source in `"sources"`.
 3. Bump `"version"` and `"updated"` with every change.
 4. Run `npm run check-content` before committing.
+
+# Editing policies
+
+Policies live in `content/policies/`:
+
+- `questions.json`: the question bank. Every blank a policy uses must be a field here, with Arabic and English labels.
+- `<policy>.json`: the template. Each section has blocks of text with blanks like `{{companyName}}`.
+  - A block with `"when": { "profile": ["dev"] }` only appears for that answer.
+  - Arabic and English versions of a block must use the same blanks.
+
+Answers never leave the visitor's browser. The Word download is built in the browser, and every answer is escaped before it goes into the file.

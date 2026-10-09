@@ -38,17 +38,21 @@ export default async function LangLayout({
         />
       </head>
       <body>
-        <header className="topbar">
+        <header className="topbar no-print">
           <Link href={`/${lang}`} className="logo">
             <span className="mark" aria-hidden="true" />
             {s.brand} <span className="logo-ar">· {s.brandAr}</span>
           </Link>
-          <Link href={`/${other}`} className="lang" hrefLang={other}>
-            {s.switchLang}
-          </Link>
+          <nav className="nav">
+            <Link href={`/${lang}/plan`}>{s.nav.plan}</Link>
+            <Link href={`/${lang}/policies`}>{s.nav.policies}</Link>
+            <Link href={`/${other}`} className="lang" hrefLang={other}>
+              {s.switchLang}
+            </Link>
+          </nav>
         </header>
         <main className="wrap">{children}</main>
-        <footer className="footer">{s.footer}</footer>
+        <footer className="footer no-print">{s.footer}</footer>
       </body>
     </html>
   );
